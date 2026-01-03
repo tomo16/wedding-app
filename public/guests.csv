@@ -1,6 +1,6 @@
 ﻿name,code,checkedin,message,seatNumber,hasTransportationGift,transportationGiftGiven,giftReceivedBefore,side
-佐藤太郎,TH01,FALSE,ようこそ！,A-1,TRUE,FALSE,FALSE,groom
-鈴木花子,TH02,FALSE,楽しんでください！,A-2,FALSE,FALSE,TRUE,bride
-田中一郎,TH03,FALSE,ようこそ！,A-3,TRUE,FALSE,FALSE,groom
-高橋健,TH04,FALSE,楽しんでください！,A-4,FALSE,FALSE,TRUE,groom
-伊藤美咲,TH05,FALSE,ようこそ！,A-5,TRUE,FALSE,FALSE,bride
+サトウタロウ,TH01,FALSE,ようこそ！,A-1,TRUE,FALSE,FALSE,groom
+スズキハナコ,TH02,FALSE,楽しんでください！,A-2,FALSE,FALSE,TRUE,bride
+タナカイチロウ,TH03,FALSE,ようこそ！,A-3,TRUE,FALSE,FALSE,groom
+タカハシケン,TH04,FALSE,楽しんでください！,A-4,FALSE,FALSE,TRUE,groom
+イトウミサキ,TH05,FALSE,ようこそ！,A-5,TRUE,FALSE,FALSE,bride

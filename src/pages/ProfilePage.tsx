@@ -39,7 +39,7 @@ const ProfilePage: React.FC = () => {
             borderRadius: '12px',
             boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
             textAlign: 'left',
-            backgroundColor: '#f0f0f0'
+            backgroundColor: '#f0f0f0',
           }}
         >
           <h3 style={{ margin: 0 }}>👦 新郎プロフィール</h3>
@@ -79,7 +79,7 @@ const ProfilePage: React.FC = () => {
             borderRadius: '12px',
             boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
             textAlign: 'left',
-            backgroundColor: '#f0f0f0'
+            backgroundColor: '#f0f0f0',
           }}
         >
           <h3 style={{ margin: 0 }}>👰 新婦プロフィール</h3>
@@ -101,7 +101,7 @@ const ProfilePage: React.FC = () => {
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：中島 瞳</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>
-            ・趣味：カフェ巡り／旅行
+            ・趣味：旅行
           </p>
           <p style={{ margin: 0, color: '#555' }}>
             ・性格：明るくて笑顔が多いタイプ
@@ -121,24 +121,39 @@ const ProfilePage: React.FC = () => {
             padding: '16px',
             borderRadius: '12px',
             boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            backgroundColor: '#f0f0f0'
+            backgroundColor: '#f0f0f0',
           }}
         >
           <h3 style={{ marginTop: 0 }}>📖 2人のストーリー</h3>
 
           <div style={{ borderLeft: '3px solid #4F46E5', paddingLeft: '12px' }}>
-            <p style={{ margin: '12px 0' }}>
-              <strong>2023年 7月</strong>　初デート
-            </p>
-            <p style={{ margin: '12px 0' }}>
-              <strong>2023年 8月</strong>　交際スタート
-            </p>
-            <p style={{ margin: '12px 0' }}>
-              <strong>2025年 8月</strong>　プロポーズ
-            </p>
-            <p style={{ margin: '12px 0' }}>
-              <strong>2026年 9/26</strong>　結婚式
-            </p>
+            <div style={{ margin: '12px 0' }}>
+              <strong>2023年 7月 初デート</strong>
+              <p style={{ margin: '4px 0', color: '#555' }}>
+                会話の波長がとても合って、不思議と緊張せずに過ごせました。
+              </p>
+            </div>
+
+            <div style={{ margin: '12px 0' }}>
+              <strong>2023年 8月 交際スタート</strong>
+              <p style={{ margin: '4px 0', color: '#555' }}>
+                会う回数が増えるにつれて、日常の中に相手がいることが当たり前になっていきました。
+              </p>
+            </div>
+
+            <div style={{ margin: '12px 0' }}>
+              <strong>2025年 8月 プロポーズ</strong>
+              <p style={{ margin: '4px 0', color: '#555' }}>
+                お互いに気を張らずに自然体でいられる関係になり、これから先も隣で歩んでいきたいと思いました。
+              </p>
+            </div>
+
+            <div style={{ margin: '12px 0' }}>
+              <strong>2026年 9/26 結婚式</strong>
+              <p style={{ margin: '4px 0', color: '#555' }}>
+                本日はどうぞごゆっくりお楽しみください。
+              </p>
+            </div>
           </div>
         </div>
 
@@ -153,47 +168,66 @@ const ProfilePage: React.FC = () => {
             padding: '16px',
             borderRadius: '12px',
             boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            backgroundColor: '#f0f0f0'
+            backgroundColor: '#f0f0f0',
           }}
         >
-          <h3 style={{ marginTop: 0 }}>❓ Q&A（仮）</h3>
+          <h3 style={{ marginTop: 0 }}>❓ Q&A</h3>
 
           <div style={{ marginBottom: '16px' }}>
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 初デートは？
+              Q. 相手のどんなところに惹かれましたか？
             </p>
             <p style={{ margin: 0, color: '#555' }}>
-              映画館 → カフェでお話しました。
+              新郎：かわいさとおもしろさを持ちつつ、真面目さも兼ね備えているところです。<br/>
+              新婦：てすと
             </p>
           </div>
 
           <div style={{ marginBottom: '16px' }}>
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. お互いの第一印象は？
+              Q. 相手の「ここがすごい」と思うところは？
             </p>
             <p style={{ margin: 0, color: '#555' }}>
-              新郎：明るくて話しやすい人だなと思った。
+              新郎：目標を立てたら、自分で考えて行動し、それを継続して、きちんと結果も出すところです。
             </p>
             <p style={{ margin: 0, color: '#555' }}>
-              新婦：優しくて落ち着いている印象でした。
+              新婦：てすと
             </p>
           </div>
 
           <div style={{ marginBottom: '16px' }}>
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 休みの日は何してる？
+              Q. お互いの「相手の」ちょっとした失敗エピソードは？
             </p>
             <p style={{ margin: 0, color: '#555' }}>
-              カフェ巡り、映画、旅行が多いです。
+              新郎：ボトルタイプの日焼け止めを包んでいる外側のフィルムを、開け口とは違うところからパワーで剥がそうとして、結局ポンプの部分に引っかかって開けられませんでした。
+            </p>
+            <p style={{ margin: 0, color: '#555' }}>
+              新婦：てすと
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
+              Q. 結婚の決め手は？
+            </p>
+            <p style={{ margin: 0, color: '#555' }}>
+              新郎：一緒に過ごす時間が居心地よく、何気ない毎日も楽しく感じられたことです。
+            </p>
+            <p style={{ margin: 0, color: '#555' }}>
+              新婦：てすと
             </p>
           </div>
 
           <div>
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 結婚の決め手は？
+              Q. これから二人で大切にしたいことは？
             </p>
             <p style={{ margin: 0, color: '#555' }}>
-              一緒にいると素でいられて、何をしていても楽しかったからです。
+              新郎：どんなときも話し合いを大切にしながら、笑顔で過ごせる関係でいることです。
+            </p>
+            <p style={{ margin: 0, color: '#555' }}>
+              新婦：てすと
             </p>
           </div>
         </div>
