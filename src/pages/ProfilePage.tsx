@@ -98,11 +98,9 @@ const ProfilePage: React.FC = () => {
             }}
           />
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：中島 瞳</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：秋山 瞳</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            ・趣味：旅行
-          </p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・趣味：推し活</p>
           <p style={{ margin: 0, color: '#555' }}>
             ・性格：明るくて笑顔が多いタイプ
           </p>
@@ -124,13 +122,13 @@ const ProfilePage: React.FC = () => {
             backgroundColor: '#f0f0f0',
           }}
         >
-          <h3 style={{ marginTop: 0 }}>📖 2人のストーリー</h3>
+          <h3 style={{ marginTop: 0 }}>📖 出会いから今日まで</h3>
 
           <div style={{ borderLeft: '3px solid #4F46E5', paddingLeft: '12px' }}>
             <div style={{ margin: '12px 0' }}>
               <strong>2023年 7月 初デート</strong>
               <p style={{ margin: '4px 0', color: '#555' }}>
-                会話の波長がとても合って、不思議と緊張せずに過ごせました。
+                会話の波長がとても合い、初めてとは思えないほど自然に過ごすことができました。
               </p>
             </div>
 
@@ -144,14 +142,16 @@ const ProfilePage: React.FC = () => {
             <div style={{ margin: '12px 0' }}>
               <strong>2025年 8月 プロポーズ</strong>
               <p style={{ margin: '4px 0', color: '#555' }}>
-                お互いに気を張らずに自然体でいられる関係になり、これから先も隣で歩んでいきたいと思いました。
+                お互いに気を張らずに自然体でいられる関係になり、これから先も人生を共に歩んでいきたいと思いました。
               </p>
             </div>
 
             <div style={{ margin: '12px 0' }}>
               <strong>2026年 9/26 結婚式</strong>
               <p style={{ margin: '4px 0', color: '#555' }}>
-                本日はどうぞごゆっくりお楽しみください。
+                本日はお越しいただきありがとうございます。
+                <br />
+                どうぞごゆっくりお楽しみください。
               </p>
             </div>
           </div>
@@ -177,9 +177,18 @@ const ProfilePage: React.FC = () => {
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               Q. 相手のどんなところに惹かれましたか？
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新郎：かわいさとおもしろさを持ちつつ、真面目さも兼ね備えているところです。<br/>
-              新婦：てすと
+
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
+              <span>
+                かわいさやおもしろさがありながら、
+                <br />
+                物事に真剣に向き合う真面目さも兼ね備えているところです。
+              </span>
+            </p>
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
+              <span>てすと</span>
             </p>
           </div>
 
@@ -187,11 +196,17 @@ const ProfilePage: React.FC = () => {
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               Q. 相手の「ここがすごい」と思うところは？
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新郎：目標を立てたら、自分で考えて行動し、それを継続して、きちんと結果も出すところです。
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
+              <span>
+                目標を立てると自分で考えて行動し、
+                <br />
+                それを継続して、きちんと結果につなげるところです。
+              </span>
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新婦：てすと
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
+              <span>てすと</span>
             </p>
           </div>
 
@@ -199,11 +214,23 @@ const ProfilePage: React.FC = () => {
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               Q. お互いの「相手の」ちょっとした失敗エピソードは？
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新郎：ボトルタイプの日焼け止めを包んでいる外側のフィルムを、開け口とは違うところからパワーで剥がそうとして、結局ポンプの部分に引っかかって開けられませんでした。
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
+              <span>
+                コショウをミルで挽くとき、
+                <br />
+                キャップを付けたまま一生懸命ガリガリ回して
+                <br />
+                「全然出ない！」と騒いでいました。
+                <br />
+                キャップに気づいて外した瞬間、
+                <br />
+                今度はどばっと出てしまいました。
+              </span>
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新婦：てすと
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
+              <span>てすと</span>
             </p>
           </div>
 
@@ -211,11 +238,15 @@ const ProfilePage: React.FC = () => {
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               Q. 結婚の決め手は？
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新郎：一緒に過ごす時間が居心地よく、何気ない毎日も楽しく感じられたことです。
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
+              <span>
+                一緒に過ごす時間がとても居心地よく、何気ない毎日も楽しく感じられたことです。
+              </span>
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新婦：てすと
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
+              <span>てすと</span>
             </p>
           </div>
 
@@ -223,11 +254,17 @@ const ProfilePage: React.FC = () => {
             <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
               Q. これから二人で大切にしたいことは？
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新郎：どんなときも話し合いを大切にしながら、笑顔で過ごせる関係でいることです。
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
+              <span>
+                どんなときも話し合いを大切にしながら、
+                <br />
+                笑顔で過ごせる関係でいることです。
+              </span>
             </p>
-            <p style={{ margin: 0, color: '#555' }}>
-              新婦：てすと
+            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
+              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
+              <span>てすと</span>
             </p>
           </div>
         </div>

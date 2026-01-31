@@ -57,24 +57,7 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            🥂 <strong>碧 ハイボール</strong>
-          </p>
-          <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
-            食事にもデザートにも合う完璧なハイボール。
-          </p>
-        </div>
-
-        <div
-          style={{
-            background: '#fff',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
-            marginBottom: '20px',
-          }}
-        >
-          <p style={{ margin: '0 0 8px' }}>
-            🍶 <strong>田酒</strong>
+            <strong>D（新郎おすすめ）</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
             水のように飲める日本酒。
@@ -91,7 +74,7 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            🍹 <strong>鳥飼 ソーダ割</strong>
+            <strong>T（新婦おすすめ）</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
             米焼酎とは思えないフルーティーさ。
@@ -124,7 +107,7 @@ const DrinkMenuPage: React.FC = () => {
         </ul>
 
         <p style={{ marginTop: '30px', fontSize: '13px', color: '#666' }}>
-          ※田酒、鳥飼、碧については、持ち込みのため品切れになる可能性があります。
+          ※おすすめドリンクについては、持ち込みのため品切れになる可能性があります。
         </p>
       </div>
     </div>

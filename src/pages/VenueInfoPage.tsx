@@ -101,7 +101,7 @@ const VenueInfoPage: React.FC = () => {
           <div style={{ marginBottom: '10px' }}>
             <p style={{ fontWeight: 700, margin: '0 0 6px 0' }}>写真撮影</p>
             <p style={{ margin: 0, color: '#444' }}>
-              挙式中：撮影NG（会場規則に準拠）<br/>
+              挙式中：撮影OK？（会場規則に準拠）<br/>
               披露宴中：撮影OK（SNS投稿は控えめにお願いします）
             </p>
           </div>
