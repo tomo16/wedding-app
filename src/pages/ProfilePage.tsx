@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
-import groomImg from "../../public/photos/full/IMG_6736.jpg";  // 新郎写真
-import brideImg from "../../public/photos/full/IMG_6711.jpg";  // 新婦写真
+import groomImg from "../../public/photos/full/tomokisolo.jpg";  // 新郎写真
+import brideImg from "../../public/photos/full/hitomisolo.jpg";  // 新婦写真
 
 const ProfilePage: React.FC = () => {
   useEffect(() => {
@@ -58,13 +58,10 @@ const ProfilePage: React.FC = () => {
             }}
           />
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：秋山 朋輝</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ともき</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：練馬区</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             ・趣味：スポーツ観戦
-          </p>
-          <p style={{ margin: 0, color: '#555' }}>
-            ・性格：穏やかで優しいタイプ
           </p>
         </div>
 
@@ -98,12 +95,9 @@ const ProfilePage: React.FC = () => {
             }}
           />
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：秋山 瞳</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・趣味：推し活</p>
-          <p style={{ margin: 0, color: '#555' }}>
-            ・性格：明るくて笑顔が多いタイプ
-          </p>
         </div>
 
         {/* ▼ ストーリー & Q&A（元コードそのまま利用可） ▼ */}
@@ -225,7 +219,7 @@ const ProfilePage: React.FC = () => {
                 <br />
                 キャップに気づいて外した瞬間、
                 <br />
-                今度はどばっと出てしまいました。
+                今度はどばっと出てしまったこと。
               </span>
             </p>
             <p style={{ margin: 0, color: '#555', display: 'flex' }}>

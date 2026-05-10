@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
+import drinkImg from "../../public/photos/full/drink.jpg"; 
 
 const DrinkMenuPage: React.FC = () => {
   const alcoholList = [
@@ -28,7 +29,14 @@ const DrinkMenuPage: React.FC = () => {
       style={{
         height: '100dvh',
         overflow: 'hidden',
-        backgroundColor: '#ffffff',
+        // backgroundColor: '#ffffff',
+        backgroundImage: `
+        linear-gradient(
+        rgba(255,255,255,0.78),
+        rgba(255,255,255,0.78)),url(${drinkImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
       }}
     >
       {/* 固定ヘッダー */}
@@ -100,9 +108,7 @@ const DrinkMenuPage: React.FC = () => {
         <h3 style={{ marginTop: '24px' }}>ソフトドリンク</h3>
         <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.8' }}>
           {softDrinkList.map((drink) => (
-            <li key={drink.name}>
-              ・ {drink.name}
-            </li>
+            <li key={drink.name}>・ {drink.name}</li>
           ))}
         </ul>
 

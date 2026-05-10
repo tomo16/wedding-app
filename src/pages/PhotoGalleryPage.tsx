@@ -7,15 +7,15 @@ type Photo = {
 };
 
 const photos: Photo[] = [
-  { thumb: "/photos/thumb/IMG_6482.jpg", full: "/photos/full/IMG_6482.jpg" },
-  { thumb: "/photos/thumb/IMG_6331.jpg", full: "/photos/full/IMG_6331.jpg" },
-  { thumb: "/photos/thumb/IMG_6736.jpg", full: "/photos/full/IMG_6736.jpg" },
-  { thumb: "/photos/thumb/IMG_6711.jpg", full: "/photos/full/IMG_6711.jpg" },
-  { thumb: "/photos/thumb/IMG_6676.jpg", full: "/photos/full/IMG_6676.jpg" },
-  { thumb: "/photos/thumb/IMG_6682.jpg", full: "/photos/full/IMG_6682.jpg" },
-  { thumb: "/photos/thumb/IMG_6685.jpg", full: "/photos/full/IMG_6685.jpg" },
-  { thumb: "/photos/thumb/IMG_6706.jpg", full: "/photos/full/IMG_6706.jpg" },
-  { thumb: "/photos/thumb/IMG_6679.jpg", full: "/photos/full/IMG_6679.jpg" },
+  { thumb: "/photos/thumb/photo3.jpg", full: "/photos/full/photo3.jpg" },
+  { thumb: "/photos/thumb/photo5.jpg", full: "/photos/full/photo5.jpg" },
+  { thumb: "/photos/thumb/photo4.jpg", full: "/photos/full/photo4.jpg" },
+  { thumb: "/photos/thumb/photo1.jpg", full: "/photos/full/photo1.jpg" },
+  { thumb: "/photos/thumb/photo2.jpg", full: "/photos/full/photo2.jpg" },
+  { thumb: "/photos/thumb/photo6.jpg", full: "/photos/full/photo6.jpg" },
+  { thumb: "/photos/thumb/photo9.jpg", full: "/photos/full/photo9.jpg" },
+  { thumb: "/photos/thumb/photo8.jpg", full: "/photos/full/photo8.jpg" },
+  { thumb: "/photos/thumb/photo7.jpg", full: "/photos/full/photo7.jpg" },
 ];
 
 const PhotoGalleryPage: React.FC = () => {
