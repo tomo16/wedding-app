@@ -1,5 +1,5 @@
 // src/pages/GuestApp.tsx
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGuest } from "../context/GuestContext";
 import coupleImg from "../assets/home.jpg";
@@ -63,16 +63,16 @@ export default function GuestApp() {
   };
 
   // 日付チェック関数
-  const isWeddingDay = () => {
-    const today = new Date();
-    const weddingDate = new Date('2026-09-26');
+  // const isWeddingDay = () => {
+  //   const today = new Date();
+  //   const weddingDate = new Date('2026-09-26');
 
-    return (
-      today.getFullYear() === weddingDate.getFullYear() &&
-      today.getMonth() === weddingDate.getMonth() &&
-      today.getDate() === weddingDate.getDate()
-    );
-  };
+  //   return (
+  //     today.getFullYear() === weddingDate.getFullYear() &&
+  //     today.getMonth() === weddingDate.getMonth() &&
+  //     today.getDate() === weddingDate.getDate()
+  //   );
+  // };
   // 🔒 戻るボタン無効化
   useEffect(() => {
     const handlePopState = () => {
