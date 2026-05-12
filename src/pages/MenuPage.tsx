@@ -1,18 +1,18 @@
-import { useNavigate } from "react-router-dom";
-import { useGuest } from "../context/GuestContext";
-import Header from "../components/Header";
-import { useEffect } from "react";
-import usePageScrollLock from "../hooks/usePageScrollLock";
-import eatingImg from "../../public/photos/full/eating.jpg"; 
+import { useNavigate } from 'react-router-dom';
+import { useGuest } from '../context/GuestContext';
+import Header from '../components/Header';
+import { useEffect } from 'react';
+import usePageScrollLock from '../hooks/usePageScrollLock';
+import eatingImg from '../../public/photos/full/eating.jpg';
+
 function MenuPage() {
   const { guest } = useGuest();
   const navigate = useNavigate();
 
-  // ★これだけで十分。body の overflow 制御は絶対に二重で書かない
   usePageScrollLock(true);
 
   if (!guest) {
-    navigate("/guest/login");
+    navigate('/guest/login');
     return null;
   }
 
@@ -48,75 +48,143 @@ function MenuPage() {
   ];
 
   return (
-    <div
-      style={{
-        height: '100dvh',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
-        backgroundImage: `
-          linear-gradient(
-            rgba(255,255,255,0.78),
-            rgba(255,255,255,0.78)
-          ),
-          url(${eatingImg})
-        `,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <Header title=" お食事" />
+    <>
+      <style>
+        {`
+          @keyframes bgSlide {
+            0% {
+              transform: translateX(0);
+            }
 
-<div
-  style={{
-    flex: 1,
-    overflowY: 'auto',
-    padding: '76px 20px 40px',
-    boxSizing: 'border-box',
-  }}
->
-  <div
-    style={{
-      maxWidth: '420px',
-      margin: '0 auto',
-      // background: 'rgba(255,255,255,0.72)',
-      // backdropFilter: 'blur(6px)',
-      borderRadius: '24px',
-      padding: '24px',
-    }}
-  >
-    {menuList.map((section) => (
-      <div key={section.title} style={{ marginBottom: '28px' }}>
-        <h3
+            100% {
+              transform: translateX(-20%);
+            }
+          }
+        `}
+      </style>
+
+      <div
+        style={{
+          height: '100dvh',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          position: 'relative',
+          backgroundColor: '#fdfaf7',
+        }}
+      >
+        {/* 背景画像 */}
+        <div
           style={{
-            marginBottom: '12px',
-            color: '#7b5e57',
-            borderBottom: '1px solid #ddd',
-            paddingBottom: '6px',
+            position: 'absolute',
+            inset: 0,
+            overflow: 'hidden',
+            zIndex: 0,
           }}
         >
-          {section.title}
-        </h3>
+          <img
+            src={eatingImg}
+            alt=""
+            style={{
+              position: 'absolute',
 
-        <ul
+              width: '140%',
+              height: '100%',
+
+              objectFit: 'cover',
+              objectPosition: 'center',
+
+              opacity: 0.28,
+              filter: 'blur(4px)',
+
+              animation:
+                'bgSlide 32s ease-in-out infinite alternate',
+            }}
+          />
+
+          {/* 白オーバーレイ */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(255,255,255,0.45)',
+            }}
+          />
+        </div>
+
+        {/* メインコンテンツ */}
+        <div
           style={{
-            listStyle: 'none',
-            padding: 0,
-            margin: 0,
-            lineHeight: '2',
-            color: '#444',
+            position: 'relative',
+            zIndex: 1,
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
-          {section.items.map((item) => (
-            <li key={item}>・{item}</li>
-          ))}
-        </ul>
+          <Header title=" お食事" />
+
+          <div
+            style={{
+              flex: 1,
+              overflowY: 'auto',
+              padding: '76px 20px 40px',
+              boxSizing: 'border-box',
+            }}
+          >
+            <div
+              style={{
+                maxWidth: '420px',
+                margin: '0 auto',
+
+                background: 'rgba(255,255,255,0.65)',
+                backdropFilter: 'blur(8px)',
+
+                borderRadius: '24px',
+                padding: '24px',
+
+                boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+              }}
+            >
+              {menuList.map((section) => (
+                <div
+                  key={section.title}
+                  style={{
+                    marginBottom: '28px',
+                  }}
+                >
+                  <h3
+                    style={{
+                      marginBottom: '12px',
+                      color: '#7b5e57',
+                      borderBottom: '1px solid #ddd',
+                      paddingBottom: '6px',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    {section.title}
+                  </h3>
+
+                  <ul
+                    style={{
+                      listStyle: 'none',
+                      padding: 0,
+                      margin: 0,
+                      lineHeight: '2',
+                      color: '#444',
+                    }}
+                  >
+                    {section.items.map((item) => (
+                      <li key={item}>・{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    ))}
-  </div>
-</div>
-    </div>
+    </>
   );
 }
 
