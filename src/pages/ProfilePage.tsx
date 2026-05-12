@@ -81,19 +81,32 @@ const ProfilePage: React.FC = () => {
         >
           <h3 style={{ margin: 0 }}>👰 新婦プロフィール</h3>
 
-          <img
-            src={brideImg}
-            alt="新婦写真"
+          <div
             style={{
               width: '300px',
               height: '300px',
               borderRadius: '50%',
-              objectFit: 'cover',
-              display: 'block',
+              overflow: 'hidden',
               margin: '16px auto',
               border: '3px solid #eee',
             }}
-          />
+          >
+            <img
+              src={brideImg}
+              alt="新婦写真"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+
+                // ← 顔位置微調整
+                objectPosition: 'center 60%',
+
+                // ← 写真だけ拡大
+                transform: 'scale(1.22)',
+              }}
+            />
+          </div>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
