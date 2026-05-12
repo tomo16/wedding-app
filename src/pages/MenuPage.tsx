@@ -94,11 +94,11 @@ function MenuPage() {
               objectFit: 'cover',
               objectPosition: 'center',
 
-              opacity: 0.28,
-              filter: 'blur(4px)',
+              opacity: 0.4,
+              filter: 'blur(2px)',
 
               animation:
-                'bgSlide 32s ease-in-out infinite alternate',
+                'bgSlide 18s ease-in-out infinite alternate',
             }}
           />
 
