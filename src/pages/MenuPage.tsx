@@ -136,8 +136,7 @@ function MenuPage() {
                 maxWidth: '420px',
                 margin: '0 auto',
 
-                background: 'rgba(255,255,255,0.65)',
-                backdropFilter: 'blur(8px)',
+                background: 'transparent',
 
                 borderRadius: '24px',
                 padding: '24px',
