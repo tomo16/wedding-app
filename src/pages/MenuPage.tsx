@@ -95,7 +95,6 @@ function MenuPage() {
               objectPosition: 'center',
 
               opacity: 0.4,
-              filter: 'blur(2px)',
 
               animation:
                 'bgSlide 18s ease-in-out infinite alternate',
