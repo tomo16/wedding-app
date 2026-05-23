@@ -113,57 +113,6 @@ const ProfilePage: React.FC = () => {
           <p style={{ margin: '0 0 8px', color: '#555' }}>・趣味：推し活</p>
         </div>
 
-        {/* ▼ ストーリー & Q&A（元コードそのまま利用可） ▼ */}
-        {/* ここからはあなたの元コードそのまま貼ってOK */}
-        {/* タイムライン風ストーリー */}
-        <div
-          style={{
-            width: '90%',
-            maxWidth: '400px',
-            margin: '24px auto 0',
-            textAlign: 'left',
-            background: 'white',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            backgroundColor: '#f0f0f0',
-          }}
-        >
-          <h3 style={{ marginTop: 0 }}>📖 出会いから今日まで</h3>
-
-          <div style={{ borderLeft: '3px solid #4F46E5', paddingLeft: '12px' }}>
-            <div style={{ margin: '12px 0' }}>
-              <strong>2023年 7月 初デート</strong>
-              <p style={{ margin: '4px 0', color: '#555' }}>
-                会話の波長がとても合い、初めてとは思えないほど自然に過ごすことができました。
-              </p>
-            </div>
-
-            <div style={{ margin: '12px 0' }}>
-              <strong>2023年 8月 交際スタート</strong>
-              <p style={{ margin: '4px 0', color: '#555' }}>
-                会う回数が増えるにつれて、日常の中に相手がいることが当たり前になっていきました。
-              </p>
-            </div>
-
-            <div style={{ margin: '12px 0' }}>
-              <strong>2025年 8月 プロポーズ</strong>
-              <p style={{ margin: '4px 0', color: '#555' }}>
-                お互いに気を張らずに自然体でいられる関係になり、これから先も人生を共に歩んでいきたいと思いました。
-              </p>
-            </div>
-
-            <div style={{ margin: '12px 0' }}>
-              <strong>2026年 9/26 結婚式</strong>
-              <p style={{ margin: '4px 0', color: '#555' }}>
-                本日はお越しいただきありがとうございます。
-                <br />
-                どうぞごゆっくりお楽しみください。
-              </p>
-            </div>
-          </div>
-        </div>
-
         {/* Q&Aコーナー */}
         <div
           style={{

@@ -93,7 +93,7 @@ export default function GuestApp() {
   const handleOpenPhotoUpload = () => navigate('/photoUpload');
   const handleOpenProfile = () => navigate('/profile');
   const handleOpenVenueInfo = () => navigate('/venueInfo');
-  const handleOpenVenueMap = () => navigate('/venueMap');
+  const handleOpenVenueMap = () => navigate('/history');
   const handleOpenMessage = () => navigate('/message');
   const handleOpenDrink = () => navigate('/drink');
 
@@ -249,6 +249,7 @@ export default function GuestApp() {
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr)',
+          gridAutoRows: '80px',
           gap: '10px',
           maxWidth: '400px',
           margin: '0 auto',
@@ -310,9 +311,7 @@ export default function GuestApp() {
           onClick={handleOpenVenueMap}
           style={{ backgroundColor: memberColors[3] }}
         >
-          会場内
-          <br />
-          MAP
+          ヒストリー
         </button>
       </div>
 

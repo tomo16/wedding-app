@@ -15,6 +15,7 @@ import PhotoUploadPage from "./pages/PhotoUploadPage";
 import MessageListPage from "./pages/MessageListPage";
 import DrinkMenuPage from "./pages/DrinkMenuPage";
 import { ReceptionSummary } from "./pages/ReceptionSummaryPage";
+import HistoryPage from "./pages/History";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/drink" element={<DrinkMenuPage />} />
           <Route path="/groomSummary" element={<ReceptionSummary side={"groom"} />} />
           <Route path="/brideSummary" element={<ReceptionSummary side={"bride"} />} />
+          <Route path="/history" element={<HistoryPage />} />
         </Routes>
       </Router>
     </GuestProvider>
