@@ -43,7 +43,6 @@ const ProfilePage: React.FC = () => {
           }}
         >
           <h3 style={{ margin: 0 }}>👦 新郎プロフィール</h3>
-
           <img
             src={groomImg}
             alt="新郎写真"
@@ -57,11 +56,25 @@ const ProfilePage: React.FC = () => {
               border: '3px solid #eee', // ← ほんのり枠（おしゃれ）
             }}
           />
-
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ともき</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：練馬区</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             ・趣味：スポーツ観戦
+          </p>
+
+          <p style={{ margin: '0 0 8px', color: '#555' }}>
+            スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズを応援しています。
+            <br />
+            西武がようやく強くなってきて、最近はとても楽しいです。（浦和は少し心配ですが。。）
+            <br />
+            妻が「ベルーナドーム（西部の本拠地）は遠いからいやだ！！！」、といっているのでCSに進出したら一緒に行こうと勝手に約束しています。
+            <br />
+            <br />
+            結婚式の準備では、このアプリの設計・開発・テストを担当しました。
+            <br />
+            バグを見つけた方は、メッセージ機能から教えてください。
+            <br />
+            本日は楽しんでいただけるとうれしいです！
           </p>
         </div>
 
@@ -114,7 +127,7 @@ const ProfilePage: React.FC = () => {
         </div>
 
         {/* Q&Aコーナー */}
-        <div
+        {/* <div
           style={{
             width: '90%',
             maxWidth: '400px',
@@ -223,7 +236,7 @@ const ProfilePage: React.FC = () => {
               <span>てすと</span>
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

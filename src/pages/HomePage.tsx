@@ -69,8 +69,8 @@ export default function HomePage() {
       <p>テストリンク:</p>
       <Link to="/guest/login">Weddingページへ</Link>
       <br />
-      {/* 仮でTH01の人のReceptionページへ遷移 */}
-      <Link to="/reception/TH01">Th01のゲストのReceptionページへ</Link>
+      {/* 仮でT01の人のReceptionページへ遷移 */}
+      <Link to="/reception/T01">T01のゲストのReceptionページへ</Link>
       <br />
       <Link to="/messageList">MessageListページへ</Link>
       <br />

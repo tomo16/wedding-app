@@ -15,18 +15,19 @@ const MessagePage: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [side, setSide] = useState<'groom' | 'bride' | ''>('');
 
 
 
   // 名前読み込み
   const handleSubmit = async () => {
-    if (!name.trim() || !text.trim()) {
-      setErrorMessage('お名前とメッセージを入力してください！');
+    if (!name.trim() || !text.trim() || !side) {
+      setErrorMessage('お名前・ご関係（新郎側/新婦側）・メッセージを入力してください！');
       setShowErrorModal(true);
       return;
     }
 
-    const newMessage = { name, text, time: Timestamp.now() };
+    const newMessage = { name, text, side,time: Timestamp.now() };
 
     try {
       await addDoc(collection(db, 'messages'), newMessage);
@@ -120,6 +121,27 @@ const MessagePage: React.FC = () => {
             fontSize: '16px',
           }}
         />
+        <div style={{ marginBottom: '12px' }}>
+          <label>
+            <input
+              type="radio"
+              value="groom"
+              checked={side === 'groom'}
+              onChange={() => setSide('groom')}
+            />
+            新郎側
+          </label>
+
+          <label style={{ marginLeft: '20px' }}>
+            <input
+              type="radio"
+              value="bride"
+              checked={side === 'bride'}
+              onChange={() => setSide('bride')}
+            />
+            新婦側
+          </label>
+        </div>
 
         <textarea
           placeholder="メッセージ"

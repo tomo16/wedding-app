@@ -1,6 +1,63 @@
 ﻿name,code,checkedin,message,seatNumber,hasTransportationGift,transportationGiftGiven,giftReceivedBefore,side
-サトウタロウ,TH01,FALSE,ようこそ！,A-1,TRUE,FALSE,FALSE,groom
-スズキハナコ,TH02,FALSE,楽しんでください！,A-2,FALSE,FALSE,TRUE,bride
-タナカイチロウ,TH03,FALSE,ようこそ！,A-3,TRUE,FALSE,FALSE,groom
-タカハシケン,TH04,FALSE,楽しんでください！,A-4,FALSE,FALSE,TRUE,groom
-イトウミサキ,TH05,FALSE,ようこそ！,A-5,TRUE,FALSE,FALSE,bride
+秋山広治（アキヤマ ヒロジ）,T01,FALSE,ようこそ！,I-1,FALSE,FALSE,FALSE,groom
+秋山恵子（アキヤマ ケイコ）,T02,FALSE,楽しんでください！,I-2,FALSE,FALSE,TRUE,groom
+播磨愛里子（ハリマ エリコ）,T03,FALSE,ようこそ！,I-3,TRUE,FALSE,FALSE,groom
+播磨渉（ハリマ ワタル）,T04,FALSE,楽しんでください！,I-4,TRUE,FALSE,TRUE,groom
+青木芳仁（アオキ ヨシヒト）,T05,FALSE,ようこそ！,A-1,FALSE,FALSE,FALSE,groom
+坂本亘（サカモト ワタル）,T06,FALSE,ようこそ！,A-4,TRUE,FALSE,FALSE,groom
+糸洲弘（イトス ヒロシ）,T07,FALSE,楽しんでください！,A-2,FALSE,FALSE,FALSE,groom
+川上さとし(カワカミ サトシ),T08,FALSE,ようこそ！,A-3,FALSE,FALSE,FALSE,groom
+薗頭雅人（ソノガシラ マサト）,T09,FALSE,楽しんでください！,A-5,FALSE,FALSE,FALSE,groom
+竹村拓希（タケムラ ヒロキ）,T10,FALSE,ようこそ！,A-7,FALSE,FALSE,FALSE,groom
+栃木駿太（トチギ シュンタ）,T11,FALSE,ようこそ！,A-8,FALSE,FALSE,FALSE,groom
+菊地修平（キクチ シュウヘイ）,T12,FALSE,楽しんでください！,A-6,FALSE,FALSE,FALSE,groom
+出久根良樹（イズクネ ヨシキ）,T13,FALSE,ようこそ！,D-2,FALSE,FALSE,FALSE,groom
+落合政宗（オチアイ マサムネ）,T14,FALSE,楽しんでください！,D-3,TRUE,FALSE,FALSE,groom
+小西亮太(コニシ リョウタ),T15,FALSE,ようこそ！,D-5,TRUE,FALSE,FALSE,groom
+佐野将洋（サノ マサヒロ）,T16,FALSE,ようこそ！,D-4,TRUE,FALSE,FALSE,groom
+浅野茉里有（アサノ マリア）,T17,FALSE,楽しんでください！,D-1,FALSE,FALSE,FALSE,groom
+藤野亮介（フジノ リョウスケ）,T18,FALSE,ようこそ！,F-1,FALSE,FALSE,FALSE,groom
+藤野広一（フジノ コウイチ）,T19,FALSE,楽しんでください！,F-3,FALSE,FALSE,FALSE,groom
+藤野隆之（フジノ タカユキ）,T20,FALSE,ようこそ！,F-2,FALSE,FALSE,FALSE,groom
+藤野哲也（フジノ テツヤ）,T21,FALSE,ようこそ！,F-5,FALSE,FALSE,FALSE,groom
+藤野夏子（フジノ ナツコ）,T22,FALSE,楽しんでください！,F-4,FALSE,FALSE,FALSE,groom
+藤野祐太（フジノ ユウタ）,T23,FALSE,ようこそ！,F-6,FALSE,FALSE,FALSE,groom
+藤野康宏（フジノ ヤスヒロ）,T24,FALSE,楽しんでください！,F-8,FALSE,FALSE,FALSE,groom
+田口綾香（タグチ アヤカ）,T25,FALSE,ようこそ！,F-7,FALSE,FALSE,FALSE,groom
+播磨奏翔（ハリマ カナト）,T26,FALSE,ようこそ！,I-6,TRUE,FALSE,FALSE,groom
+播磨勉（ハリマ ツトム）,T27,FALSE,楽しんでください！,I-7,FALSE,FALSE,FALSE,groom
+秋山幸司（アキヤマ コウジ）,T28,FALSE,ようこそ！,G-1,FALSE,FALSE,FALSE,groom
+秋山友子（アキヤマ ユウコ）,T29,FALSE,楽しんでください！,G-2,FALSE,FALSE,FALSE,groom
+秋山元良（アキヤマ モトヨシ）,T30,FALSE,ようこそ！,G-3,FALSE,FALSE,FALSE,groom
+森剛一（モリ ゴウイチ）,T31,FALSE,ようこそ！,G-4,FALSE,FALSE,FALSE,groom
+森素子（モリ モトコ）,T32,FALSE,楽しんでください！,G-5,FALSE,FALSE,FALSE,groom
+森丈士（モリ タケシ）,T33,FALSE,ようこそ！,G-6,FALSE,FALSE,FALSE,groom
+桝本祐美子（マスモト ユミコ）,T34,FALSE,楽しんでください！,G-7,FALSE,FALSE,FALSE,groom
+中島慎一(ナカジマ シンイチ),H1,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+中島智恵子（ナカジマ チエコ）,H2,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+中島道子（ナカジマ ミチコ）,H3,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+奥野ゆう（オクノ ユウ）,H4,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+奥野一英（オクノ カズヒデ）,H5,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+奥野かおる（オクノ カオル）,H6,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+奥野功一朗（オクノ コウイチロウ）,H7,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+今村美羽（イマムラ ミワ）,H8,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+木村晃之（キムラ テルユキ）,H9,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+木村恵理子（キムラ エリコ）,H10,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+木村萌恵（キムラ モエ）,H11,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+木村晃大（キムラ コウダイ）,H12,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+舟木智恵（フナキ チエ）,H13,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+廣川媛香（ヒロカワ ヒメカ）,H14,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+久米友里恵（クメ ユリエ）,H15,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+角野歌保（スミノ カホ）,H16,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+井川葵（イカワ アオイ）,H17,FALSE,楽しんでください！,なし,TRUE,FALSE,FALSE,bride
+長谷川広敬（ハセガワ ヒロタカ）,H18,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+高橋光太郎（タカハシ コウタロウ）,H19,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+近藤実咲（コンドウ ミサキ）,H20,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+中島緑里（ナカジマ ミドリ）,H21,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+瀬川優佳（セガワ ユカ）,H22,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+原田祥代（ハラダ サチヨ）,H23,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+稲岡明音（イナオカ アカネ）,H24,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+黒田清一郎（クロダ セイイチロウ）,H25,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+深尾千尋（フカオ チヒロ）,H26,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+水谷里紗（ミズタ ニリサ）,H27,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride
+佐藤沙羅（サトウ サアラ）,H28,FALSE,楽しんでください！,なし,FALSE,FALSE,FALSE,bride

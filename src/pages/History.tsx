@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Header from "../components/Header";
+import React, { useEffect } from 'react';
+import Header from '../components/Header';
 
 const HistoryPage: React.FC = () => {
   useEffect(() => {
@@ -58,11 +58,23 @@ const HistoryPage: React.FC = () => {
                 互いの家がかなり近かったこともあり、週一以上のペースで会っていました。
                 <br />
                 北千住、上野のカフェや居酒屋を中心に、いろんなところに遊びに行きました。
-                <br />
-                酒場ハコザキ上野店は二人の行きつけとなり、今でも上野へ行くと立ち寄っています。
               </p>
             </div>
-
+            {/* TODO: 2024年のハイライトいれる */}
+            <div style={{ margin: '12px 0' }}>
+              <strong style={{ color: '#2C7A7B' }}>◯ 2024年 旅行三昧</strong>
+              <p style={{ margin: '4px 0', color: '#555' }}>
+                岩手、青森、北海道など各地へ旅行に行きました。
+                <br />
+                岩手県ではわんこそばに挑戦し、
+                <br />
+                新郎は70杯ほどでギブアップしたのに対し、
+                <br />
+                新婦は100杯を達成。
+                <br />
+                （本人談：「そばに飽きただけで、まだ食べられた」）
+              </p>
+            </div>
             <div style={{ margin: '12px 0' }}>
               <strong style={{ color: '#2C7A7B' }}>
                 ◯ 2025年8月 プロポーズ
@@ -70,8 +82,9 @@ const HistoryPage: React.FC = () => {
               <p style={{ margin: '4px 0', color: '#555' }}>
                 東京タワーが見えるホテルの部屋でプロポーズしました。
                 <br />
-                お互いに気を張らずに自然体でいられる関係になり、
-                これから先も人生を共に歩んでいきたいと思いました。
+                お互いに気を張らずに自然体でいられる関係となり、
+                <br />
+                これからも二人で歩んでいくことを決めました。
               </p>
             </div>
 
