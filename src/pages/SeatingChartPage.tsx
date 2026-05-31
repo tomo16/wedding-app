@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import seatingChart from "../assets/seating_chart.png";
+import seatingChart from "../assets/seating.png";
 import { useGuest } from "../context/GuestContext";
 import Header from "../components/Header";
 
