@@ -38,7 +38,7 @@ export default function PhotoUploadPage() {
         }}
       >
         <p style={{ marginBottom: "20px", fontSize: "18px" }}>
-          当日の写真をぜひアップロード<br />お願いいたします 📸
+          当日の写真・動画をぜひアップロード<br />お願いいたします！
         </p>
 
         <a

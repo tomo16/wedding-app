@@ -65,10 +65,11 @@ const ProfilePage: React.FC = () => {
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズをゆるく応援しています。
             <br />
-            普段は試合結果を追うことが多いですが、西武がようやく強くなってきて最近は楽しみが増えました。（浦和は少し心配ですが・・）
+            現地観戦は年に数回ほどですが、普段から試合結果を追うのが日課です。
+            <br />
+            西武がようやく強くなってきて最近は楽しみが増えました。（浦和は少し心配ですが・・）
             <br />
             妻が「ベルーナドーム（西武の本拠地）は遠いからいやだ！！！」といっているのでCSに進出したら一緒に行こうと説得中です。
-            <br />
             <br />
             結婚式の準備では、このアプリの設計・開発・テストを担当しました。
             <br />
@@ -124,119 +125,19 @@ const ProfilePage: React.FC = () => {
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
           <p style={{ margin: '0 0 8px', color: '#555' }}>・趣味：推し活</p>
+
+          <p style={{ margin: '0 0 8px', color: '#555' }}>
+            私は食べ飲みすることと、推し活を兼ねた旅行、そして実家の犬を愛でている時間が何よりも好きです！
+            <br />
+            落ち込んでいるときも、おいしいものを食べて飲んで、推しや犬に癒されればだいたいゴキゲンになります🍺
+            <br />
+            今日まで、家族（もちろん犬も含みます！）や友人との出会いに恵まれ、本当に幸せな人生を歩んできたと感じています。
+            <br />
+            こうして今日という日を迎えられたことに感謝し、これからは夫婦で力を合わせながら、笑顔とおいしいごはんの絶えない家庭を築いていきたいと思います。
+            <br />
+            まずは夫婦そろって健康に、美味しく食べ続けることを目標に、筋トレも頑張ります！
+          </p>
         </div>
-
-        {/* Q&Aコーナー */}
-        {/* <div
-          style={{
-            width: '90%',
-            maxWidth: '400px',
-            margin: '24px auto 0',
-            textAlign: 'left',
-            background: '#fdfdfd',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            backgroundColor: '#f0f0f0',
-          }}
-        >
-          <h3 style={{ marginTop: 0 }}>❓ Q&A</h3>
-
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 相手のどんなところに惹かれましたか？
-            </p>
-
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
-              <span>
-                かわいさやおもしろさがありながら、
-                <br />
-                物事に真剣に向き合う真面目さも兼ね備えているところです。
-              </span>
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
-              <span>てすと</span>
-            </p>
-          </div>
-
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 相手の「ここがすごい」と思うところは？
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
-              <span>
-                目標を立てると自分で考えて行動し、
-                <br />
-                それを継続して、きちんと結果につなげるところです。
-              </span>
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
-              <span>てすと</span>
-            </p>
-          </div>
-
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. お互いの「相手の」ちょっとした失敗エピソードは？
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
-              <span>
-                コショウをミルで挽くとき、
-                <br />
-                キャップを付けたまま一生懸命ガリガリ回して
-                <br />
-                「全然出ない！」と騒いでいましたが、
-                <br />
-                キャップに気づいて外した瞬間、
-                <br />
-                今度はどばっと出てしまったこと。
-              </span>
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
-              <span>てすと</span>
-            </p>
-          </div>
-
-          <div style={{ marginBottom: '16px' }}>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. 結婚の決め手は？
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
-              <span>
-                一緒に過ごす時間がとても居心地よく、何気ない毎日も楽しく感じられたことです。
-              </span>
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
-              <span>てすと</span>
-            </p>
-          </div>
-
-          <div>
-            <p style={{ fontWeight: 'bold', marginBottom: '4px' }}>
-              Q. これから二人で大切にしたいことは？
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新郎：</span>
-              <span>
-                どんなときも話し合いを大切にしながら、
-                <br />
-                笑顔で過ごせる関係でいることです。
-              </span>
-            </p>
-            <p style={{ margin: 0, color: '#555', display: 'flex' }}>
-              <span style={{ minWidth: '3em', fontWeight: 500 }}>新婦：</span>
-              <span>てすと</span>
-            </p>
-          </div>
-        </div> */}
       </div>
     </div>
   );

@@ -65,7 +65,7 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            <strong>D（新郎おすすめ）</strong>
+            <strong>田酒（新郎おすすめ）</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
             水のように飲める日本酒。
@@ -82,7 +82,7 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            <strong>T（新婦おすすめ）</strong>
+            <strong>鳥飼（新婦おすすめ）</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
             米焼酎とは思えないフルーティーさ。
