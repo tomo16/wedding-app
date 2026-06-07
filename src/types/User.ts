@@ -10,8 +10,10 @@ export interface User {
   // 実際に渡したらtrue
   transportationGiftGiven: boolean;
 
-  //ご祝儀事前受取済みか
-  giftReceivedBefore: boolean;
+  //ご祝儀受取済みか
+  giftReceived: boolean;
+  //受付で当日ご祝儀受取か
+  giftReceivedAtReception: boolean;
   // 新郎側か新婦側か（"groom" | "bride"）
   side: string;
 }

@@ -25,9 +25,6 @@ const tables = {
     '川上さとし',
     '坂本亘',
     '薗頭雅人',
-    '菊地修平',
-    '竹村拓希',
-    '栃木駿太',
   ],
   B: [
     '原田祥代',
@@ -50,6 +47,9 @@ const tables = {
     '落合政宗',
     '佐野将洋',
     '小西亮太',
+    '菊地修平',
+    '竹村拓希',
+    '栃木駿太',
   ],
   E: [
     '久米友里恵',
@@ -115,7 +115,7 @@ const tables = {
         border: '2px solid #b8860b',
         borderRadius: '8px',
         overflow: 'hidden',
-        minHeight: '180px',
+        minHeight: '150px',
       }}
     >
       <div
@@ -134,7 +134,10 @@ const tables = {
         style={{
           padding: '8px',
           fontSize: '12px',
-          lineHeight: '1.8',
+          lineHeight: '1.6',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          columnGap: '8px',
         }}
       >
         {guests.map((g) => (

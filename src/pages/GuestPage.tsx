@@ -51,7 +51,8 @@ export default function GuestApp() {
       checkedin: true,
       code: '0926',
       hasTransportationGift: false,
-      giftReceivedBefore: false,
+      giftReceived: false,
+      giftReceivedAtReception: false,
       transportationGiftGiven: false,
       side: 'groom',
     };

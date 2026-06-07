@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import type { User } from "../types/User";
 import { query, collection, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
-import Header from "../components/Header"; // ① 追加
+import Header from "../components/Header";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   side: "groom" | "bride";
@@ -12,7 +13,7 @@ export function ReceptionSummary({ side }: Props) {
   const [guests, setGuests] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [showOnlyUnchecked, setShowOnlyUnchecked] = useState(false);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchGuests = async () => {
@@ -121,13 +122,22 @@ export function ReceptionSummary({ side }: Props) {
                     textAlign: 'center',
                   }}
                 >
-                  <div style={{ textAlign: 'left', fontWeight: 'bold' }}>
+                  <div
+                    style={{
+                      textAlign: 'left',
+                      fontWeight: 'bold',
+                      color: '#1976d2',
+                      cursor: 'pointer',
+                      textDecoration: 'underline',
+                    }}
+                    onClick={() => navigate(`/reception/${g.code}`)}
+                  >
                     {g.name}
                   </div>
 
                   <div>{g.checkedin ? '✅' : '❌'}</div>
 
-                  <div>{g.giftReceivedBefore ? '✅' : '❌'}</div>
+                  <div>{g.giftReceived ? '✅' : '❌'}</div>
 
                   {/* お車代 */}
                   <div

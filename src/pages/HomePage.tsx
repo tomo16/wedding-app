@@ -32,7 +32,8 @@ const guests: User[] = (result.data as any[])
     seatNumber: row.seatNumber ?? '',
     hasTransportationGift: row.hasTransportationGift === 'TRUE',
     transportationGiftGiven: row.transportationGiftGiven === 'TRUE',
-    giftReceivedBefore: row.giftReceivedBefore === 'TRUE',
+    giftReceived: row.giftReceived === 'TRUE',
+    giftReceivedAtReception: row.giftReceivedAtReception === 'TRUE',
     side: row.side === 'groom' ? 'groom' : 'bride',
   }));
 

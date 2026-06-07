@@ -11,15 +11,13 @@ import {
 import { db } from "../firebase";
 import type { User } from "../types/User";
 
-
-
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
+
   const [guest, setGuest] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
 
-  /* ゲスト取得 */
   useEffect(() => {
     const fetchGuest = async () => {
       if (!code) return;
@@ -29,10 +27,15 @@ export default function ReceptionPage() {
 
       if (!snapshot.empty) {
         const docSnap = snapshot.docs[0];
-        setGuest({ id: docSnap.id, ...(docSnap.data() as Omit<User, "id">) });
+
+        setGuest({
+          id: docSnap.id,
+          ...(docSnap.data() as Omit<User, "id">),
+        });
       } else {
         alert("ゲストが見つかりません");
       }
+
       setLoading(false);
     };
 
@@ -40,75 +43,146 @@ export default function ReceptionPage() {
   }, [code]);
 
   /* Firestore更新 共通関数 */
-const updateGuest = async (data: Partial<User>) => {
-  if (!guest || updating) return;
+  const updateGuest = async (data: Partial<User>) => {
+    if (!guest || updating) return;
 
-  try {
-    setUpdating(true);
+    try {
+      setUpdating(true);
 
-    const q = query(
-      collection(db, "guest"),
-      where("code", "==", guest.code)
-    );
+      const q = query(
+        collection(db, "guest"),
+        where("code", "==", guest.code)
+      );
 
-    const snapshot = await getDocs(q);
+      const snapshot = await getDocs(q);
 
-    for (const d of snapshot.docs) {
-      await updateDoc(doc(db, "guest", d.id), data);
+      for (const d of snapshot.docs) {
+        await updateDoc(doc(db, "guest", d.id), data);
+      }
+
+      setGuest((prev) => (prev ? { ...prev, ...data } : null));
+    } finally {
+      setUpdating(false);
     }
+  };
 
-    setGuest((prev) => (prev ? { ...prev, ...data } : null));
-  } finally {
-    setUpdating(false);
+  if (loading) {
+    return <p style={{ textAlign: "center" }}>読み込み中...</p>;
   }
-};
 
-  if (loading) return <p>読み込み中...</p>;
-  if (!guest) return <p>ゲストが見つかりません</p>;
+  if (!guest) {
+    return <p style={{ textAlign: "center" }}>ゲストが見つかりません</p>;
+  }
 
   return (
-    <div style={{ textAlign: 'center', marginTop: 50 }}>
-      <h1>受付画面</h1>
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f5f5f5",
+        padding: "24px",
+        textAlign: "center",
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "48px",
+          marginBottom: "24px",
+          color: "#243447",
+        }}
+      >
+        受付画面
+      </h1>
 
-      <p>名前：{guest.name}</p>
+      <h2
+        style={{
+          marginBottom: "24px",
+          color: "#243447",
+        }}
+      >
+        {guest.name}
+      </h2>
 
-      <p>
-        ご祝儀：
-        {guest.giftReceivedBefore ? '✅ お預かり済' : '❌ 未受領'}
-      </p>
-
-      <p>
-        お車代：
-        {!guest.hasTransportationGift && ' なし'}
-        {guest.hasTransportationGift &&
-          (guest.transportationGiftGiven ? ' ✅ 渡し済' : ' 💴 未渡し')}
-      </p>
-
-      <p>
-        受付状態：
-        {guest.checkedin ? ' ✅ 受付済' : ' ❌ 未受付'}
-      </p>
-
+      {/* 状態カード */}
       <div
         style={{
-          marginTop: 20,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 10,
-          alignItems: 'center',
+          backgroundColor: "#fff",
+          borderRadius: "12px",
+          padding: "20px",
+          margin: "0 auto 24px",
+          width: "100%",
+          maxWidth: "360px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          textAlign: "left",
+        }}
+      >
+        <h3
+          style={{
+            marginTop: 0,
+            marginBottom: "16px",
+            textAlign: "center",
+            color: "#243447",
+          }}
+        >
+          状態
+        </h3>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "12px",
+          }}
+        >
+          <span>ご祝儀</span>
+          <strong>
+            {guest.giftReceived ? "✅ お預かり済" : "❌ 未受領"}
+          </strong>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginBottom: "12px",
+          }}
+        >
+          <span>お車代</span>
+          <strong>
+            {!guest.hasTransportationGift
+              ? "なし"
+              : guest.transportationGiftGiven
+              ? "✅ 渡し済"
+              : "💴 未渡し"}
+          </strong>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <span>受付状態</span>
+          <strong>
+            {guest.checkedin ? "✅ 受付済" : "❌ 未受付"}
+          </strong>
+        </div>
+      </div>
+
+      {/* 操作ボタン */}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "12px",
+          alignItems: "center",
         }}
       >
         {!guest.checkedin && (
           <button
             disabled={updating}
-            style={{
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
             onClick={() => updateGuest({ checkedin: true })}
+            style={greenButtonStyle}
           >
             受付完了
           </button>
@@ -117,83 +191,83 @@ const updateGuest = async (data: Partial<User>) => {
         {guest.checkedin && (
           <button
             disabled={updating}
-            style={{
-              backgroundColor: '#f44336',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
             onClick={() => updateGuest({ checkedin: false })}
+            style={redButtonStyle}
           >
-            未受付にする
+            受付取消
           </button>
         )}
 
-        {!guest.giftReceivedBefore && (
+        {!guest.giftReceived && guest.giftReceivedAtReception && (
           <button
             disabled={updating}
-            style={{
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
-            onClick={() => updateGuest({ giftReceivedBefore: true })}
+            onClick={() => updateGuest({ giftReceived: true })}
+            style={greenButtonStyle}
           >
-            ご祝儀 受け取り済にする
+            ご祝儀受領
           </button>
         )}
 
-        {guest.giftReceivedBefore && (
+        {guest.giftReceived && guest.giftReceivedAtReception && (
           <button
             disabled={updating}
-            style={{
-              backgroundColor: '#f44336',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
-            onClick={() => updateGuest({ giftReceivedBefore: false })}
+            onClick={() => updateGuest({ giftReceived: false })}
+            style={redButtonStyle}
           >
-            ご祝儀 未受領にする
+            ご祝儀受領取消
           </button>
         )}
 
-        {guest.hasTransportationGift && !guest.transportationGiftGiven && (
-          <button
-            disabled={updating}
-            style={{
-              backgroundColor: '#4CAF50',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
-            onClick={() => updateGuest({ transportationGiftGiven: true })}
-          >
-            お車代 渡し済みにする
-          </button>
-        )}
+        {guest.hasTransportationGift &&
+          !guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() =>
+                updateGuest({ transportationGiftGiven: true })
+              }
+              style={greenButtonStyle}
+            >
+              お車代を渡した
+            </button>
+          )}
 
-        {guest.hasTransportationGift && guest.transportationGiftGiven && (
-          <button
-            disabled={updating}
-            style={{
-              backgroundColor: '#f44336',
-              color: 'white',
-              padding: '10px 20px',
-              border: 'none',
-              borderRadius: '8px',
-            }}
-            onClick={() => updateGuest({ transportationGiftGiven: false })}
-          >
-            お車代 未渡しにする
-          </button>
-        )}
+        {guest.hasTransportationGift &&
+          guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() =>
+                updateGuest({ transportationGiftGiven: false })
+              }
+              style={redButtonStyle}
+            >
+              お車代取消
+            </button>
+          )}
       </div>
     </div>
   );
 }
+
+const greenButtonStyle = {
+  backgroundColor: "#4CAF50",
+  color: "#fff",
+  border: "none",
+  borderRadius: "10px",
+  padding: "14px 24px",
+  minWidth: "240px",
+  fontSize: "18px",
+  fontWeight: "bold" as const,
+  cursor: "pointer",
+};
+
+const redButtonStyle = {
+  backgroundColor: "#f44336",
+  color: "#fff",
+  border: "none",
+  borderRadius: "10px",
+  padding: "14px 24px",
+  minWidth: "240px",
+  fontSize: "18px",
+  fontWeight: "bold" as const,
+  cursor: "pointer",
+};
