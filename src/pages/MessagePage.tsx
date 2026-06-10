@@ -70,7 +70,7 @@ const MessagePage: React.FC = () => {
           backgroundColor: '#ffe6f5',
         }}
       >
-        新郎新婦に向けて、メッセージをお寄せください！
+        新郎新婦に向けて、ぜひメッセージをお寄せください！
         <br />
         いただいたメッセージは後日、
         <br />
@@ -80,6 +80,8 @@ const MessagePage: React.FC = () => {
         <br />
         <br />
         ・お名前は、新郎新婦がわかる名前でお願いします。
+        <br />
+        ・新郎側/新婦側の選択をお願いします。
         <br />
         ・公序良俗に反する投稿は控えてください。
         <br />・<strong>Twitter</strong> 風のつぶやき投稿も大歓迎です。
