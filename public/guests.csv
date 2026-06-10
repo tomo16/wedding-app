@@ -1,6 +1,6 @@
 ﻿name,code,checkedin,message,seatNumber,hasTransportationGift,transportationGiftGiven,giftReceived,side,giftReceivedAtReception
-秋山広治（アキヤマ ヒロジ）,T01,FALSE,ようこそ！,I-1,FALSE,FALSE,FALSE,groom,TRUE
-秋山恵子（アキヤマ ケイコ）,T02,FALSE,楽しんでください！,I-2,FALSE,FALSE,TRUE,groom,TRUE
+秋山広治（アキヤマ ヒロジ）,T01,TRUE,ようこそ！,I-1,FALSE,FALSE,TRUE,groom,FALSE
+秋山恵子（アキヤマ ケイコ）,T02,TRUE,楽しんでください！,I-2,FALSE,FALSE,TRUE,groom,FALSE
 播磨愛里子（ハリマ エリコ）,T03,FALSE,ようこそ！,I-3,FALSE,FALSE,FALSE,groom,TRUE
 播磨渉（ハリマ ワタル）,T04,FALSE,楽しんでください！,I-4,TRUE,FALSE,TRUE,groom,TRUE
 青木芳仁（アオキ ヨシヒト）,T05,FALSE,ようこそ！,A-1,FALSE,FALSE,TRUE,groom,FALSE
@@ -33,8 +33,8 @@
 森素子（モリ モトコ）,T32,FALSE,楽しんでください！,G-5,FALSE,FALSE,FALSE,groom,TRUE
 森丈士（モリ タケシ）,T33,FALSE,ようこそ！,G-6,FALSE,FALSE,FALSE,groom,TRUE
 桝本祐美子（マスモト ユミコ）,T34,FALSE,楽しんでください！,G-7,FALSE,FALSE,FALSE,groom,TRUE
-中島慎一(ナカジマ シンイチ),H1,FALSE,楽しんでください！,J-7,FALSE,FALSE,FALSE,bride,TRUE
-中島智恵子（ナカジマ チエコ）,H2,FALSE,楽しんでください！,J-8,FALSE,FALSE,FALSE,bride,TRUE
+中島慎一(ナカジマ シンイチ),H1,TRUE,楽しんでください！,J-7,FALSE,FALSE,TRUE,bride,FALSE
+中島智恵子（ナカジマ チエコ）,H2,TRUE,楽しんでください！,J-8,FALSE,FALSE,TRUE,bride,FALSE
 中島道子（ナカジマ ミチコ）,H3,FALSE,楽しんでください！,J-1,FALSE,FALSE,FALSE,bride,TRUE
 奥野ゆう（オクノ ユウ）,H4,FALSE,楽しんでください！,H-1,FALSE,FALSE,FALSE,bride,TRUE
 奥野一英（オクノ カズヒデ）,H5,FALSE,楽しんでください！,H-2,FALSE,FALSE,FALSE,bride,TRUE
