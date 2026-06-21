@@ -22,28 +22,28 @@ function MenuPage() {
 
   const menuList = [
     {
-      title: 'Amuse',
-      items: ['季節のアミューズ'],
+      title: 'Premier',
+      items: ['サーモンのマリネと檸檬のコンポジション'],
     },
     {
-      title: 'Appetizer',
-      items: ['真鯛のカルパッチョ', '彩り野菜のサラダ'],
+      title: 'Deuxième',
+      items: ['カリフラワーのヴルーテトリュフとヘーゼルナッツ添え'],
     },
     {
-      title: 'Soup',
-      items: ['季節野菜のポタージュ'],
+      title: 'Poisson',
+      items: ['真鯛のバプール イベリコ豚のチョリソとピペラード'],
     },
     {
-      title: 'Fish',
-      items: ['オマール海老のポワレ'],
+      title: 'Granité',
+      items: ['ピンクグレープフルーツのフローズンジュレ'],
     },
     {
-      title: 'Meat',
-      items: ['国産牛フィレ肉のロースト'],
+      title: 'Viande',
+      items: ['「しあわせ絆牛」フィレ肉と木の実味噌を纏ったフォアグラ 吟醸酒と塩麹のソース'],
     },
     {
       title: 'Dessert',
-      items: ['ウェディングデザート'],
+      items: ['スイーツビュッフェ'],
     },
   ];
 

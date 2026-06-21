@@ -4,21 +4,32 @@ import drinkImg from "../../public/photos/full/drink.jpg";
 
 const DrinkMenuPage: React.FC = () => {
   const alcoholList = [
-    { name: 'ビール' },
-    { name: '赤ワイン' },
-    { name: '白ワイン' },
-    { name: 'スパークリングワイン' },
-    { name: '日本酒（田酒）', options: ['冷', '常温'] },
-    { name: '米焼酎（鳥飼）', options: ['ソーダ割', 'ロック', '水割り'] },
-    { name: 'ウイスキー（碧）', options: ['ハイボール', 'ロック'] },
+    { name: 'ビール(エビス)' },
+    { name: 'ノンアルコールビール(サッポロプレミアムアルコールフリー)' },
+    { name: 'ロゼワイン（プラネタ ロゼ）' },
+    { name: 'ロゼワイン（カルヴェミュルミュールドプロヴァンス ロゼ）' },
+    { name: 'ロゼワイン（ローゼ・ディ・マァジ）' },
+    { name: 'ウイスキー（デュワーズ12年）' },
+    { name: '芋焼酎（黒霧島）', options: ['ソーダ割', 'ロック', '水割り'] },
+    { name: '麦焼酎（白水）', options: ['ソーダ割', 'ロック', '水割り'] },
+    { name: '日本酒（獺祭 純米大吟醸45）', options: ['冷', '常温'] },
+    { name: 'ウォッカ/ジン/カシス'},
+    { name: 'レモンサワー'},
   ];
   const softDrinkList = [
-    { name: 'オレンジジュース' },
+    { name: 'ピンクグレープフルーツジュース' },
     { name: 'コーラ' },
+    { name: 'アップルジュース' },
     { name: 'ジンジャーエール' },
-    { name: 'グレープジュース' },
-    { name: 'ウーロン茶' },
+    { name: 'スルジーヴァ ナチュラル' },
+    { name: 'スルジーヴァ スパークリング' },
+    { name: 'ほうじ茶' },
+    { name: '緑茶' },
+    { name: 'すもも50％果汁入り飲料' },
+    { name: '温州みかんストレートジュース' },
+    { name: '白桃ストレートジュース' },
   ];
+
 
 
   useEffect(() => {
@@ -65,10 +76,10 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            <strong>田酒（新郎おすすめ）</strong>
+            <strong>田酒</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
-            水のように飲める日本酒。
+            新郎おすすめの日本酒。水のように飲める。
           </p>
         </div>
 
@@ -82,10 +93,10 @@ const DrinkMenuPage: React.FC = () => {
           }}
         >
           <p style={{ margin: '0 0 8px' }}>
-            <strong>鳥飼（新婦おすすめ）</strong>
+            <strong>鳥飼</strong>
           </p>
           <p style={{ margin: 0, color: '#555', fontSize: '14px' }}>
-            米焼酎とは思えないフルーティーさ。
+            新婦おすすめの米焼酎。米焼酎とは思えないフルーティーさ。
           </p>
         </div>
 
