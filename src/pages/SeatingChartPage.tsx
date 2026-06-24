@@ -141,7 +141,15 @@ const tables = {
         }}
       >
         {guests.map((g) => (
-          <div key={g}>{g}</div>
+          <div
+            key={g}
+            style={{
+              whiteSpace: 'nowrap',
+              fontSize: '11px',
+            }}
+          >
+            {g}
+          </div>
         ))}
       </div>
     </div>
