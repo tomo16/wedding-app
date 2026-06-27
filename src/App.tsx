@@ -16,6 +16,7 @@ import MessageListPage from "./pages/MessageListPage";
 import DrinkMenuPage from "./pages/DrinkMenuPage";
 import { ReceptionSummary } from "./pages/ReceptionSummaryPage";
 import HistoryPage from "./pages/History";
+import GuestQrPage from "./pages/GuestQrPage";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/groomSummary" element={<ReceptionSummary side={"groom"} />} />
           <Route path="/brideSummary" element={<ReceptionSummary side={"bride"} />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/guest/qr/:code" element={<GuestQrPage />} />
         </Routes>
       </Router>
     </GuestProvider>
