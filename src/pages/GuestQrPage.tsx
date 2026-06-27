@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import QRCode from 'react-qr-code';
 import { db } from '../firebase';
-import Header from '../components/Header';
 import type { User } from '../types/User';
 
 export default function GuestQrPage() {
@@ -55,7 +54,6 @@ export default function GuestQrPage() {
         flexDirection: 'column',
       }}
     >
-      {/* <Header title="受付QRコード" /> */}
 
       <div
         style={{
