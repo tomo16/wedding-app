@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   collection,
   query,
@@ -7,9 +7,9 @@ import {
   getDocs,
   updateDoc,
   doc,
-} from "firebase/firestore";
-import { db } from "../firebase";
-import type { User } from "../types/User";
+} from 'firebase/firestore';
+import { db } from '../firebase';
+import type { User } from '../types/User';
 
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
@@ -22,7 +22,7 @@ export default function ReceptionPage() {
     const fetchGuest = async () => {
       if (!code) return;
 
-      const q = query(collection(db, "guest"), where("code", "==", code));
+      const q = query(collection(db, 'guest'), where('code', '==', code));
       const snapshot = await getDocs(q);
 
       if (!snapshot.empty) {
@@ -30,10 +30,10 @@ export default function ReceptionPage() {
 
         setGuest({
           id: docSnap.id,
-          ...(docSnap.data() as Omit<User, "id">),
+          ...(docSnap.data() as Omit<User, 'id'>),
         });
       } else {
-        alert("ゲストが見つかりません");
+        alert('ゲストが見つかりません');
       }
 
       setLoading(false);
@@ -49,15 +49,12 @@ export default function ReceptionPage() {
     try {
       setUpdating(true);
 
-      const q = query(
-        collection(db, "guest"),
-        where("code", "==", guest.code)
-      );
+      const q = query(collection(db, 'guest'), where('code', '==', guest.code));
 
       const snapshot = await getDocs(q);
 
       for (const d of snapshot.docs) {
-        await updateDoc(doc(db, "guest", d.id), data);
+        await updateDoc(doc(db, 'guest', d.id), data);
       }
 
       setGuest((prev) => (prev ? { ...prev, ...data } : null));
@@ -67,27 +64,27 @@ export default function ReceptionPage() {
   };
 
   if (loading) {
-    return <p style={{ textAlign: "center" }}>読み込み中...</p>;
+    return <p style={{ textAlign: 'center' }}>読み込み中...</p>;
   }
 
   if (!guest) {
-    return <p style={{ textAlign: "center" }}>ゲストが見つかりません</p>;
+    return <p style={{ textAlign: 'center' }}>ゲストが見つかりません</p>;
   }
 
   return (
     <div
       style={{
-        minHeight: "100vh",
-        backgroundColor: "#f5f5f5",
-        padding: "24px",
-        textAlign: "center",
+        minHeight: '100vh',
+        backgroundColor: '#f5f5f5',
+        padding: '24px',
+        textAlign: 'center',
       }}
     >
       <h1
         style={{
-          fontSize: "48px",
-          marginBottom: "24px",
-          color: "#243447",
+          fontSize: '48px',
+          marginBottom: '24px',
+          color: '#243447',
         }}
       >
         受付画面
@@ -95,8 +92,8 @@ export default function ReceptionPage() {
 
       <h2
         style={{
-          marginBottom: "24px",
-          color: "#243447",
+          marginBottom: '24px',
+          color: '#243447',
         }}
       >
         {guest.name}
@@ -105,22 +102,22 @@ export default function ReceptionPage() {
       {/* 状態カード */}
       <div
         style={{
-          backgroundColor: "#fff",
-          borderRadius: "12px",
-          padding: "20px",
-          margin: "0 auto 24px",
-          width: "100%",
-          maxWidth: "360px",
-          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-          textAlign: "left",
+          backgroundColor: '#fff',
+          borderRadius: '12px',
+          padding: '20px',
+          margin: '0 auto 24px',
+          width: '100%',
+          maxWidth: '360px',
+          boxSizing: 'border-box',
+          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }}
       >
         <h3
           style={{
             marginTop: 0,
-            marginBottom: "16px",
-            textAlign: "center",
-            color: "#243447",
+            marginBottom: '20px',
+            textAlign: 'center',
+            color: '#243447',
           }}
         >
           状態
@@ -128,54 +125,57 @@ export default function ReceptionPage() {
 
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "12px",
+            display: 'grid',
+            gridTemplateColumns: '70px 1fr',
+            rowGap: '16px',
+            columnGap: '12px',
+            alignItems: 'center',
+            fontSize: '16px',
           }}
         >
-          <span>ご祝儀</span>
-          <strong>
-            {guest.giftReceived ? "✅ お預かり済" : "❌ 未受領"}
-          </strong>
-        </div>
+          <div>ご祝儀</div>
+          <div
+            style={{
+              textAlign: 'right',
+              fontWeight: 'bold',
+            }}
+          >
+            {guest.giftReceived ? '✅ お預かり済' : '❌ 未受領'}
+          </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "12px",
-          }}
-        >
-          <span>お車代</span>
-          <strong>
+          <div>お車代</div>
+          <div
+            style={{
+              textAlign: 'right',
+              fontWeight: 'bold',
+            }}
+          >
             {!guest.hasTransportationGift
-              ? "なし"
+              ? 'なし'
               : guest.transportationGiftGiven
-              ? "✅ 渡し済"
-              : "💴 未渡し"}
-          </strong>
-        </div>
+                ? '✅ 渡し済'
+                : '💴 未渡し'}
+          </div>
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <span>受付状態</span>
-          <strong>
-            {guest.checkedin ? "✅ 受付済" : "❌ 未受付"}
-          </strong>
+          <div>受付状態</div>
+          <div
+            style={{
+              textAlign: 'right',
+              fontWeight: 'bold',
+            }}
+          >
+            {guest.checkedin ? '✅ 受付済' : '❌ 未受付'}
+          </div>
         </div>
       </div>
 
       {/* 操作ボタン */}
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "12px",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px',
+          alignItems: 'center',
         }}
       >
         {!guest.checkedin && (
@@ -218,56 +218,50 @@ export default function ReceptionPage() {
           </button>
         )}
 
-        {guest.hasTransportationGift &&
-          !guest.transportationGiftGiven && (
-            <button
-              disabled={updating}
-              onClick={() =>
-                updateGuest({ transportationGiftGiven: true })
-              }
-              style={greenButtonStyle}
-            >
-              お車代を渡した
-            </button>
-          )}
+        {guest.hasTransportationGift && !guest.transportationGiftGiven && (
+          <button
+            disabled={updating}
+            onClick={() => updateGuest({ transportationGiftGiven: true })}
+            style={greenButtonStyle}
+          >
+            お車代を渡した
+          </button>
+        )}
 
-        {guest.hasTransportationGift &&
-          guest.transportationGiftGiven && (
-            <button
-              disabled={updating}
-              onClick={() =>
-                updateGuest({ transportationGiftGiven: false })
-              }
-              style={redButtonStyle}
-            >
-              お車代取消
-            </button>
-          )}
+        {guest.hasTransportationGift && guest.transportationGiftGiven && (
+          <button
+            disabled={updating}
+            onClick={() => updateGuest({ transportationGiftGiven: false })}
+            style={redButtonStyle}
+          >
+            お車代取消
+          </button>
+        )}
       </div>
     </div>
   );
 }
 
 const greenButtonStyle = {
-  backgroundColor: "#4CAF50",
-  color: "#fff",
-  border: "none",
-  borderRadius: "10px",
-  padding: "14px 24px",
-  minWidth: "240px",
-  fontSize: "18px",
-  fontWeight: "bold" as const,
-  cursor: "pointer",
+  backgroundColor: '#4CAF50',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '10px',
+  padding: '14px 24px',
+  minWidth: '240px',
+  fontSize: '18px',
+  fontWeight: 'bold' as const,
+  cursor: 'pointer',
 };
 
 const redButtonStyle = {
-  backgroundColor: "#f44336",
-  color: "#fff",
-  border: "none",
-  borderRadius: "10px",
-  padding: "14px 24px",
-  minWidth: "240px",
-  fontSize: "18px",
-  fontWeight: "bold" as const,
-  cursor: "pointer",
+  backgroundColor: '#f44336',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '10px',
+  padding: '14px 24px',
+  minWidth: '240px',
+  fontSize: '18px',
+  fontWeight: 'bold' as const,
+  cursor: 'pointer',
 };

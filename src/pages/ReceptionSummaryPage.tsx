@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import type { User } from "../types/User";
-import { query, collection, where, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
-import Header from "../components/Header";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import type { User } from '../types/User';
+import { query, collection, where, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
+import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
-  side: "groom" | "bride";
+  side: 'groom' | 'bride';
 };
 
 export function ReceptionSummary({ side }: Props) {
@@ -17,15 +17,20 @@ export function ReceptionSummary({ side }: Props) {
 
   useEffect(() => {
     const fetchGuests = async () => {
-      const q = query(
-        collection(db, "guest"),
-        where("side", "==", side)
-      );
+      const q = query(collection(db, 'guest'), where('side', '==', side));
       const snapshot = await getDocs(q);
-      const list = snapshot.docs.map((d) => ({
-        id: d.id,
-        ...(d.data() as Omit<User, "id">),
-      }));
+      const list = snapshot.docs
+        .map((d) => ({
+          id: d.id,
+          ...(d.data() as Omit<User, 'id'>),
+        }))
+        .sort((a, b) => {
+          const kanaA = a.name.match(/（(.+)）/)?.[1] ?? a.name;
+          const kanaB = b.name.match(/（(.+)）/)?.[1] ?? b.name;
+          return kanaA.localeCompare(kanaB, 'ja');
+        });
+
+      setGuests(list);
       setGuests(list);
       setLoading(false);
     };
@@ -37,8 +42,8 @@ export function ReceptionSummary({ side }: Props) {
 
   const allCheckedIn = guests.every((g) => g.checkedin);
   const visibleGuests = showOnlyUnchecked
-  ? guests.filter((g) => !g.checkedin)
-  : guests;
+    ? guests.filter((g) => !g.checkedin)
+    : guests;
 
   return (
     <>
@@ -103,6 +108,8 @@ export function ReceptionSummary({ side }: Props) {
             }}
           >
             {visibleGuests.map((g) => {
+              const [kanji, kana] = g.name.split('（');
+              const furigana = kana?.replace('）', '');
               const isUnchecked = !g.checkedin;
               const transportationNotGiven =
                 g.hasTransportationGift && !g.transportationGiftGiven;
@@ -125,14 +132,30 @@ export function ReceptionSummary({ side }: Props) {
                   <div
                     style={{
                       textAlign: 'left',
-                      fontWeight: 'bold',
                       color: '#1976d2',
                       cursor: 'pointer',
                       textDecoration: 'underline',
+                      lineHeight: 1.3,
                     }}
                     onClick={() => navigate(`/reception/${g.code}`)}
                   >
-                    {g.name}
+                    <div
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {kanji}
+                    </div>
+
+                    <div
+                      style={{
+                        fontSize: '11px',
+                        color: '#666',
+                      }}
+                    >
+                      （{furigana}）
+                    </div>
                   </div>
 
                   <div>{g.checkedin ? '✅' : '❌'}</div>
