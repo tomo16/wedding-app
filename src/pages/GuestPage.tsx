@@ -1,8 +1,8 @@
 // src/pages/GuestApp.tsx
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useGuest } from "../context/GuestContext";
-import coupleImg from "../assets/home.jpg";
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useGuest } from '../context/GuestContext';
+import coupleImg from '../assets/home.jpg';
 
 export default function GuestApp() {
   const navigate = useNavigate();
@@ -152,12 +152,61 @@ export default function GuestApp() {
             lineHeight: '1.6',
           }}
         >
-          ゲストのみなさまに向けて、
+          ゲストのみなさまへ
           <br />
-          必要な情報をまとめたアプリを開発しました。
+          当日のご案内や
           <br />
-          気軽に見て楽しんでください。
+          いろいろなコンテンツをご用意しています。
         </p>
+
+        <div
+          style={{
+            backgroundColor: '#fff',
+            borderRadius: '12px',
+            padding: '16px 20px',
+            marginBottom: '24px',
+            width: '100%',
+            maxWidth: '340px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+          }}
+        >
+          <div
+            style={{
+              fontWeight: 'bold',
+              color: '#4A3F6B',
+              fontSize: '16px',
+              marginBottom: '12px',
+            }}
+          >
+            このアプリでできること
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '8px 20px',
+              textAlign: 'left',
+              color: '#5A4E72',
+              fontSize: '14px',
+              lineHeight: '1.8',
+            }}
+          >
+            <div>🪑 席次表</div>
+            <div>📷 前撮りフォト</div>
+
+            <div>📸 写真アップロード</div>
+            <div>🍽 お食事メニュー</div>
+
+            <div>🍷 飲み物メニュー</div>
+            <div>📍 ご案内・注意事項</div>
+
+            <div>💌 メッセージ</div>
+            <div>👤 プロフィール</div>
+
+            <div>📖 二人のヒストリー</div>
+          </div>
+        </div>
 
         <button
           onClick={handleLogin}

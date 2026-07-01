@@ -57,10 +57,7 @@ const ProfilePage: React.FC = () => {
             }}
           />
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ともき</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：練馬区</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            ・趣味：スポーツ観戦
-          </p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：東京都練馬区</p>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズをゆるく応援しています。
@@ -123,8 +120,7 @@ const ProfilePage: React.FC = () => {
           </div>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：足立区</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・趣味：推し活</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：東京都足立区</p>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             私は食べ飲みすることと、推し活を兼ねた旅行、そして実家の犬を愛でている時間が何よりも好きです！

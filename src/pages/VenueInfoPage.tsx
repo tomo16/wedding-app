@@ -71,7 +71,6 @@ const VenueInfoPage: React.FC = () => {
           >
             <li>トイレ：披露宴フロアB1F（扉を出て右手）</li>
             <li>喫煙所：館内は全面禁煙</li>
-            <li>クローク：1F 受付横（披露宴中はお預かり可能）</li>
           </ul>
         </section>
 
@@ -99,47 +98,18 @@ const VenueInfoPage: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: '10px' }}>
-            <p style={{ fontWeight: 700, margin: '0 0 6px 0' }}>写真撮影</p>
-            <p style={{ margin: 0, color: '#444' }}>
-              挙式中：撮影OK？（会場規則に準拠）<br/>
-              披露宴中：撮影OK（SNS投稿は控えめにお願いします）
-            </p>
-          </div>
-
-          <div style={{ marginBottom: '10px' }}>
             <p style={{ fontWeight: 700, margin: '0 0 6px 0' }}>飲み物</p>
             <p style={{ margin: 0, color: '#444' }}>
-              フリードリンクです。スタッフにお申し付けください。
+              おすすめドリンクは本アプリのドリンクページを提示のうえ、スタッフにお申し付けください。
             </p>
           </div>
 
           <div>
             <p style={{ fontWeight: 700, margin: '0 0 6px 0' }}>再入場について</p>
             <p style={{ margin: 0, color: '#444' }}>
-              一時外出の際は受付またはスタッフにお声がけください。
+              一時外出の際はスタッフにお声がけください。
             </p>
           </div>
-        </section>
-
-        {/* その他のご案内 */}
-        <section
-          style={{
-            width: '90%',
-            maxWidth: '420px',
-            margin: '18px auto 28px',
-            textAlign: 'left',
-            background: '#fafafa',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-            backgroundColor: '#e6ffe6'
-          }}
-        >
-          <h3 style={{ marginTop: 0 }}>👶 その他のご案内</h3>
-
-          <p style={{ margin: '6px 0', color: '#444' }}>
-            おむつ替え：B1Fお手洗いにベビーシートあり。授乳室をご希望の方はスタッフまでお声がけください。
-          </p>
         </section>
       </div>
     </div>
