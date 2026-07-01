@@ -66,6 +66,14 @@ const MessagePage: React.FC = () => {
           backgroundColor: '#ffe6f5',
         }}
       >
+        <h3
+          style={{
+            marginTop: '0',
+            color: '#4A3F6B',
+          }}
+        >
+          💌 ご案内
+        </h3>
         新郎新婦に向けて、ぜひメッセージをお寄せください！
         <br />
         いただいたメッセージは後日、
