@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import Header from "../components/Header";
+import React, { useState } from 'react';
+import Header from '../components/Header';
 import {
   addDoc,
   collection,
   Timestamp,
   // doc,
   // deleteDoc,
-} from "firebase/firestore";
-import { db } from "../firebase";
+} from 'firebase/firestore';
+import { db } from '../firebase';
 
 const MessagePage: React.FC = () => {
   const [name, setName] = useState('');
@@ -17,17 +17,17 @@ const MessagePage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [side, setSide] = useState<'groom' | 'bride' | ''>('');
 
-
-
   // 名前読み込み
   const handleSubmit = async () => {
     if (!name.trim() || !text.trim() || !side) {
-      setErrorMessage('お名前・ご関係（新郎側/新婦側）・メッセージを入力してください！');
+      setErrorMessage(
+        'お名前・ご関係（新郎側/新婦側）・メッセージを入力してください！',
+      );
       setShowErrorModal(true);
       return;
     }
 
-    const newMessage = { name, text, side,time: Timestamp.now() };
+    const newMessage = { name, text, side, time: Timestamp.now() };
 
     try {
       await addDoc(collection(db, 'messages'), newMessage);
@@ -44,7 +44,6 @@ const MessagePage: React.FC = () => {
       console.error('メッセージ送信失敗', err);
     }
   };
-
 
   return (
     <div style={{ paddingBottom: '40px', backgroundColor: '#fff' }}>
@@ -85,29 +84,15 @@ const MessagePage: React.FC = () => {
         <br />
         ・投稿は複数回可能です。
         <br />
-      </div>
-
-      {/* 24px空ける */}
-      <div style={{ marginTop: '24px' }} />
-      {/* --- フォーム固定 --- */}
-      <div
-        style={{
-          // position: 'fixed',
-          // top: '350px',
-          // left: '50%',
-          margin: '76px auto 0',
-          width: '95%',
-          maxWidth: '500px',
-          background: 'white',
-          padding: '12px',
-          borderRadius: '12px',
-          boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-          zIndex: 20,
-          backgroundColor: '#ffe6f5',
-        }}
-      >
+        <hr
+          style={{
+            margin: '24px 0',
+            border: 'none',
+            borderTop: '1px solid #f5bfd8',
+          }}
+        />
+        {/* --- フォーム固定 --- */}
         <h3 style={{ marginTop: 0 }}>✏️ メッセージを書く</h3>
-
         <input
           type="text"
           placeholder="お名前"
@@ -143,7 +128,6 @@ const MessagePage: React.FC = () => {
             新婦側
           </label>
         </div>
-
         <textarea
           placeholder="メッセージ"
           rows={4}
@@ -158,7 +142,6 @@ const MessagePage: React.FC = () => {
             fontSize: '16px',
           }}
         />
-
         <button
           onClick={handleSubmit}
           style={{
