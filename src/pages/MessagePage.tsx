@@ -92,10 +92,10 @@ const MessagePage: React.FC = () => {
       {/* --- フォーム固定 --- */}
       <div
         style={{
-          position: 'fixed',
-          top: '350px',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          // position: 'fixed',
+          // top: '350px',
+          // left: '50%',
+          margin: '76px auto 0',
           width: '95%',
           maxWidth: '500px',
           background: 'white',
