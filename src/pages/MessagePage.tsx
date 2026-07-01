@@ -47,18 +47,15 @@ const MessagePage: React.FC = () => {
 
 
   return (
-    <div style={{ paddingBottom: '40px', backgroundColor: '#ffe6f5' }}>
+    <div style={{ paddingBottom: '40px', backgroundColor: '#fff' }}>
       <Header title=" メッセージ" />
 
       {/* --- 注意書き（固定） --- */}
       <div
         style={{
-          position: 'fixed',
-          top: '76px',
-          left: '50%',
-          transform: 'translateX(-50%)',
           width: '95%',
           maxWidth: '500px',
+          margin: '76px auto 0',
           background: '#FFF7E6',
           padding: '10px 14px',
           borderRadius: '10px',
@@ -90,6 +87,8 @@ const MessagePage: React.FC = () => {
         <br />
       </div>
 
+      {/* 24px空ける */}
+      <div style={{ marginTop: '24px' }} />
       {/* --- フォーム固定 --- */}
       <div
         style={{
