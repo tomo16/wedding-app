@@ -1,5 +1,5 @@
 // src/pages/GuestApp.tsx
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGuest } from '../context/GuestContext';
 import coupleImg from '../assets/home.jpg';
@@ -7,6 +7,7 @@ import coupleImg from '../assets/home.jpg';
 export default function GuestApp() {
   const navigate = useNavigate();
   const { guest, setGuest } = useGuest();
+  const DEV_MODE = import.meta.env.DEV;
 
   // ---------------------------------------------------------
   // 🟣 対策① localStorage からログイン状態を復元
@@ -62,7 +63,26 @@ export default function GuestApp() {
     // ★ localStorage に保存
     localStorage.setItem('guest', JSON.stringify(userData));
   };
+  const weddingStart = new Date('2026-09-26T14:00:00');
+  const [now, setNow] = useState(new Date());
+  const [devUnlock, setDevUnlock] = useState(false);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setNow(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const diff = weddingStart.getTime() - now.getTime();
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+  const minutes = Math.floor(diff / (1000 * 60)) % 60;
+  const seconds = Math.floor(diff / 1000) % 60;
+
+  const canLogin = devUnlock || now >= weddingStart;
   // 日付チェック関数
   // const isWeddingDay = () => {
   //   const today = new Date();
@@ -208,19 +228,38 @@ export default function GuestApp() {
           </div>
         </div>
 
+        {diff > 0 && (
+          <>
+            <p>式まであと</p>
+
+            <h2>
+              {days}日 {hours}時間 {minutes}分 {seconds}秒
+            </h2>
+          </>
+        )}
         <button
+          disabled={!canLogin}
           onClick={handleLogin}
           style={{
             marginTop: '15px',
             padding: '8px 20px',
             fontSize: '15px',
-            cursor: 'pointer',
             borderRadius: '6px',
             backgroundColor: '#eee4ff',
+            opacity: canLogin ? 1 : 0.5,
+            cursor: canLogin ? 'pointer' : 'not-allowed',
           }}
         >
           入場する（受付済の方）
         </button>
+        {DEV_MODE && (
+          <button
+            onClick={() => setDevUnlock(!devUnlock)}
+            style={{ marginTop: 20 }}
+          >
+            {devUnlock ? '開発モードON' : '開発モードOFF'}
+          </button>
+        )}
       </div>
     );
   }
