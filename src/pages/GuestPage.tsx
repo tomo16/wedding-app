@@ -141,282 +141,423 @@ export default function GuestApp() {
         style={{
           position: 'fixed',
           inset: 0,
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-          padding: '0 20px',
-          backgroundColor: '#f7f3ff',
+          overflowY: 'auto',
+          background:
+              'linear-gradient(180deg,#FEFCFF 0%,#F8F1FB 45%,#F2E8F8 100%)',
+          padding: '40px 20px 60px',
         }}
       >
-        {/* タイトル */}
-        <h1
-          style={{
-            fontSize: '28px',
-            fontWeight: 700,
-            color: '#4A3F6B',
-            marginBottom: '8px',
-          }}
-        >
-          T & H Wedding App
-        </h1>
-
-        <p
-          style={{
-            fontSize: '14px',
-            color: '#5A4E72',
-            marginTop: '0',
-            marginBottom: '20px',
-            lineHeight: '1.6',
-          }}
-        >
-          ゲストのみなさまへ
-          <br />
-          当日のご案内や
-          <br />
-          いろいろなコンテンツをご用意しています。
-        </p>
-
         <div
           style={{
-            backgroundColor: '#fff',
-            borderRadius: '12px',
-            padding: '16px 20px',
-            marginBottom: '24px',
-            width: '100%',
-            maxWidth: '340px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            maxWidth: '420px',
+            margin: '0 auto',
+            textAlign: 'center',
           }}
         >
+          {/* タイトル */}
           <div
             style={{
-              fontWeight: 'bold',
-              color: '#4A3F6B',
-              fontSize: '16px',
-              marginBottom: '12px',
+              width: '80px',
+              height: '2px',
+              background: '#D9C8FF',
+              margin: '0 auto 20px',
+            }}
+          />
+
+          <h1
+            style={{
+              fontSize: '40px',
+              color: '#5C4567',
+              marginBottom: '8px',
+              fontWeight: 800,
+              letterSpacing: '1px',
+              fontFamily: '"Lora", serif'
             }}
           >
-            このアプリでできること
-          </div>
+            T & H Wedding
+          </h1>
 
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '8px 20px',
-              textAlign: 'left',
-              color: '#5A4E72',
-              fontSize: '14px',
-              lineHeight: '1.8',
+              color: '#C8A96A',
+              fontSize: '15px',
+              letterSpacing: '3px',
+              marginBottom: '24px',
             }}
           >
-            <div>🪑 席次表</div>
-            <div>📷 前撮りフォト</div>
-
-            <div>📸 写真アップロード</div>
-            <div>🍽 お食事メニュー</div>
-
-            <div>🍷 飲み物メニュー</div>
-            <div>📍 ご案内・注意事項</div>
-
-            <div>💌 メッセージ</div>
-            <div>👤 プロフィール</div>
-
-            <div>📖 二人のヒストリー</div>
+            September 26, 2026
           </div>
-        </div>
 
-        {diff > 0 && (
-          <>
-            <p>式まであと</p>
+          <p
+            style={{
+              color: '#6F5E72',
+              lineHeight: 1.8,
+              marginBottom: '28px',
+              fontSize: '15px',
+            }}
+          >
+            ゲストのみなさまへ
+            <br />
+            当日のご案内や
+            <br />
+            様々なコンテンツをご用意しております
+          </p>
 
-            <h2>
-              {days}日 {hours}時間 {minutes}分 {seconds}秒
-            </h2>
-          </>
-        )}
-        <button
-          disabled={!canLogin}
-          onClick={handleLogin}
-          style={{
-            marginTop: '15px',
-            padding: '8px 20px',
-            fontSize: '15px',
-            borderRadius: '6px',
-            backgroundColor: '#eee4ff',
-            opacity: canLogin ? 1 : 0.5,
-            cursor: canLogin ? 'pointer' : 'not-allowed',
-          }}
-        >
-          入場する（受付済の方）
-        </button>
-        {DEV_MODE && (
+          {/* カード */}
+          <div
+            style={{
+              background: "rgba(255,255,255,0.92)",
+              borderRadius: '20px',
+              padding: '24px',
+              boxShadow: '0 12px 32px rgba(114,88,130,0.12)',
+              border: '1px solid #F0E6EF',
+            }}
+          >
+            <h3
+              style={{
+                marginTop: 0,
+                color: '#5C4567',
+                marginBottom: '20px',
+                fontFamily: '"Cormorant Garamond", serif',
+                fontWeight: 600,
+                letterSpacing: "1px"
+              }}
+            >
+              Contents
+            </h3>
+
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '14px',
+                textAlign: 'left',
+                color: '#6F5E72',
+                fontSize: '15px',
+              }}
+            >
+              <div>🪑 席次表</div>
+              <div>📷 前撮りフォト</div>
+              <div>📸 写真アップロード</div>
+              <div>🍽 お食事メニュー</div>
+              <div>🍷 飲み物メニュー</div>
+              <div>📍 ご案内・注意事項</div>
+              <div>💌 メッセージ</div>
+              <div>👤 プロフィール</div>
+              <div>📖 二人のヒストリー</div>
+            </div>
+          </div>
+
+          {/* カウントダウンカード */}
+          {diff > 0 && (
+            <div
+              style={{
+                marginTop: '24px',
+                marginBottom: '32px',
+                background: "rgba(255,255,255,0.92)",
+                borderRadius: '20px',
+                padding: '24px',
+                boxShadow: '0 12px 32px rgba(114,88,130,0.12)',
+                border: '1px solid #F0E6EF',
+              }}
+            >
+              <div
+                style={{
+                  color: '#C8A96A',
+                  fontSize: '13px',
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  marginBottom: '8px',
+                  fontFamily: '"Cormorant Garamond", serif',
+                  fontWeight: 600,
+                }}
+              >
+                Wedding Countdown
+              </div>
+
+              <div
+                style={{
+                  fontSize: '54px',
+                  fontWeight: 800,
+                  color: '#5C4567',
+                  lineHeight: 1,
+                }}
+              >
+                {days}
+              </div>
+
+              <div
+                style={{
+                  color: '#B796D1',
+                  fontSize: '22px',
+                  marginTop: '8px',
+                  fontFamily: 'serif',
+                }}
+              >
+                Days
+              </div>
+
+              <div
+                style={{
+                  marginTop: '18px',
+                  marginBottom: '20px',
+                  fontSize: '18px',
+                  color: '#5C4567',
+                  fontWeight: 500,
+                }}
+              >
+                {hours}時間 {minutes}分 {seconds}秒
+              </div>
+
+              <div
+                style={{
+                  marginTop: '18px',
+                  paddingTop: '16px',
+                  borderTop: '1px solid #F3EAF5',
+                  color: '#8B768F',
+                  fontSize: '13px',
+                  lineHeight: 1.8,
+                }}
+              >
+                <strong
+                  style={{
+                    color: '#6A4E72',
+                    fontSize: '15px',
+                  }}
+                >
+                  2026年9月26日（土）
+                </strong>
+                <br />
+                14:00よりアプリをご利用いただけます
+              </div>
+            </div>
+          )}
+
+          {/* 入場ボタン */}
           <button
-            onClick={() => setDevUnlock(!devUnlock)}
-            style={{ marginTop: 20 }}
+            disabled={!canLogin}
+            onClick={handleLogin}
+            style={{
+              width: '100%',
+              maxWidth: '320px',
+              padding: '14px',
+              fontSize: '16px',
+              borderRadius: '999px',
+              border: 'none',
+              fontWeight: 700,
+              color: 'white',
+              background: canLogin
+                ? 'linear-gradient(90deg,#DFA9D6,#C08ED7)'
+                : '#E8E1EB',
+              cursor: canLogin ? 'pointer' : 'not-allowed',
+              boxShadow: canLogin ? '0 6px 16px rgba(217,156,199,.35)' : 'none',
+            }}
           >
-            {devUnlock ? '開発モードON' : '開発モードOFF'}
+            入場する（受付済の方）
           </button>
-        )}
+
+          {/* 開発モード */}
+          {DEV_MODE && (
+            <button
+              onClick={() => setDevUnlock(!devUnlock)}
+              style={{
+                marginTop: '20px',
+                border: 'none',
+                borderRadius: '999px',
+                background: devUnlock ? '#C8A96A' : '#F4EDF8',
+                color: devUnlock ? '#fff' : '#5C4567',
+                padding: '10px 20px',
+                cursor: 'pointer',
+              }}
+            >
+              🛠 {devUnlock ? '開発モード ON' : '開発モード OFF'}
+            </button>
+          )}
+        </div>
       </div>
     );
   }
-
   // ▼ ログイン後（デザインB）
   return (
     <div
       style={{
-        textAlign: 'center',
         minHeight: '100dvh',
-        backgroundColor: '#f7f3ff',
-        padding: '20px 0',
+        textAlign: 'center',
+        background:
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
+        padding: '24px 18px 40px',
       }}
     >
       {/* タイトル */}
       <div style={{ marginTop: '10px' }}>
+        <div
+          style={{
+            width: 80,
+            height: 2,
+            background: '#d7b8ff',
+            margin: '0 auto 24px',
+          }}
+        />
+
         <h1
           style={{
-            fontSize: '28px',
+            fontSize: '38px',
+            color: '#5C4567',
+            marginBottom: '8px',
             fontWeight: 700,
-            color: '#4A3F6B',
-            marginBottom: '5px',
+            letterSpacing: '1px',
+            fontFamily: '"Cormorant Garamond", serif',
           }}
         >
-          Welcome to Our Wedding
+          T & H Wedding
         </h1>
 
         <div
           style={{
-            color: '#D7C3FF',
-            fontSize: '20px',
-            marginBottom: '5px',
+            color: '#c9a44c',
+            letterSpacing: '4px',
+            fontSize: '16px',
+            marginBottom: '18px',
+            fontFamily: '"Cormorant Garamond", serif',
           }}
         >
-          ♡
+          Welcome to Our Wedding
+        </div>
+      </div>
+
+      {/* 写真 */}
+      <div
+        style={{
+          marginTop: '30px',
+          marginBottom: '28px',
+          padding: '6px',
+        }}
+      >
+        <img
+          src={coupleImg}
+          alt="Welcome"
+          style={{
+            width: '260px',
+            height: '260px',
+            objectFit: 'cover',
+            borderRadius: '50%',
+            border: '6px solid rgba(255,255,255,0.95)',
+            boxShadow: '0 10px 35px rgba(207,182,225,0.35)',
+          }}
+        />
+      </div>
+
+      {/* メニューカード */}
+      <div
+        style={{
+          background: 'rgba(255,255,255,0.92)',
+          borderRadius: '24px',
+          padding: '22px',
+          maxWidth: '410px',
+          margin: '0 auto',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+        }}
+      >
+        <div
+          style={{
+            fontSize: '24px',
+            fontWeight: 600,
+            color: '#5A476F',
+            marginBottom: '22px',
+            fontFamily:'"Cormorant Garamond", serif'
+          }}
+        >
+          Contents
         </div>
 
         <div
           style={{
-            width: '70%',
-            height: '2px',
-            backgroundColor: '#D9C8FF',
-            margin: '5px auto 15px',
-            borderRadius: '3px',
-          }}
-        />
-
-        <h2
-          style={{
-            fontSize: '16px',
-            color: '#4A3F6B',
-            marginBottom: '20px',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3,1fr)',
+            gap: '14px',
           }}
         >
-          2026.9.26
-        </h2>
+          {[
+            ['🪑', '席次表', handleOpenSeating],
+            ['📷', '前撮り', handleOpenPhoto],
+            ['📸', '写真', handleOpenPhotoUpload],
+            ['🍽', '料理', handleOpenMenu],
+            ['🍷', '飲み物', handleOpenDrink],
+            ['📍', 'ご案内', handleOpenVenueInfo],
+            ['💌', 'メッセージ', handleOpenMessage],
+            ['👤', 'プロフィール', handleOpenProfile],
+            ['📖', 'ヒストリー', handleOpenVenueMap],
+          ].map(([icon, label, action]) => (
+            <button
+              key={label}
+              onClick={action as () => void}
+              style={{
+                border: '1px solid #F3E5FA',
+                background: 'linear-gradient(180deg,#FFFFFF,#FCF5FF)',
+                borderRadius: '18px',
+                padding: '16px 6px',
+                cursor: 'pointer',
+                boxShadow: '0 3px 10px rgba(0,0,0,0.05)',
+                transition: '0.2s',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '28px',
+                  marginBottom: '8px',
+                }}
+              >
+                {icon}
+              </div>
+
+              <div
+                style={{
+                  fontSize: '13px',
+                  color: '#5A476F',
+                  fontWeight: 600,
+                }}
+              >
+                {label}
+              </div>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* 丸い写真 */}
-      <img
-        src={coupleImg}
-        alt="Welcome"
-        style={{
-          width: '220px',
-          height: '220px',
-          objectFit: 'cover',
-          borderRadius: '50%',
-          margin: '10px auto 20px',
-          border: '4px solid white',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-        }}
-      />
-
-      {/* グリッドボタン */}
+      {/* フッター */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
-          gridAutoRows: '80px',
-          gap: '10px',
-          maxWidth: '400px',
-          margin: '0 auto',
+          marginTop: '35px',
+          color: '#a88bbf',
+          fontSize: '13px',
+          lineHeight: 1.8,
         }}
       >
-        <button
-          onClick={handleOpenSeating}
-          style={{ backgroundColor: memberColors[0] }}
-        >
-          席次表
-        </button>
-        <button
-          onClick={handleOpenPhoto}
-          style={{ backgroundColor: memberColors[1] }}
-        >
-          前撮りフォト
-        </button>
-        <button
-          onClick={handleOpenPhotoUpload}
-          style={{ backgroundColor: memberColors[4] }}
-        >
-          写真
-          <br />
-          アップロード
-        </button>
-        <button
-          onClick={handleOpenMenu}
-          style={{ backgroundColor: memberColors[7] }}
-        >
-          お食事
-        </button>
-        <button
-          onClick={handleOpenDrink}
-          style={{ backgroundColor: memberColors[2] }}
-        >
-          飲み物
-        </button>
-        <button
-          onClick={handleOpenVenueInfo}
-          style={{ backgroundColor: memberColors[5] }}
-        >
-          ご案内
-          <br />
-          注意事項
-        </button>
-        <button
-          onClick={handleOpenMessage}
-          style={{ backgroundColor: memberColors[8] }}
-        >
-          メッセージ
-        </button>
-        <button
-          onClick={handleOpenProfile}
-          style={{ backgroundColor: memberColors[6] }}
-        >
-          プロフィール
-        </button>
-        <button
-          onClick={handleOpenVenueMap}
-          style={{ backgroundColor: memberColors[3] }}
-        >
-          ヒストリー
-        </button>
+        Thank you for celebrating with us.
+        <br />
+        Please enjoy this special day.
+        <br />
+        2026.09.26
       </div>
 
       {/* ログアウト */}
-      <div style={{ marginTop: '30px' }}>
-        <button
-          onClick={() => setGuest(null)}
-          style={{
-            backgroundColor: '#fff0fb',
-            padding: '8px 16px',
-            borderRadius: '6px',
-          }}
-        >
-          ← ログアウト
-        </button>
-      </div>
+      <button
+        onClick={() => setGuest(null)}
+        style={{
+          marginTop: '20px',
+          color: '#A58DB5',
+          padding: '7px 16px',
+          borderRadius: '30px',
+          boxShadow: '0 3px 10px rgba(0,0,0,0.08)',
+          cursor: 'pointer',
+          background:'rgba(255,255,255,0.7)',
+          backdropFilter:'blur(8px)',
+          border:'1px solid #F0E6F6',
+          opacity:.7,
+        }}
+      >
+        logout
+      </button>
     </div>
   );
 }
