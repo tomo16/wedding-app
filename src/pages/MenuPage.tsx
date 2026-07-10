@@ -39,7 +39,9 @@ function MenuPage() {
     },
     {
       title: 'Viande',
-      items: ['「しあわせ絆牛」フィレ肉と木の実味噌を纏ったフォアグラ 吟醸酒と塩麹のソース'],
+      items: [
+        '「しあわせ絆牛」フィレ肉と木の実味噌を纏ったフォアグラ 吟醸酒と塩麹のソース',
+      ],
     },
     {
       title: 'Dessert',
@@ -51,35 +53,30 @@ function MenuPage() {
     <>
       <style>
         {`
-          @keyframes bgSlide {
-            0% {
-              transform: translateX(0);
-            }
-
-            100% {
-              transform: translateX(-20%);
-            }
+        @keyframes bgSlide {
+          from {
+            transform: translateX(0);
           }
-        `}
+          to {
+            transform: translateX(-20%);
+          }
+        }
+      `}
       </style>
 
       <div
         style={{
           height: '100dvh',
-          display: 'flex',
-          flexDirection: 'column',
           overflow: 'hidden',
           position: 'relative',
-          backgroundColor: '#fdfaf7',
         }}
       >
-        {/* 背景画像 */}
+        {/* 背景 */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             overflow: 'hidden',
-            zIndex: 0,
           }}
         >
           <img
@@ -87,98 +84,125 @@ function MenuPage() {
             alt=""
             style={{
               position: 'absolute',
-
               width: '140%',
               height: '100%',
-
               objectFit: 'cover',
               objectPosition: 'center',
-
-              opacity: 0.4,
-
-              animation:
-                'bgSlide 18s ease-in-out infinite alternate',
+              opacity: 0.45,
+              animation: 'bgSlide 18s ease-in-out infinite alternate',
             }}
           />
 
-          {/* 白オーバーレイ */}
           <div
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'rgba(255,255,255,0.45)',
+              background:
+                'linear-gradient(rgba(255,255,255,.45), rgba(255,255,255,.55))',
             }}
           />
         </div>
 
-        {/* メインコンテンツ */}
+        <Header title="" />
+
         <div
           style={{
             position: 'relative',
             zIndex: 1,
             height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
+            overflowY: 'auto',
+            padding: '90px 24px 50px',
+            textAlign: 'center',
           }}
         >
-          <Header title=" お食事" />
+          {/* タイトル */}
+          <div
+            style={{
+              width: 70,
+              height: 2,
+              background: '#d7b8ff',
+              margin: '0 auto 20px',
+            }}
+          />
+
+          <h1
+            style={{
+              fontSize: '48px',
+              color: '#5C4567',
+              fontFamily: '"Cormorant Garamond", serif',
+              marginBottom: '6px',
+            }}
+          >
+            Menu
+          </h1>
 
           <div
             style={{
-              flex: 1,
-              overflowY: 'auto',
-              padding: '76px 20px 40px',
-              boxSizing: 'border-box',
+              color: '#C9A44C',
+              letterSpacing: '4px',
+              marginBottom: '45px',
             }}
           >
+            Today's Course
+          </div>
+
+          {menuList.map((section, index) => (
             <div
+              key={section.title}
               style={{
-                maxWidth: '420px',
-                margin: '0 auto',
-
-                background: 'transparent',
-
-                borderRadius: '24px',
-                padding: '24px',
-
-                boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+                marginBottom: index === menuList.length - 1 ? '80px' : '42px',
               }}
             >
-              {menuList.map((section) => (
+              <div
+                style={{
+                  color: '#5C4567',
+                  fontSize: '30px',
+                  fontFamily: '"Cormorant Garamond", serif',
+                  marginBottom: '16px',
+                }}
+              >
+                {section.title}
+              </div>
+
+              <div
+                style={{
+                  width: 60,
+                  height: 1,
+                  background: '#d8b985',
+                  margin: '0 auto 18px',
+                }}
+              />
+
+              {section.items.map((item) => (
                 <div
-                  key={section.title}
+                  key={item}
                   style={{
-                    marginBottom: '28px',
+                    fontFamily: '"Noto Serif JP", serif',
+                    fontSize: '17px',
+                    color: '#4F4553',
+                    lineHeight: 1.9,
+                    letterSpacing: '0.03em',
+                    textAlign: 'center',
+                    fontWeight: 500,
                   }}
                 >
-                  <h3
-                    style={{
-                      marginBottom: '12px',
-                      color: '#7b5e57',
-                      borderBottom: '1px solid #ddd',
-                      paddingBottom: '6px',
-                      letterSpacing: '0.04em',
-                    }}
-                  >
-                    {section.title}
-                  </h3>
-
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      lineHeight: '2',
-                      color: '#444',
-                    }}
-                  >
-                    {section.items.map((item) => (
-                      <li key={item}>・{item}</li>
-                    ))}
-                  </ul>
+                  {item}
                 </div>
               ))}
             </div>
+          ))}
+
+          <div
+            style={{
+              marginTop: '40px',
+              color: '#7E6B86',
+              fontSize: '14px',
+              lineHeight: 1.8,
+            }}
+          >
+            Bon Appétit
+            <br />
+            We hope you enjoy every dish.
           </div>
         </div>
       </div>
