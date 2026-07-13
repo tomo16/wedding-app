@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import Header from "../components/Header";
-import groomImg from "../../public/photos/full/tomokisolo.jpg";  // 新郎写真
-import brideImg from "../../public/photos/full/hitomisolo.jpg";  // 新婦写真
+import React, { useEffect } from 'react';
+import Header from '../components/Header';
+import groomImg from '../../public/photos/full/tomokisolo.jpg'; // 新郎写真
+import brideImg from '../../public/photos/full/hitomisolo.jpg'; // 新婦写真
 
 const ProfilePage: React.FC = () => {
   useEffect(() => {
@@ -10,14 +10,13 @@ const ProfilePage: React.FC = () => {
   return (
     <div
       style={{
-        height: '100dvh',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden',
+        minHeight: '100dvh',
+        background:
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
       {/* 固定ヘッダー */}
-      <Header title="プロフィール" />
+      <Header title="" />
 
       {/* コンテンツ（スクロール部分） */}
       <div
@@ -57,7 +56,9 @@ const ProfilePage: React.FC = () => {
             }}
           />
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ともき</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：東京都練馬区</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>
+            ・出身：東京都練馬区
+          </p>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズをゆるく応援しています。
@@ -120,7 +121,9 @@ const ProfilePage: React.FC = () => {
           </div>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・出身：東京都足立区</p>
+          <p style={{ margin: '0 0 8px', color: '#555' }}>
+            ・出身：東京都足立区
+          </p>
 
           <p style={{ margin: '0 0 8px', color: '#555' }}>
             私は食べ飲みすることと、推し活を兼ねた旅行、そして実家の犬を愛でている時間が何よりも好きです！

@@ -55,7 +55,7 @@ url(${drinkImg})`,
       }}
     >
       {/* 固定ヘッダー */}
-      <Header title="飲み物" />
+      <Header title="" />
 
       {/* スクロール区域 */}
       <div

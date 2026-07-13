@@ -94,6 +94,7 @@ export default function GuestApp() {
   //     today.getDate() === weddingDate.getDate()
   //   );
   // };
+  
   // 🔒 戻るボタン無効化
   useEffect(() => {
     const handlePopState = () => {
@@ -118,21 +119,21 @@ export default function GuestApp() {
   const handleOpenMessage = () => navigate('/message');
   const handleOpenDrink = () => navigate('/drink');
 
+  const menuItems = [
+  { icon: '🪑', label: '席次表', action: handleOpenSeating },
+  { icon: '📷', label: '前撮り', action: handleOpenPhoto },
+  { icon: '📸', label: '写真', action: handleOpenPhotoUpload },
+  { icon: '🍽', label: '料理', action: handleOpenMenu },
+  { icon: '🍷', label: '飲み物', action: handleOpenDrink },
+  { icon: '📍', label: 'ご案内', action: handleOpenVenueInfo },
+  { icon: '💌', label: 'メッセージ', action: handleOpenMessage },
+  { icon: '👤', label: 'プロフィール', action: handleOpenProfile },
+  { icon: '📖', label: 'ヒストリー', action: handleOpenVenueMap },
+];
+
   // ---------------------------------------------------------
   // ここから先は UI（元コードそのまま）
   // ---------------------------------------------------------
-
-  const memberColors = [
-    '#fff9cc', // 岩本：黄色・薄い
-    '#f4e8ff', // 深澤：紫・薄い
-    '#ffffff', // ラウール：白
-    '#e3f0ff', // 渡辺：青・薄い
-    '#ffe8cc', // 向井：オレンジ・薄い
-    '#e6ffe6', // 阿部：緑・薄い
-    '#f0f0f0', // 目黒：黒（薄いグレー）
-    '#ffdddd', // 宮舘：赤・薄い
-    '#ffe6f5', // 佐久間：ピンク・薄い
-  ];
 
   // ▼ ログイン前画面（デザインB）
   if (!guest) {
@@ -477,17 +478,7 @@ export default function GuestApp() {
             gap: '14px',
           }}
         >
-          {[
-            ['🪑', '席次表', handleOpenSeating],
-            ['📷', '前撮り', handleOpenPhoto],
-            ['📸', '写真', handleOpenPhotoUpload],
-            ['🍽', '料理', handleOpenMenu],
-            ['🍷', '飲み物', handleOpenDrink],
-            ['📍', 'ご案内', handleOpenVenueInfo],
-            ['💌', 'メッセージ', handleOpenMessage],
-            ['👤', 'プロフィール', handleOpenProfile],
-            ['📖', 'ヒストリー', handleOpenVenueMap],
-          ].map(([icon, label, action]) => (
+          {menuItems.map(({ icon, label, action }) => (
             <button
               key={label}
               onClick={action as () => void}
