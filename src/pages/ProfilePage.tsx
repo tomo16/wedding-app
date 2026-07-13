@@ -21,86 +21,226 @@ const ProfilePage: React.FC = () => {
       {/* コンテンツ（スクロール部分） */}
       <div
         style={{
-          flex: 1,
-          overflowY: 'auto',
-          paddingTop: '76px',
-          paddingBottom: '24px',
+          paddingTop: '80px',
+          paddingBottom: '40px',
+          maxWidth: '430px',
+          margin: '0 auto',
+          paddingInline: '18px',
         }}
       >
-        {/* ▼ 新郎プロフィール ▼ */}
+        {/* タイトル */}
+
         <div
           style={{
-            width: '90%',
-            maxWidth: '400px',
-            margin: '0 auto',
-            background: '#ffffff',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            textAlign: 'left',
-            backgroundColor: '#f0f0f0',
+            width: 80,
+            height: 2,
+            background: '#d7b8ff',
+            margin: '0 auto 24px',
+          }}
+        />
+
+        <h1
+          style={{
+            fontSize: '36px',
+            color: '#5C4567',
+            fontFamily: '"Cormorant Garamond", serif',
+            textAlign: 'center',
+            marginBottom: '8px',
           }}
         >
-          <h3 style={{ margin: 0 }}>👦 新郎プロフィール</h3>
+          Profile
+        </h1>
+
+        <div
+          style={{
+            color: '#C9A44C',
+            letterSpacing: '3px',
+            textAlign: 'center',
+            marginBottom: '18px',
+          }}
+        >
+          About Us
+        </div>
+
+        <p
+          style={{
+            color: '#6F5E72',
+            lineHeight: 1.8,
+            fontSize: '14px',
+            textAlign: 'center',
+            marginBottom: '32px',
+          }}
+        >
+          新郎新婦のプロフィールを
+          <br />
+          ご紹介します
+        </p>
+
+        {/* ▼ 新郎プロフィールカード */}
+        {/* ▼ 新郎プロフィール ▼ */}
+
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+            marginBottom: '30px',
+          }}
+        >
+          <h3
+            style={{
+              marginTop: 0,
+              marginBottom: '18px',
+              textAlign: 'center',
+              fontSize: '28px',
+              color: '#5C4567',
+              fontFamily: '"Cormorant Garamond", serif',
+            }}
+          >
+            Groom
+          </h3>
+
+          <div
+            style={{
+              width: 50,
+              height: 1,
+              background: '#D6B4E8',
+              margin: '0 auto 24px',
+            }}
+          />
+
           <img
             src={groomImg}
             alt="新郎写真"
             style={{
-              width: '300px',
-              height: '300px',
-              borderRadius: '50%', // ← 丸型にする
-              objectFit: 'cover', // ← 顔の中心をきれいに表示
+              width: '240px',
+              height: '240px',
+              borderRadius: '50%',
+              objectFit: 'cover',
               display: 'block',
-              margin: '16px auto', // ← 中央寄せ
-              border: '3px solid #eee', // ← ほんのり枠（おしゃれ）
+              margin: '0 auto 24px',
+              border: '5px solid rgba(255,255,255,.95)',
+              boxShadow: '0 10px 30px rgba(170,135,200,.22)',
             }}
           />
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ともき</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            ・出身：東京都練馬区
-          </p>
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズをゆるく応援しています。
-            <br />
-            現地観戦は年に数回ほどですが、普段から試合結果を追うのが日課です。
-            <br />
-            西武がようやく強くなってきて最近は楽しみが増えました。
-            <br />
-            妻が「ベルーナドーム（西武の本拠地）は遠いからいやだ！！！」といっているのでCSに進出したら一緒に行こうと説得中です。
-            <br />
-            結婚式の準備では、このアプリの設計・開発・テストを担当しました。
-            <br />
-            バグを見つけた方は、メッセージ機能からこっそり教えてください。
-            <br />
-            本日は楽しんでいただけるとうれしいです！
-          </p>
-        </div>
+          <h2
+            style={{
+              textAlign: 'center',
+              color: '#5C4567',
+              fontSize: '24px',
+              marginBottom: '6px',
+              fontWeight: 600,
+            }}
+          >
+            ともき
+          </h2>
 
-        {/* ▼ 新婦プロフィール ▼ */}
-        <div
-          style={{
-            width: '90%',
-            maxWidth: '400px',
-            margin: '24px auto 0',
-            background: '#ffffff',
-            padding: '16px',
-            borderRadius: '12px',
-            boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-            textAlign: 'left',
-            backgroundColor: '#f0f0f0',
-          }}
-        >
-          <h3 style={{ margin: 0 }}>👰 新婦プロフィール</h3>
+          <p
+            style={{
+              textAlign: 'center',
+              color: '#A88BBF',
+              marginBottom: '28px',
+              fontSize: '14px',
+              letterSpacing: '1px',
+            }}
+          >
+            東京都練馬区
+          </p>
 
           <div
             style={{
-              width: '300px',
-              height: '300px',
+              color: '#555',
+              lineHeight: 2,
+              fontSize: '15px',
+            }}
+          >
+            <p style={{ marginTop: 0 }}>
+              スポーツ観戦が好きで、浦和レッズと埼玉西武ライオンズを
+              ゆるく応援しています。
+            </p>
+
+            <p>
+              交際当初妻は、スポーツ観戦に全く興味がありませんでした。
+              地道なプレゼン活動の結果、
+              今では一緒にスタジアムへ行ってくれるまでになりました。
+            </p>
+
+            <p>
+              とはいえ、 「ベルーナドームは遠いから嫌！」という壁だけは
+              まだ乗り越えられていません。 <br />
+              西武がCSに進出したら、 一緒に応援へ行くのが密かな目標です。
+            </p>
+
+            <div
+              style={{
+                height: 1,
+                background: 'rgba(92,69,103,.12)',
+                margin: '20px 0',
+              }}
+            />
+
+            <p>
+              今日という日を迎えられたのは、
+              これまで支えてくださった皆様のおかげです。
+            </p>
+
+            <p>
+              感謝の気持ちを少しでも形にしたいと思い、
+              このアプリをおもてなしの一つとして、心を込めて作成しました。
+              少しでも楽しんでいただけたらと嬉しいです。
+            </p>
+
+            <p style={{ marginBottom: 0 }}>
+              本日はどうぞごゆっくりお過ごしください。
+              皆様と素敵な一日を過ごせることを、 心より楽しみにしております。
+            </p>
+          </div>
+        </div>
+
+        {/* ▼ 新婦プロフィール ▼ */}
+
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '24px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+            marginBottom: '30px',
+          }}
+        >
+          <h3
+            style={{
+              marginTop: 0,
+              marginBottom: '18px',
+              textAlign: 'center',
+              fontSize: '28px',
+              color: '#5C4567',
+              fontFamily: '"Cormorant Garamond", serif',
+            }}
+          >
+            Bride
+          </h3>
+
+          <div
+            style={{
+              width: 50,
+              height: 1,
+              background: '#D6B4E8',
+              margin: '0 auto 24px',
+            }}
+          />
+
+          <div
+            style={{
+              width: '240px',
+              height: '240px',
               borderRadius: '50%',
               overflow: 'hidden',
-              margin: '16px auto',
-              border: '3px solid #eee',
+              margin: '0 auto 24px',
+              border: '5px solid rgba(255,255,255,.95)',
+              boxShadow: '0 10px 30px rgba(170,135,200,.22)',
             }}
           >
             <img
@@ -110,32 +250,78 @@ const ProfilePage: React.FC = () => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-
-                // ← 顔位置微調整
                 objectPosition: 'center 60%',
-
-                // ← 写真だけ拡大
                 transform: 'scale(1.22)',
               }}
             />
           </div>
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>・名前：ひとみ</p>
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            ・出身：東京都足立区
+          <h2
+            style={{
+              textAlign: 'center',
+              color: '#5C4567',
+              fontSize: '24px',
+              marginBottom: '6px',
+              fontWeight: 600,
+            }}
+          >
+            ひとみ
+          </h2>
+
+          <p
+            style={{
+              textAlign: 'center',
+              color: '#A88BBF',
+              marginBottom: '28px',
+              fontSize: '14px',
+              letterSpacing: '1px',
+            }}
+          >
+            東京都足立区
           </p>
 
-          <p style={{ margin: '0 0 8px', color: '#555' }}>
-            私は食べ飲みすることと、推し活を兼ねた旅行、そして実家の犬を愛でている時間が何よりも好きです！
-            <br />
-            落ち込んでいるときも、おいしいものを食べて飲んで、推しや犬に癒されればだいたいゴキゲンになります🍺
-            <br />
-            今日まで、家族（もちろん犬も含みます！）や友人との出会いに恵まれ、本当に幸せな人生を歩んできたと感じています。
-            <br />
-            こうして今日という日を迎えられたことに感謝し、これからは夫婦で力を合わせながら、笑顔とおいしいごはんの絶えない家庭を築いていきたいと思います。
-            <br />
-            まずは夫婦そろって健康に、美味しく食べ続けることを目標に、筋トレも頑張ります！
-          </p>
+          <div
+            style={{
+              color: '#555',
+              lineHeight: 2,
+              fontSize: '15px',
+            }}
+          >
+            <p style={{ marginTop: 0 }}>
+              食べること・飲むこと、 推し活を兼ねた旅行、
+              そして実家の犬を愛でる時間が何より好きです。
+            </p>
+
+            <p>
+              落ち込んでいるときも、 おいしいものを食べて飲んで、
+              推しや犬に癒やされれば、 だいたいゴキゲンになります🍺
+            </p>
+
+            <div
+              style={{
+                height: 1,
+                background: 'rgba(92,69,103,.12)',
+                margin: '20px 0',
+              }}
+            />
+
+            <p>
+              今日まで、家族（もちろん犬も含みます！）や
+              友人との出会いに恵まれ、
+              本当に幸せな人生を歩んできたと感じています。
+            </p>
+
+            <p>
+              今日という日を迎えられたことに感謝し、
+              これからは夫婦で力を合わせながら、
+              笑顔とおいしいごはんの絶えない家庭を 築いていきたいと思います。
+            </p>
+
+            <p style={{ marginBottom: 0 }}>
+              まずは夫婦そろって健康に、 美味しく食べ続けることを目標に、
+              筋トレも頑張ります！
+            </p>
+          </div>
         </div>
       </div>
     </div>
