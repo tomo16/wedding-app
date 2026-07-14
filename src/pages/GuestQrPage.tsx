@@ -10,13 +10,18 @@ export default function GuestQrPage() {
 
   const [guest, setGuest] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+
   const [kanji, kana] = guest?.name.split('（') || ['', ''];
   const furigana = kana?.replace('）', '');
+
   useEffect(() => {
     const fetchGuest = async () => {
       if (!code) return;
 
-      const q = query(collection(db, 'guest'), where('code', '==', code));
+      const q = query(
+        collection(db, 'guest'),
+        where('code', '==', code)
+      );
 
       const snapshot = await getDocs(q);
 
@@ -35,6 +40,7 @@ export default function GuestQrPage() {
     fetchGuest();
   }, [code]);
 
+
   if (loading) {
     return <p>読み込み中...</p>;
   }
@@ -43,93 +49,176 @@ export default function GuestQrPage() {
     return <p>ゲストが見つかりません。</p>;
   }
 
-  const receptionUrl = `${window.location.origin}/reception/${guest.code}`;
+
+  const receptionUrl =
+    `${window.location.origin}/reception/${guest.code}`;
+
 
   return (
     <div
       style={{
-        height: '100dvh',
-        background: '#fff9f2',
-        display: 'flex',
-        flexDirection: 'column',
+        minHeight: '100dvh',
+        textAlign: 'center',
+        background:
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
+        padding: '24px 18px 40px',
       }}
     >
 
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: '24px',
-        }}
-      >
+      {/* タイトル */}
+      <div style={{ marginTop: '10px' }}>
+
         <div
           style={{
-            width: '100%',
-            maxWidth: '380px',
-            background: '#fff',
-            borderRadius: '16px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            padding: '32px 24px',
-            textAlign: 'center',
+            width:80,
+            height:2,
+            background:'#d7b8ff',
+            margin:'0 auto 24px',
+          }}
+        />
+
+        <h1
+          style={{
+            fontSize:'38px',
+            color:'#5C4567',
+            marginBottom:'8px',
+            fontWeight:700,
+            letterSpacing:'1px',
+            fontFamily:'"Cormorant Garamond", serif',
           }}
         >
-          <h2
-            style={{
-              marginBottom: '12px',
-              color: '#1f3b5b',
-              lineHeight: 1.4,
-            }}
-          >
-            <div>{kanji} 様</div>
+          T & H Wedding
+        </h1>
 
-            <div
-              style={{
-                fontSize: '18px',
-                color: '#666',
-                fontWeight: 'normal',
-                marginTop: '6px',
-              }}
-            >
-              （{furigana}）
-            </div>
-          </h2>
 
-          <p
-            style={{
-              color: '#666',
-              marginBottom: '28px',
-              lineHeight: 1.6,
-            }}
-          >
-            受付でこちらのQRコードを
-            <br />
-            ご提示ください。
-          </p>
+        <div
+          style={{
+            color:'#c9a44c',
+            letterSpacing:'4px',
+            fontSize:'16px',
+            marginBottom:'30px',
+            fontFamily:'"Cormorant Garamond", serif',
+          }}
+        >
+          Reception QR
+        </div>
 
+      </div>
+
+
+      {/* QRカード */}
+      <div
+        style={{
+          background:'rgba(255,255,255,0.92)',
+          borderRadius:'24px',
+          padding:'32px 24px',
+          maxWidth:'410px',
+          margin:'0 auto',
+          boxShadow:'0 8px 30px rgba(0,0,0,0.08)',
+        }}
+      >
+
+        {/* 名前 */}
+        <div
+          style={{
+            color:'#5A476F',
+            fontSize:'22px',
+            fontWeight:600,
+            marginBottom:'6px',
+          }}
+        >
+          {kanji} 様
+        </div>
+
+
+        {furigana && (
           <div
             style={{
-              display: 'inline-block',
-              background: '#fff',
-              padding: '16px',
-              borderRadius: '12px',
+              color:'#8B768F',
+              fontSize:'14px',
+              marginBottom:'24px',
             }}
           >
-            <QRCode value={receptionUrl} size={220} />
+            {furigana}
           </div>
+        )}
 
-          <p
-            style={{
-              marginTop: '24px',
-              color: '#888',
-              fontSize: '14px',
-            }}
-          >
-            スクリーンショットでも受付可能です。
-          </p>
+
+        <div
+          style={{
+            width:'60px',
+            height:'1px',
+            background:'#E6D6B8',
+            margin:'0 auto 24px',
+          }}
+        />
+
+
+        <p
+          style={{
+            color:'#6F5E72',
+            fontSize:'15px',
+            lineHeight:1.8,
+            marginBottom:'24px',
+          }}
+        >
+          受付にてこちらのQRコードを
+          <br />
+          ご提示ください
+        </p>
+
+
+        {/* QR */}
+        <div
+          style={{
+            display:'inline-block',
+            background:'#fff',
+            padding:'18px',
+            borderRadius:'18px',
+            border:'1px solid #F0E6F6',
+            boxShadow:'0 4px 12px rgba(0,0,0,0.05)',
+          }}
+        >
+          <QRCode
+            value={receptionUrl}
+            size={220}
+          />
         </div>
+
+
+        <p
+          style={{
+            marginTop:'24px',
+            color:'#A58DB5',
+            fontSize:'13px',
+            lineHeight:1.8,
+          }}
+        >
+          スクリーンショットでも
+          <br />
+          受付可能です
+        </p>
+
       </div>
+
+
+      {/* フッター */}
+      <div
+        style={{
+          marginTop:'35px',
+          color:'#a88bbf',
+          fontSize:'13px',
+          lineHeight:1.8,
+        }}
+      >
+        Thank you for celebrating with us.
+        <br />
+        Please enjoy this special day.
+        <br />
+        2026.09.26
+      </div>
+
+
     </div>
   );
 }
