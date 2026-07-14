@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Header from "../components/Header";
+import React, { useEffect, useState } from 'react';
+import Header from '../components/Header';
 
 type Photo = {
   thumb: string;
@@ -7,15 +7,15 @@ type Photo = {
 };
 
 const photos: Photo[] = [
-  { thumb: "/photos/thumb/photo3.jpg", full: "/photos/full/photo3.jpg" },
-  { thumb: "/photos/thumb/photo5.jpg", full: "/photos/full/photo5.jpg" },
-  { thumb: "/photos/thumb/photo4.jpg", full: "/photos/full/photo4.jpg" },
-  { thumb: "/photos/thumb/photo1.jpg", full: "/photos/full/photo1.jpg" },
-  { thumb: "/photos/thumb/photo2.jpg", full: "/photos/full/photo2.jpg" },
-  { thumb: "/photos/thumb/photo6.jpg", full: "/photos/full/photo6.jpg" },
-  { thumb: "/photos/thumb/photo9.jpg", full: "/photos/full/photo9.jpg" },
-  { thumb: "/photos/thumb/photo8.jpg", full: "/photos/full/photo8.jpg" },
-  { thumb: "/photos/thumb/photo7.jpg", full: "/photos/full/photo7.jpg" },
+  { thumb: '/photos/thumb/photo3.jpg', full: '/photos/full/photo3.jpg' },
+  { thumb: '/photos/thumb/photo5.jpg', full: '/photos/full/photo5.jpg' },
+  { thumb: '/photos/thumb/photo4.jpg', full: '/photos/full/photo4.jpg' },
+  { thumb: '/photos/thumb/photo1.jpg', full: '/photos/full/photo1.jpg' },
+  { thumb: '/photos/thumb/photo2.jpg', full: '/photos/full/photo2.jpg' },
+  { thumb: '/photos/thumb/photo6.jpg', full: '/photos/full/photo6.jpg' },
+  { thumb: '/photos/thumb/photo9.jpg', full: '/photos/full/photo9.jpg' },
+  { thumb: '/photos/thumb/photo8.jpg', full: '/photos/full/photo8.jpg' },
+  { thumb: '/photos/thumb/photo7.jpg', full: '/photos/full/photo7.jpg' },
 ];
 
 const PhotoGalleryPage: React.FC = () => {
@@ -32,12 +32,12 @@ const PhotoGalleryPage: React.FC = () => {
       }
     };
 
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, [modalUrl]);
 
   const openModal = (url: string) => {
-    window.history.pushState({ modal: true }, "");
+    window.history.pushState({ modal: true }, '');
     setModalUrl(url);
   };
 
@@ -52,20 +52,20 @@ const PhotoGalleryPage: React.FC = () => {
   return (
     <div
       style={{
-        minHeight: "100dvh",
+        minHeight: '100dvh',
         background:
-          "linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)",
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
       <Header title="" />
 
       <div
         style={{
-          paddingTop: "80px",
-          paddingBottom: "40px",
-          maxWidth: "430px",
-          margin: "0 auto",
-          paddingInline: "18px",
+          paddingTop: '80px',
+          paddingBottom: '40px',
+          maxWidth: '430px',
+          margin: '0 auto',
+          paddingInline: '18px',
         }}
       >
         {/* タイトル */}
@@ -74,19 +74,19 @@ const PhotoGalleryPage: React.FC = () => {
           style={{
             width: 80,
             height: 2,
-            background: "#d7b8ff",
-            margin: "0 auto 24px",
+            background: '#d7b8ff',
+            margin: '0 auto 24px',
           }}
         />
 
         <h1
           style={{
-            fontSize: "34px",
-            color: "#5C4567",
+            fontSize: '34px',
+            color: '#5C4567',
             fontWeight: 700,
-            marginBottom: "8px",
+            marginBottom: '8px',
             fontFamily: '"Cormorant Garamond", serif',
-            textAlign: "center",
+            textAlign: 'center',
           }}
         >
           Pre Wedding Photos
@@ -94,11 +94,11 @@ const PhotoGalleryPage: React.FC = () => {
 
         <div
           style={{
-            color: "#C9A44C",
-            letterSpacing: "3px",
-            fontSize: "15px",
-            marginBottom: "18px",
-            textAlign: "center",
+            color: '#C9A44C',
+            letterSpacing: '3px',
+            fontSize: '15px',
+            marginBottom: '18px',
+            textAlign: 'center',
           }}
         >
           Our Memories
@@ -106,11 +106,11 @@ const PhotoGalleryPage: React.FC = () => {
 
         <p
           style={{
-            color: "#6F5E72",
+            color: '#6F5E72',
             lineHeight: 1.8,
-            marginBottom: "28px",
-            fontSize: "14px",
-            textAlign: "center",
+            marginBottom: '28px',
+            fontSize: '14px',
+            textAlign: 'center',
           }}
         >
           前撮りのお写真を
@@ -122,17 +122,17 @@ const PhotoGalleryPage: React.FC = () => {
 
         <div
           style={{
-            background: "rgba(255,255,255,.92)",
-            borderRadius: "24px",
-            padding: "18px",
-            boxShadow: "0 8px 30px rgba(0,0,0,.08)",
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '18px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
           }}
         >
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3,1fr)",
-              gap: "12px",
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3,1fr)',
+              gap: '12px',
             }}
           >
             {photos.map((photo, i) => (
@@ -142,14 +142,14 @@ const PhotoGalleryPage: React.FC = () => {
                 loading="lazy"
                 onClick={() => openModal(photo.full)}
                 style={{
-                  width: "100%",
-                  aspectRatio: "1 / 1",
-                  objectFit: "cover",
-                  cursor: "pointer",
-                  borderRadius: "18px",
-                  border: "3px solid rgba(255,255,255,.95)",
-                  boxShadow: "0 6px 18px rgba(170,135,200,.18)",
-                  transition: ".2s",
+                  width: '100%',
+                  aspectRatio: '1 / 1',
+                  objectFit: 'cover',
+                  cursor: 'pointer',
+                  borderRadius: '18px',
+                  border: '3px solid rgba(255,255,255,.95)',
+                  boxShadow: '0 6px 18px rgba(170,135,200,.18)',
+                  transition: '.2s',
                 }}
               />
             ))}
@@ -160,16 +160,15 @@ const PhotoGalleryPage: React.FC = () => {
 
         <div
           style={{
-            marginTop: "28px",
-            color: "#A88BBF",
-            fontSize: "13px",
+            marginTop: '28px',
+            color: '#A88BBF',
+            fontSize: '13px',
             lineHeight: 1.8,
-            textAlign: "center",
+            textAlign: 'center',
           }}
         >
           Every picture tells
-          <br />
-          a piece of our story.
+          <br />a piece of our story.
         </div>
       </div>
 
@@ -179,15 +178,15 @@ const PhotoGalleryPage: React.FC = () => {
         <div
           onClick={closeModal}
           style={{
-            position: "fixed",
+            position: 'fixed',
             inset: 0,
-            background: "rgba(45,35,55,.78)",
-            backdropFilter: "blur(8px)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            background: 'rgba(45,35,55,.78)',
+            backdropFilter: 'blur(8px)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             zIndex: 9999,
-            padding: "20px",
+            padding: '20px',
           }}
         >
           <button
@@ -196,18 +195,25 @@ const PhotoGalleryPage: React.FC = () => {
               closeModal();
             }}
             style={{
-              position: "absolute",
-              top: "22px",
-              right: "22px",
-              width: "48px",
-              height: "48px",
-              borderRadius: "50%",
-              border: "1px solid rgba(255,255,255,.4)",
-              background: "rgba(255,255,255,.15)",
-              backdropFilter: "blur(10px)",
-              color: "#fff",
-              fontSize: "26px",
-              cursor: "pointer",
+              position: 'absolute',
+              top: '22px',
+              right: '22px',
+              width: '48px',
+              height: '48px',
+              borderRadius: '50%',
+              border: '1px solid rgba(255,255,255,.4)',
+              background: 'rgba(255,255,255,.15)',
+              backdropFilter: 'blur(10px)',
+              color: '#fff',
+              fontSize: '26px',
+              cursor: 'pointer',
+
+              // 追加
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              lineHeight: 1,
+              padding: 0,
             }}
           >
             ×
@@ -217,11 +223,11 @@ const PhotoGalleryPage: React.FC = () => {
             src={modalUrl}
             onClick={(e) => e.stopPropagation()}
             style={{
-              maxWidth: "90%",
-              maxHeight: "90%",
-              borderRadius: "20px",
-              border: "6px solid rgba(255,255,255,.95)",
-              boxShadow: "0 20px 50px rgba(0,0,0,.35)",
+              maxWidth: '90%',
+              maxHeight: '90%',
+              borderRadius: '20px',
+              border: '6px solid rgba(255,255,255,.95)',
+              boxShadow: '0 20px 50px rgba(0,0,0,.35)',
             }}
           />
         </div>

@@ -1,12 +1,10 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
-type HeaderProps = {
-  title: string;
-  bgColor?: string;
+type Props = {
+  title?: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ title}) => {
+export default function Header({ title }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -15,40 +13,54 @@ const Header: React.FC<HeaderProps> = ({ title}) => {
         position: "fixed",
         top: 0,
         left: 0,
-        width: "100%",
-        height: "56px",
-        background: "#F7F3FF",
+        right: 0,
+        height: "64px",
         display: "flex",
         alignItems: "center",
-        borderBottom: "1px solid #ddd",
-        touchAction: "manipulation",
+        justifyContent: "center",
+        background: "rgba(255,255,255,0.75)",
+        backdropFilter: "blur(10px)",
         zIndex: 1000,
-        padding: "0 16px",       // ← 安全な左右余白
-        boxSizing: "border-box", // ← ★ 横スクロール防止の決め手
-        gap: "12px",             // ← ボタンとタイトルの間隔
+        borderBottom: "1px solid #F0E6F6",
       }}
     >
+
       {/* 戻るボタン */}
       <button
         onClick={() => navigate(-1)}
         style={{
-          padding: "9px 12px",
-          borderRadius: "8px",
-          border: "1px solid #ccc",
-          background: "#f7f7f7",
+          position: "absolute",
+          left: "18px",
+          width: "40px",
+          height: "40px",
+          borderRadius: "50%",
+          border: "1px solid #F0E6F6",
+          background: "rgba(255,255,255,0.8)",
+          color: "#5C4567",
+          fontSize: "22px",
           cursor: "pointer",
-          whiteSpace: "nowrap",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        ← 戻る
+        ‹
       </button>
 
+
       {/* タイトル */}
-      <h2 style={{ margin: 0, fontSize: "18px", whiteSpace: "nowrap" }}>
-        {title}
-      </h2>
+      <div
+        style={{
+          fontFamily: '"Cormorant Garamond", serif',
+          fontSize: "22px",
+          fontWeight: 700,
+          color: "#5C4567",
+          letterSpacing: "1px",
+        }}
+      >
+        T & H Wedding
+      </div>
+
     </div>
   );
-};
-
-export default Header;
+}
