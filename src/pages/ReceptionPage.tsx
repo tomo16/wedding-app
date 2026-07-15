@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import type { User } from '../types/User';
+import Header from '../components/Header';
 
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
@@ -17,6 +18,8 @@ export default function ReceptionPage() {
   const [guest, setGuest] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
+  const [kanji, kana] = guest?.name.split('（') || ['', ''];
+  const furigana = kana?.replace('）', '');
 
   useEffect(() => {
     const fetchGuest = async () => {
@@ -74,194 +77,272 @@ export default function ReceptionPage() {
   return (
     <div
       style={{
-        minHeight: '100vh',
-        backgroundColor: '#f5f5f5',
-        padding: '24px',
-        textAlign: 'center',
+        minHeight: '100dvh',
+        background:
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
-      <h1
-        style={{
-          fontSize: '48px',
-          marginBottom: '24px',
-          color: '#243447',
-        }}
-      >
-        受付画面
-      </h1>
+      <Header title="" />
 
-      <h2
-        style={{
-          marginBottom: '24px',
-          color: '#243447',
-        }}
-      >
-        {guest.name}
-      </h2>
-
-      {/* 状態カード */}
       <div
         style={{
-          backgroundColor: '#fff',
-          borderRadius: '12px',
-          padding: '20px',
-          margin: '0 auto 24px',
-          width: '100%',
-          maxWidth: '360px',
-          boxSizing: 'border-box',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          paddingTop: '80px',
+          paddingBottom: '40px',
+          maxWidth: '430px',
+          margin: '0 auto',
+          paddingInline: '18px',
         }}
       >
-        <h3
+        {/* タイトル */}
+        <div
           style={{
-            marginTop: 0,
-            marginBottom: '20px',
+            width: 80,
+            height: 2,
+            background: '#d7b8ff',
+            margin: '0 auto 24px',
+          }}
+        />
+
+        <h1
+          style={{
+            fontSize: '34px',
+            color: '#5C4567',
+            fontWeight: 700,
+            marginBottom: '8px',
+            fontFamily: '"Cormorant Garamond", serif',
             textAlign: 'center',
-            color: '#243447',
           }}
         >
-          状態
-        </h3>
+          Reception
+        </h1>
 
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: '70px 1fr',
-            rowGap: '16px',
-            columnGap: '12px',
-            alignItems: 'center',
-            fontSize: '16px',
+            color: '#C9A44C',
+            letterSpacing: '3px',
+            fontSize: '15px',
+            marginBottom: '28px',
+            textAlign: 'center',
           }}
         >
-          <div>ご祝儀</div>
-          <div
-            style={{
-              textAlign: 'right',
-              fontWeight: 'bold',
-            }}
-          >
-            {guest.giftReceived ? '✅ お預かり済' : '❌ 未受領'}
-          </div>
+          Guest Check-in
+        </div>
 
-          <div>お車代</div>
+        {/* ゲスト名カード */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '22px',
+            marginBottom: '24px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+          }}
+        >
           <div
             style={{
-              textAlign: 'right',
-              fontWeight: 'bold',
+              textAlign: 'center',
+              lineHeight: 1.4,
             }}
           >
-            {!guest.hasTransportationGift
-              ? 'なし'
-              : guest.transportationGiftGiven
-                ? '✅ 渡し済'
-                : '💴 未渡し'}
-          </div>
+            <div
+              style={{
+                fontSize: '26px',
+                fontWeight: 700,
+                color: '#5C4567',
+              }}
+            >
+              {kanji}
+            </div>
 
-          <div>受付状態</div>
-          <div
-            style={{
-              textAlign: 'right',
-              fontWeight: 'bold',
-            }}
-          >
-            {guest.checkedin ? '✅ 受付済' : '❌ 未受付'}
+            {furigana && (
+              <div
+                style={{
+                  marginTop: '6px',
+                  fontSize: '13px',
+                  color: '#8B768F',
+                  letterSpacing: '2px',
+                }}
+              >
+                {furigana}
+              </div>
+            )}
           </div>
         </div>
-      </div>
-
-      {/* 操作ボタン */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-          alignItems: 'center',
-        }}
-      >
-        {!guest.checkedin && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ checkedin: true })}
-            style={greenButtonStyle}
+        {/* 状態カード */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '22px',
+            marginBottom: '28px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 20px',
+              textAlign: 'center',
+              color: '#5C4567',
+              fontSize: '22px',
+              fontFamily: '"Cormorant Garamond", serif',
+              fontWeight: 600,
+            }}
           >
-            受付完了
-          </button>
-        )}
+            Status
+          </h3>
 
-        {guest.checkedin && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ checkedin: false })}
-            style={redButtonStyle}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '90px 1fr',
+              rowGap: '18px',
+              columnGap: '12px',
+              alignItems: 'center',
+              fontSize: '15px',
+            }}
           >
-            受付取消
-          </button>
-        )}
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>ご祝儀</div>
 
-        {!guest.giftReceived && guest.giftReceivedAtReception && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ giftReceived: true })}
-            style={greenButtonStyle}
-          >
-            ご祝儀受領
-          </button>
-        )}
+            <div
+              style={{
+                textAlign: 'right',
+                color: guest.giftReceived ? '#2E7D32' : '#D32F2F',
+                fontWeight: 700,
+              }}
+            >
+              {guest.giftReceived ? '✅ お預かり済' : '❌ 未受領'}
+            </div>
 
-        {guest.giftReceived && guest.giftReceivedAtReception && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ giftReceived: false })}
-            style={redButtonStyle}
-          >
-            ご祝儀受領取消
-          </button>
-        )}
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>お車代</div>
 
-        {guest.hasTransportationGift && !guest.transportationGiftGiven && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ transportationGiftGiven: true })}
-            style={greenButtonStyle}
-          >
-            お車代を渡した
-          </button>
-        )}
+            <div
+              style={{
+                textAlign: 'right',
+                color: !guest.hasTransportationGift
+                  ? '#888'
+                  : guest.transportationGiftGiven
+                    ? '#2E7D32'
+                    : '#D32F2F',
+                fontWeight: 700,
+              }}
+            >
+              {!guest.hasTransportationGift
+                ? '―'
+                : guest.transportationGiftGiven
+                  ? '✅ 渡し済'
+                  : '💴 未渡し'}
+            </div>
 
-        {guest.hasTransportationGift && guest.transportationGiftGiven && (
-          <button
-            disabled={updating}
-            onClick={() => updateGuest({ transportationGiftGiven: false })}
-            style={redButtonStyle}
-          >
-            お車代取消
-          </button>
-        )}
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>受付</div>
+
+            <div
+              style={{
+                textAlign: 'right',
+                color: guest.checkedin ? '#2E7D32' : '#D32F2F',
+                fontWeight: 700,
+              }}
+            >
+              {guest.checkedin ? '✅ 受付済' : '❌ 未受付'}
+            </div>
+          </div>
+        </div>
+        {/* 操作カード */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '22px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '14px',
+          }}
+        >
+          {!guest.checkedin && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ checkedin: true })}
+              style={primaryButtonStyle}
+            >
+              ✅ 受付完了
+            </button>
+          )}
+
+          {guest.checkedin && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ checkedin: false })}
+              style={dangerButtonStyle}
+            >
+              受付取消
+            </button>
+          )}
+
+          {!guest.giftReceived && guest.giftReceivedAtReception && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ giftReceived: true })}
+              style={primaryButtonStyle}
+            >
+              💴 ご祝儀受領
+            </button>
+          )}
+
+          {guest.giftReceived && guest.giftReceivedAtReception && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ giftReceived: false })}
+              style={dangerButtonStyle}
+            >
+              ご祝儀受領取消
+            </button>
+          )}
+
+          {guest.hasTransportationGift && !guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ transportationGiftGiven: true })}
+              style={primaryButtonStyle}
+            >
+              🚗 お車代を渡した
+            </button>
+          )}
+
+          {guest.hasTransportationGift && guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ transportationGiftGiven: false })}
+              style={dangerButtonStyle}
+            >
+              お車代取消
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
 }
-
-const greenButtonStyle = {
-  backgroundColor: '#4CAF50',
-  color: '#fff',
+const primaryButtonStyle = {
+  width: '100%',
+  padding: '16px',
+  borderRadius: '16px',
   border: 'none',
-  borderRadius: '10px',
-  padding: '14px 24px',
-  minWidth: '240px',
-  fontSize: '18px',
-  fontWeight: 'bold' as const,
+  background: 'linear-gradient(135deg,#D6B7F6,#C7A0EF)',
+  color: '#fff',
+  fontSize: '16px',
+  fontWeight: 700 as const,
   cursor: 'pointer',
+  boxShadow: '0 8px 20px rgba(170,135,200,.25)',
 };
 
-const redButtonStyle = {
-  backgroundColor: '#f44336',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '10px',
-  padding: '14px 24px',
-  minWidth: '240px',
-  fontSize: '18px',
-  fontWeight: 'bold' as const,
+const dangerButtonStyle = {
+  width: '100%',
+  padding: '16px',
+  borderRadius: '16px',
+  border: '1px solid #F4C9C9',
+  background: '#FFF4F4',
+  color: '#D32F2F',
+  fontSize: '16px',
+  fontWeight: 700 as const,
   cursor: 'pointer',
 };

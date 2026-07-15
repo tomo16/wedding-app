@@ -47,21 +47,86 @@ export function ReceptionSummary({ side }: Props) {
 
   return (
     <>
-      {/* ② ヘッダー */}
-      <Header title={'ゲスト一覧'} />
+      <div
+        style={{
+          minHeight: '100dvh',
+          background:
+            'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
+        }}
+      >
+        <Header title="" />
+        <div
+          style={{
+            paddingTop: '80px',
+            paddingBottom: '40px',
+            maxWidth: '430px',
+            margin: '0 auto',
+            paddingInline: '18px',
+          }}
+        >
+          {/* タイトル */}
+          <div
+            style={{
+              width: 80,
+              height: 2,
+              background: '#d7b8ff',
+              margin: '0 auto 24px',
+            }}
+          />
 
-      <div style={{ paddingTop: '56px' }}>
-        <Header title={'ゲスト一覧'} />
+          <h1
+            style={{
+              fontSize: '34px',
+              color: '#5C4567',
+              fontWeight: 700,
+              marginBottom: '8px',
+              fontFamily: '"Cormorant Garamond", serif',
+              textAlign: 'center',
+            }}
+          >
+            Reception
+          </h1>
 
-        <div style={{ padding: '16px' }}>
-          <h2>{side === 'groom' ? '新郎側' : '新婦側'} 一覧</h2>
+          <div
+            style={{
+              color: '#C9A44C',
+              letterSpacing: '3px',
+              fontSize: '15px',
+              marginBottom: '18px',
+              textAlign: 'center',
+            }}
+          >
+            {side === 'groom' ? 'Groom Side' : 'Bride Side'}
+          </div>
 
           {allCheckedIn ? (
-            <p style={{ color: 'green', fontWeight: 'bold' }}>
+            <div
+              style={{
+                background: '#F3FAF4',
+                color: '#2E7D32',
+                borderRadius: '16px',
+                padding: '14px',
+                marginBottom: '16px',
+                textAlign: 'center',
+                fontWeight: 600,
+              }}
+            >
               ✅ 全員受付完了
-            </p>
+            </div>
           ) : (
-            <p style={{ color: 'red', fontWeight: 'bold' }}>❌ 未受付あり</p>
+            <div
+              style={{
+                background: '#FFF4F4',
+                color: '#D32F2F',
+                borderRadius: '16px',
+                padding: '14px',
+                marginBottom: '16px',
+                textAlign: 'center',
+                fontWeight: 600,
+              }}
+            >
+              ❌ 未受付あり
+            </div>
           )}
 
           <label
@@ -69,7 +134,9 @@ export function ReceptionSummary({ side }: Props) {
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              marginBottom: '12px',
+              marginBottom: '20px',
+              color: '#5C4567',
+              fontWeight: 500,
             }}
           >
             <input
@@ -79,103 +146,126 @@ export function ReceptionSummary({ side }: Props) {
             />
             未受付のみ表示
           </label>
-
-          {/* ===== ヘッダー行 ===== */}
+          {/* 一覧カード */}
           <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: '2fr 1fr 1fr 1fr',
-              gap: '8px',
-              fontWeight: 'bold',
-              marginBottom: '8px',
-              textAlign: 'center',
+              background: 'rgba(255,255,255,.92)',
+              borderRadius: '24px',
+              padding: '18px',
+              boxShadow: '0 8px 30px rgba(0,0,0,.08)',
             }}
           >
-            <div>名前</div>
-            <div>受付</div>
-            <div>ご祝儀</div>
-            <div>お車代</div>
-          </div>
+            {/* ヘッダー行 */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                gap: '8px',
+                fontWeight: 700,
+                color: '#5C4567',
+                textAlign: 'center',
+                padding: '10px 8px',
+                marginBottom: '12px',
+                background: '#F8F2FB',
+                borderRadius: '14px',
+              }}
+            >
+              <div>名前</div>
+              <div>受付</div>
+              <div>ご祝儀</div>
+              <div>お車代</div>
+            </div>
 
-          {/* ===== 一覧（縦スクロール） ===== */}
-          <div
-            style={{
-              maxHeight: '60vh',
-              overflowY: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '8px',
-            }}
-          >
-            {visibleGuests.map((g) => {
-              const [kanji, kana] = g.name.split('（');
-              const furigana = kana?.replace('）', '');
-              const isUnchecked = !g.checkedin;
-              const transportationNotGiven =
-                g.hasTransportationGift && !g.transportationGiftGiven;
+            {/* 一覧 */}
+            <div
+              style={{
+                maxHeight: '60vh',
+                overflowY: 'auto',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px',
+              }}
+            >
+              {visibleGuests.map((g) => {
+                const [kanji, kana] = g.name.split('（');
+                const furigana = kana?.replace('）', '');
 
-              return (
-                <div
-                  key={g.id}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '2fr 1fr 1fr 1fr',
-                    gap: '8px',
-                    padding: '10px',
-                    borderRadius: '10px',
-                    background: isUnchecked ? '#ffe5e5' : '#fff', // ★ 未受付は薄赤
-                    boxShadow: '0 1px 4px rgba(0,0,0,0.15)',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                  }}
-                >
+                const isUnchecked = !g.checkedin;
+
+                const transportationNotGiven =
+                  g.hasTransportationGift && !g.transportationGiftGiven;
+
+                return (
                   <div
+                    key={g.id}
                     style={{
-                      textAlign: 'left',
-                      color: '#1976d2',
-                      cursor: 'pointer',
-                      textDecoration: 'underline',
-                      lineHeight: 1.3,
-                    }}
-                    onClick={() => navigate(`/reception/${g.code}`)}
-                  >
-                    <div
-                      style={{
-                        fontWeight: 'bold',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {kanji}
-                    </div>
-
-                    <div
-                      style={{
-                        fontSize: '11px',
-                        color: '#666',
-                      }}
-                    >
-                      （{furigana}）
-                    </div>
-                  </div>
-
-                  <div>{g.checkedin ? '✅' : '❌'}</div>
-
-                  <div>{g.giftReceived ? '✅' : '❌'}</div>
-
-                  {/* お車代 */}
-                  <div
-                    style={{
-                      fontWeight: transportationNotGiven ? 'bold' : 'normal',
-                      color: transportationNotGiven ? 'red' : 'inherit',
+                      display: 'grid',
+                      gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                      gap: '8px',
+                      padding: '14px',
+                      borderRadius: '16px',
+                      background: isUnchecked
+                        ? '#FFF4F4'
+                        : 'rgba(255,255,255,.95)',
+                      border: isUnchecked
+                        ? '1px solid #FFD5D5'
+                        : '1px solid #F3E5FA',
+                      alignItems: 'center',
+                      textAlign: 'center',
                     }}
                   >
-                    {!g.hasTransportationGift && '―'}
-                    {g.hasTransportationGift &&
-                      (g.transportationGiftGiven ? '✅' : '❌')}
+                    {/* 名前 */}
+                    <div
+                      onClick={() => navigate(`/reception/${g.code}`)}
+                      style={{
+                        textAlign: 'left',
+                        cursor: 'pointer',
+                        color: '#5C4567',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 600,
+                          fontSize: '14px',
+                        }}
+                      >
+                        {kanji}
+                      </div>
+
+                      <div
+                        style={{
+                          fontSize: '11px',
+                          color: '#8B768F',
+                        }}
+                      >
+                        {furigana}
+                      </div>
+                    </div>
+
+                    {/* 受付 */}
+                    <div>{g.checkedin ? '✅' : '❌'}</div>
+
+                    {/* ご祝儀 */}
+                    <div>{g.giftReceived ? '✅' : '❌'}</div>
+
+                    {/* お車代 */}
+                    <div
+                      style={{
+                        color: transportationNotGiven ? '#D32F2F' : '#5C4567',
+                        fontWeight: transportationNotGiven ? 700 : 500,
+                      }}
+                    >
+                      {!g.hasTransportationGift
+                        ? '―'
+                        : g.transportationGiftGiven
+                          ? '✅'
+                          : '❌'}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

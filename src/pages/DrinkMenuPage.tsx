@@ -45,10 +45,10 @@ const DrinkMenuPage: React.FC = () => {
         height: '100dvh',
         overflow: 'hidden',
         backgroundImage: `
-linear-gradient(
-rgba(255,255,255,0.45),
-rgba(255,255,255,0.55)),
-url(${drinkImg})`,
+        linear-gradient(
+        rgba(255,255,255,0.45),
+        rgba(255,255,255,0.55)),
+        url(${drinkImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -133,7 +133,7 @@ url(${drinkImg})`,
               marginBottom: '10px',
             }}
           >
-            田酒
+            田酒（冷酒）
           </div>
 
           <div
@@ -163,7 +163,7 @@ url(${drinkImg})`,
               marginBottom: '10px',
             }}
           >
-            Ao
+            Ao（ハイボール）
           </div>
 
           <div
@@ -173,7 +173,7 @@ url(${drinkImg})`,
               fontSize: '15px',
             }}
           >
-            新婦おすすめのウイスキー。
+            新婦おすすめのハイボール。
             <br />
             ごはんにも、甘いものにも合う。
           </div>
