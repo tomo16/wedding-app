@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+type Props = {
+  title?: string;
+};
+
+export default function Header({ title }: Props) {
   const navigate = useNavigate();
 
   return (
@@ -54,7 +58,7 @@ export default function Header() {
           letterSpacing: "1px",
         }}
       >
-        T & H Wedding
+        {title || "T & H Wedding"}
       </div>
 
     </div>
