@@ -1,10 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-type Props = {
-  title?: string;
-};
-
-export default function Header({ title }: Props) {
+export default function Header() {
   const navigate = useNavigate();
 
   return (
