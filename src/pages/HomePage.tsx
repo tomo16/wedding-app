@@ -117,7 +117,7 @@ export default function HomePage() {
         >
           管理者向けメニューです
           <br />
-          Home画面・ゲスト一覧画面へ進めます
+          ゲスト一覧画面へ進めます
         </p>
 
         {/* カード */}
