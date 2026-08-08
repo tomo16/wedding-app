@@ -58,7 +58,7 @@ export default function Header({ title }: Props) {
           letterSpacing: "1px",
         }}
       >
-        {title || "T & H Wedding"}
+        {"T & H Wedding"}
       </div>
     </div>
   );
