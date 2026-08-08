@@ -20,7 +20,10 @@ export default function ReceptionPage() {
 
   useEffect(() => {
     const fetchGuest = async () => {
-      if (!code) return;
+      if (!code) {
+        setLoading(false);
+        return;
+      }
 
       try {
         const guestRef = doc(db, 'guest', code);
