@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
   updateDoc,
   doc,
@@ -11,12 +11,16 @@ import Header from '../components/Header';
 
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
-
-  const [guest, setGuest] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+  const initialGuest = location.state?.guest as User | undefined;
+  const [guest, setGuest] = useState<User | null>(
+    initialGuest ?? null
+  );
+  const [loading, setLoading] = useState(!initialGuest);
   const [updating, setUpdating] = useState(false);
   const [kanji, kana] = guest?.name.split('（') || ['', ''];
   const furigana = kana?.replace('）', '');
+
 
   useEffect(() => {
     const fetchGuest = async () => {

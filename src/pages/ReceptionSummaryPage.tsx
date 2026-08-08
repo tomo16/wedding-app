@@ -215,7 +215,9 @@ export function ReceptionSummary({ side }: Props) {
                   >
                     {/* 名前 */}
                     <div
-                      onClick={() => navigate(`/reception/${g.code}`)}
+                      onClick={() => 
+                        navigate(`/reception/${g.code}`, {
+                          state: { guest: g },})}
                       style={{
                         textAlign: 'left',
                         cursor: 'pointer',
