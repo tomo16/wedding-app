@@ -158,9 +158,11 @@ export default function HomePage() {
             </button>
           )}
 
-          <Link to="/guest/login" style={linkStyle}>
-            💒 Weddingページ
-          </Link>
+          {import.meta.env.DEV && (
+            <Link to="/guest/login" style={linkStyle}>
+              💒 Weddingページ
+            </Link>
+          )}
 
           {import.meta.env.DEV && (
             <Link to="/messageList" style={linkStyle}>
