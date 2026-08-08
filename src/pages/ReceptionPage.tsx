@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  collection,
-  query,
-  where,
-  getDocs,
   updateDoc,
   doc,
+  getDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import type { User } from '../types/User';
@@ -25,25 +22,28 @@ export default function ReceptionPage() {
     const fetchGuest = async () => {
       if (!code) return;
 
-      const q = query(collection(db, 'guest'), where('code', '==', code));
-      const snapshot = await getDocs(q);
+      try {
+        const guestRef = doc(db, 'guest', code);
+        const snapshot = await getDoc(guestRef);
 
-      if (!snapshot.empty) {
-        const docSnap = snapshot.docs[0];
-
-        setGuest({
-          id: docSnap.id,
-          ...(docSnap.data() as Omit<User, 'id'>),
-        });
-      } else {
-        alert('ゲストが見つかりません');
+        if (snapshot.exists()) {
+          setGuest({
+            id: snapshot.id,
+            ...(snapshot.data() as Omit<User, 'id'>),
+          });
+        } else {
+          alert('ゲストが見つかりません');
+        }
+      } catch (error) {
+        console.error('ゲスト取得エラー:', error);
+        alert('ゲスト情報の取得に失敗しました');
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
-    fetchGuest();
-  }, [code]);
+  fetchGuest();
+}, [code]);
 
   /* Firestore更新 共通関数 */
   const updateGuest = async (data: Partial<User>) => {
@@ -52,20 +52,18 @@ export default function ReceptionPage() {
     try {
       setUpdating(true);
 
-      const q = query(collection(db, 'guest'), where('code', '==', guest.code));
+      const guestRef = doc(db, 'guest', guest.code);
 
-      const snapshot = await getDocs(q);
-
-      for (const d of snapshot.docs) {
-        await updateDoc(doc(db, 'guest', d.id), data);
-      }
+      await updateDoc(guestRef, data);
 
       setGuest((prev) => (prev ? { ...prev, ...data } : null));
+    } catch (error) {
+      console.error('ゲスト更新エラー:', error);
+      alert('ゲスト情報の更新に失敗しました');
     } finally {
       setUpdating(false);
     }
   };
-
   if (loading) {
     return <p style={{ textAlign: 'center' }}>読み込み中...</p>;
   }

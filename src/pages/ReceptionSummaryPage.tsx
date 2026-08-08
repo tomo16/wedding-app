@@ -31,7 +31,6 @@ export function ReceptionSummary({ side }: Props) {
         });
 
       setGuests(list);
-      setGuests(list);
       setLoading(false);
     };
 
