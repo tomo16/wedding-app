@@ -133,7 +133,7 @@ const DrinkMenuPage: React.FC = () => {
               marginBottom: '10px',
             }}
           >
-            田酒（冷酒）
+            田酒
           </div>
 
           <div
@@ -163,7 +163,7 @@ const DrinkMenuPage: React.FC = () => {
               marginBottom: '10px',
             }}
           >
-            Ao（ハイボール）
+            Ao ハイボール
           </div>
 
           <div

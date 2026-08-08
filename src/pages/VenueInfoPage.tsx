@@ -150,7 +150,7 @@ const VenueInfoPage: React.FC = () => {
               <strong>📱 スマートフォン</strong>
               <br />
               式中はマナーモード
-              またはサイレントモードへの
+              (サイレントモード)への
               ご協力をお願いいたします。
             </div>
 
