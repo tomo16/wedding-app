@@ -24,29 +24,29 @@ export default function Header({ title }: Props) {
         borderBottom: "1px solid #F0E6F6",
       }}
     >
-
       {/* 戻るボタン */}
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          position: "absolute",
-          left: "18px",
-          width: "40px",
-          height: "40px",
-          borderRadius: "50%",
-          border: "1px solid #F0E6F6",
-          background: "rgba(255,255,255,0.8)",
-          color: "#5C4567",
-          fontSize: "22px",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        ‹
-      </button>
-
+      {!title && (
+        <button
+          onClick={() => navigate(-1)}
+          style={{
+            position: "absolute",
+            left: "18px",
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            border: "1px solid #F0E6F6",
+            background: "rgba(255,255,255,0.8)",
+            color: "#5C4567",
+            fontSize: "22px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          ‹
+        </button>
+      )}
 
       {/* タイトル */}
       <div
@@ -60,7 +60,6 @@ export default function Header({ title }: Props) {
       >
         {title || "T & H Wedding"}
       </div>
-
     </div>
   );
 }

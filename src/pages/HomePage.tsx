@@ -61,7 +61,7 @@ export default function HomePage() {
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
-      <Header title="" />
+      <Header title="no_back" />
 
       <div
         style={{
