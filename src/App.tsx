@@ -21,7 +21,6 @@ import GuestQrPage from "./pages/GuestQrPage";
 function App() {
   return (
     <GuestProvider>
-      <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/guest/:id" element={<GuestPage />} />
@@ -42,7 +41,6 @@ function App() {
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/guest/qr/:code" element={<GuestQrPage />} />
         </Routes>
-      </Router>
     </GuestProvider>
   );
 }

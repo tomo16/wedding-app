@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   updateDoc,
   doc,
@@ -8,21 +8,25 @@ import {
 import { db } from '../firebase';
 import type { User } from '../types/User';
 import Header from '../components/Header';
+import { useGuest } from '../context/GuestContext';
 
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
-  const location = useLocation();
-  const initialGuest = location.state?.guest as User | undefined;
-  const [guest, setGuest] = useState<User | null>(
-    initialGuest ?? null
-  );
-  const [loading, setLoading] = useState(!initialGuest);
-  const [updating, setUpdating] = useState(false);
-  const [kanji, kana] = guest?.name.split('（') || ['', ''];
-  const furigana = kana?.replace('）', '');
 
+  const { guest, setGuest } = useGuest();
+
+  const [loading, setLoading] = useState(!guest);
+  const [updating, setUpdating] = useState(false);
 
   useEffect(() => {
+    // Contextにゲストが存在していて、
+    // URLのcodeと一致しているならFirestore取得不要
+    if (guest && guest.code === code) {
+      setLoading(false);
+      return;
+    }
+
+    // QRコードなどから直接アクセスした場合
     const fetchGuest = async () => {
       if (!code) {
         setLoading(false);
@@ -34,10 +38,12 @@ export default function ReceptionPage() {
         const snapshot = await getDoc(guestRef);
 
         if (snapshot.exists()) {
-          setGuest({
+          const fetchedGuest: User = {
             id: snapshot.id,
             ...(snapshot.data() as Omit<User, 'id'>),
-          });
+          };
+
+          setGuest(fetchedGuest);
         } else {
           alert('ゲストが見つかりません');
         }
@@ -49,10 +55,9 @@ export default function ReceptionPage() {
       }
     };
 
-  fetchGuest();
-}, [code]);
+    fetchGuest();
+  }, [code]);
 
-  /* Firestore更新 共通関数 */
   const updateGuest = async (data: Partial<User>) => {
     if (!guest || updating) return;
 
@@ -63,7 +68,12 @@ export default function ReceptionPage() {
 
       await updateDoc(guestRef, data);
 
-      setGuest((prev) => (prev ? { ...prev, ...data } : null));
+      // Contextを最新状態にする
+      setGuest({
+        ...guest,
+        ...data,
+      });
+
     } catch (error) {
       console.error('ゲスト更新エラー:', error);
       alert('ゲスト情報の更新に失敗しました');
@@ -71,13 +81,25 @@ export default function ReceptionPage() {
       setUpdating(false);
     }
   };
+
   if (loading) {
-    return <p style={{ textAlign: 'center' }}>読み込み中...</p>;
+    return (
+      <p style={{ textAlign: 'center' }}>
+        読み込み中...
+      </p>
+    );
   }
 
   if (!guest) {
-    return <p style={{ textAlign: 'center' }}>ゲストが見つかりません</p>;
+    return (
+      <p style={{ textAlign: 'center' }}>
+        ゲストが見つかりません
+      </p>
+    );
   }
+
+  const [kanji, kana] = guest.name.split('（');
+  const furigana = kana?.replace('）', '');
 
   return (
     <div
@@ -98,42 +120,8 @@ export default function ReceptionPage() {
           paddingInline: '18px',
         }}
       >
-        {/* タイトル */}
-        <div
-          style={{
-            width: 80,
-            height: 2,
-            background: '#d7b8ff',
-            margin: '0 auto 24px',
-          }}
-        />
 
-        <h1
-          style={{
-            fontSize: '34px',
-            color: '#5C4567',
-            fontWeight: 700,
-            marginBottom: '8px',
-            fontFamily: '"Cormorant Garamond", serif',
-            textAlign: 'center',
-          }}
-        >
-          Reception
-        </h1>
-
-        <div
-          style={{
-            color: '#C9A44C',
-            letterSpacing: '3px',
-            fontSize: '15px',
-            marginBottom: '28px',
-            textAlign: 'center',
-          }}
-        >
-          Guest Check-in
-        </div>
-
-        {/* ゲスト名カード */}
+        {/* ゲスト名 */}
         <div
           style={{
             background: 'rgba(255,255,255,.92)',
@@ -173,7 +161,8 @@ export default function ReceptionPage() {
             )}
           </div>
         </div>
-        {/* 状態カード */}
+
+        {/* 状態 */}
         <div
           style={{
             background: 'rgba(255,255,255,.92)',
@@ -206,19 +195,27 @@ export default function ReceptionPage() {
               fontSize: '15px',
             }}
           >
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>ご祝儀</div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>
+              ご祝儀
+            </div>
 
             <div
               style={{
                 textAlign: 'right',
-                color: guest.giftReceived ? '#2E7D32' : '#D32F2F',
+                color: guest.giftReceived
+                  ? '#2E7D32'
+                  : '#D32F2F',
                 fontWeight: 700,
               }}
             >
-              {guest.giftReceived ? '✅ お預かり済' : '❌ 未受領'}
+              {guest.giftReceived
+                ? '✅ お預かり済'
+                : '❌ 未受領'}
             </div>
 
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>お車代</div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>
+              お車代
+            </div>
 
             <div
               style={{
@@ -238,20 +235,27 @@ export default function ReceptionPage() {
                   : '💴 未渡し'}
             </div>
 
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>受付</div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>
+              受付
+            </div>
 
             <div
               style={{
                 textAlign: 'right',
-                color: guest.checkedin ? '#2E7D32' : '#D32F2F',
+                color: guest.checkedin
+                  ? '#2E7D32'
+                  : '#D32F2F',
                 fontWeight: 700,
               }}
             >
-              {guest.checkedin ? '✅ 受付済' : '❌ 未受付'}
+              {guest.checkedin
+                ? '✅ 受付済'
+                : '❌ 未受付'}
             </div>
           </div>
         </div>
-        {/* 操作カード */}
+
+        {/* 操作 */}
         <div
           style={{
             background: 'rgba(255,255,255,.92)',
@@ -266,7 +270,9 @@ export default function ReceptionPage() {
           {!guest.checkedin && (
             <button
               disabled={updating}
-              onClick={() => updateGuest({ checkedin: true })}
+              onClick={() =>
+                updateGuest({ checkedin: true })
+              }
               style={primaryButtonStyle}
             >
               ✅ 受付完了
@@ -276,57 +282,76 @@ export default function ReceptionPage() {
           {guest.checkedin && (
             <button
               disabled={updating}
-              onClick={() => updateGuest({ checkedin: false })}
+              onClick={() =>
+                updateGuest({ checkedin: false })
+              }
               style={dangerButtonStyle}
             >
               受付取消
             </button>
           )}
 
-          {!guest.giftReceived && guest.giftReceivedAtReception && (
-            <button
-              disabled={updating}
-              onClick={() => updateGuest({ giftReceived: true })}
-              style={primaryButtonStyle}
-            >
-              💴 ご祝儀受領
-            </button>
-          )}
+          {!guest.giftReceived &&
+            guest.giftReceivedAtReception && (
+              <button
+                disabled={updating}
+                onClick={() =>
+                  updateGuest({ giftReceived: true })
+                }
+                style={primaryButtonStyle}
+              >
+                💴 ご祝儀受領
+              </button>
+            )}
 
-          {guest.giftReceived && guest.giftReceivedAtReception && (
-            <button
-              disabled={updating}
-              onClick={() => updateGuest({ giftReceived: false })}
-              style={dangerButtonStyle}
-            >
-              ご祝儀受領取消
-            </button>
-          )}
+          {guest.giftReceived &&
+            guest.giftReceivedAtReception && (
+              <button
+                disabled={updating}
+                onClick={() =>
+                  updateGuest({ giftReceived: false })
+                }
+                style={dangerButtonStyle}
+              >
+                ご祝儀受領取消
+              </button>
+            )}
 
-          {guest.hasTransportationGift && !guest.transportationGiftGiven && (
-            <button
-              disabled={updating}
-              onClick={() => updateGuest({ transportationGiftGiven: true })}
-              style={primaryButtonStyle}
-            >
-              🚗 お車代を渡した
-            </button>
-          )}
+          {guest.hasTransportationGift &&
+            !guest.transportationGiftGiven && (
+              <button
+                disabled={updating}
+                onClick={() =>
+                  updateGuest({
+                    transportationGiftGiven: true,
+                  })
+                }
+                style={primaryButtonStyle}
+              >
+                🚗 お車代を渡した
+              </button>
+            )}
 
-          {guest.hasTransportationGift && guest.transportationGiftGiven && (
-            <button
-              disabled={updating}
-              onClick={() => updateGuest({ transportationGiftGiven: false })}
-              style={dangerButtonStyle}
-            >
-              お車代取消
-            </button>
-          )}
+          {guest.hasTransportationGift &&
+            guest.transportationGiftGiven && (
+              <button
+                disabled={updating}
+                onClick={() =>
+                  updateGuest({
+                    transportationGiftGiven: false,
+                  })
+                }
+                style={dangerButtonStyle}
+              >
+                お車代取消
+              </button>
+            )}
         </div>
       </div>
     </div>
   );
 }
+
 const primaryButtonStyle = {
   width: '100%',
   padding: '16px',

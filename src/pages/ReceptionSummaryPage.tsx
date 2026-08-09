@@ -4,6 +4,7 @@ import { query, collection, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
+import { useGuest } from '../context/GuestContext';
 
 type Props = {
   side: 'groom' | 'bride';
@@ -13,33 +14,54 @@ export function ReceptionSummary({ side }: Props) {
   const [guests, setGuests] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [showOnlyUnchecked, setShowOnlyUnchecked] = useState(false);
+
   const navigate = useNavigate();
+
+  // GuestContext
+  const { setGuest } = useGuest();
 
   useEffect(() => {
     const fetchGuests = async () => {
-      const q = query(collection(db, 'guest'), where('side', '==', side));
-      const snapshot = await getDocs(q);
-      const list = snapshot.docs
-        .map((d) => ({
-          id: d.id,
-          ...(d.data() as Omit<User, 'id'>),
-        }))
-        .sort((a, b) => {
-          const kanaA = a.name.match(/（(.+)）/)?.[1] ?? a.name;
-          const kanaB = b.name.match(/（(.+)）/)?.[1] ?? b.name;
-          return kanaA.localeCompare(kanaB, 'ja');
-        });
+      try {
+        const q = query(
+          collection(db, 'guest'),
+          where('side', '==', side)
+        );
 
-      setGuests(list);
-      setLoading(false);
+        const snapshot = await getDocs(q);
+
+        const list = snapshot.docs
+          .map((d) => ({
+            id: d.id,
+            ...(d.data() as Omit<User, 'id'>),
+          }))
+          .sort((a, b) => {
+            const kanaA =
+              a.name.match(/（(.+)）/)?.[1] ?? a.name;
+
+            const kanaB =
+              b.name.match(/（(.+)）/)?.[1] ?? b.name;
+
+            return kanaA.localeCompare(kanaB, 'ja');
+          });
+
+        setGuests(list);
+      } catch (error) {
+        console.error('ゲスト一覧取得エラー:', error);
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchGuests();
   }, [side]);
 
-  if (loading) return <p>読み込み中...</p>;
+  if (loading) {
+    return <p>読み込み中...</p>;
+  }
 
   const allCheckedIn = guests.every((g) => g.checkedin);
+
   const visibleGuests = showOnlyUnchecked
     ? guests.filter((g) => !g.checkedin)
     : guests;
@@ -54,6 +76,7 @@ export function ReceptionSummary({ side }: Props) {
         }}
       >
         <Header title="" />
+
         <div
           style={{
             paddingTop: '80px',
@@ -141,10 +164,13 @@ export function ReceptionSummary({ side }: Props) {
             <input
               type="checkbox"
               checked={showOnlyUnchecked}
-              onChange={(e) => setShowOnlyUnchecked(e.target.checked)}
+              onChange={(e) =>
+                setShowOnlyUnchecked(e.target.checked)
+              }
             />
             未受付のみ表示
           </label>
+
           {/* 一覧カード */}
           <div
             style={{
@@ -192,7 +218,8 @@ export function ReceptionSummary({ side }: Props) {
                 const isUnchecked = !g.checkedin;
 
                 const transportationNotGiven =
-                  g.hasTransportationGift && !g.transportationGiftGiven;
+                  g.hasTransportationGift &&
+                  !g.transportationGiftGiven;
 
                 return (
                   <div
@@ -215,9 +242,13 @@ export function ReceptionSummary({ side }: Props) {
                   >
                     {/* 名前 */}
                     <div
-                      onClick={() => 
-                        navigate(`/reception/${g.code}`, {
-                          state: { guest: g },})}
+                      onClick={() => {
+                        // Contextにゲスト情報を保存
+                        setGuest(g);
+
+                        // 個人ページへ遷移
+                        navigate(`/reception/${g.code}`);
+                      }}
                       style={{
                         textAlign: 'left',
                         cursor: 'pointer',
@@ -245,16 +276,24 @@ export function ReceptionSummary({ side }: Props) {
                     </div>
 
                     {/* 受付 */}
-                    <div>{g.checkedin ? '✅' : '❌'}</div>
+                    <div>
+                      {g.checkedin ? '✅' : '❌'}
+                    </div>
 
                     {/* ご祝儀 */}
-                    <div>{g.giftReceived ? '✅' : '❌'}</div>
+                    <div>
+                      {g.giftReceived ? '✅' : '❌'}
+                    </div>
 
                     {/* お車代 */}
                     <div
                       style={{
-                        color: transportationNotGiven ? '#D32F2F' : '#5C4567',
-                        fontWeight: transportationNotGiven ? 700 : 500,
+                        color: transportationNotGiven
+                          ? '#D32F2F'
+                          : '#5C4567',
+                        fontWeight: transportationNotGiven
+                          ? 700
+                          : 500,
                       }}
                     >
                       {!g.hasTransportationGift
