@@ -11,22 +11,26 @@ type Props = {
 };
 
 export function ReceptionSummary({ side }: Props) {
-  const [guests, setGuests] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [showOnlyUnchecked, setShowOnlyUnchecked] = useState(false);
 
   const navigate = useNavigate();
 
-  // GuestContext
-  const { setGuest } = useGuest();
+  const { guests, setGuests, setGuest } = useGuest();
 
   useEffect(() => {
+    // 現在表示したいsideのゲストが
+    // Contextにすでに存在するか確認
+    const sideGuests = guests.filter((g) => g.side === side);
+    // そのsideのゲストがすでにあれば再取得しない
+    if (sideGuests.length > 0) {
+      setLoading(false);
+      return;
+    }
+
     const fetchGuests = async () => {
       try {
-        const q = query(
-          collection(db, 'guest'),
-          where('side', '==', side)
-        );
+        const q = query(collection(db, 'guest'), where('side', '==', side));
 
         const snapshot = await getDocs(q);
 
@@ -36,16 +40,19 @@ export function ReceptionSummary({ side }: Props) {
             ...(d.data() as Omit<User, 'id'>),
           }))
           .sort((a, b) => {
-            const kanaA =
-              a.name.match(/（(.+)）/)?.[1] ?? a.name;
+            const kanaA = a.name.match(/（(.+)）/)?.[1] ?? a.name;
 
-            const kanaB =
-              b.name.match(/（(.+)）/)?.[1] ?? b.name;
+            const kanaB = b.name.match(/（(.+)）/)?.[1] ?? b.name;
 
             return kanaA.localeCompare(kanaB, 'ja');
           });
 
-        setGuests(list);
+        // Contextに保存
+        setGuests((prev) => {
+          const otherSideGuests = prev.filter((g) => g.side !== side);
+
+          return [...otherSideGuests, ...list];
+        });
       } catch (error) {
         console.error('ゲスト一覧取得エラー:', error);
       } finally {
@@ -57,258 +64,240 @@ export function ReceptionSummary({ side }: Props) {
   }, [side]);
 
   if (loading) {
-    return <p>読み込み中...</p>;
+    return <p style={{ textAlign: 'center' }}>読み込み中...</p>;
   }
 
-  const allCheckedIn = guests.every((g) => g.checkedin);
+  const sideGuests = guests.filter((g) => g.side === side);
+
+  const allCheckedIn =
+    sideGuests.length > 0 && sideGuests.every((g) => g.checkedin);
 
   const visibleGuests = showOnlyUnchecked
-    ? guests.filter((g) => !g.checkedin)
-    : guests;
+    ? sideGuests.filter((g) => !g.checkedin)
+    : sideGuests;
 
   return (
-    <>
+    <div
+      style={{
+        minHeight: '100dvh',
+        background:
+          'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
+      }}
+    >
+      <Header title="" />
+
       <div
         style={{
-          minHeight: '100dvh',
-          background:
-            'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
+          paddingTop: '80px',
+          paddingBottom: '40px',
+          maxWidth: '430px',
+          margin: '0 auto',
+          paddingInline: '18px',
         }}
       >
-        <Header title="" />
+        <div
+          style={{
+            width: 80,
+            height: 2,
+            background: '#d7b8ff',
+            margin: '0 auto 24px',
+          }}
+        />
+
+        <h1
+          style={{
+            fontSize: '34px',
+            color: '#5C4567',
+            fontWeight: 700,
+            marginBottom: '8px',
+            fontFamily: '"Cormorant Garamond", serif',
+            textAlign: 'center',
+          }}
+        >
+          Reception
+        </h1>
 
         <div
           style={{
-            paddingTop: '80px',
-            paddingBottom: '40px',
-            maxWidth: '430px',
-            margin: '0 auto',
-            paddingInline: '18px',
+            color: '#C9A44C',
+            letterSpacing: '3px',
+            fontSize: '15px',
+            marginBottom: '18px',
+            textAlign: 'center',
           }}
         >
-          {/* タイトル */}
+          {side === 'groom' ? 'Groom Side' : 'Bride Side'}
+        </div>
+
+        {allCheckedIn ? (
           <div
             style={{
-              width: 80,
-              height: 2,
-              background: '#d7b8ff',
-              margin: '0 auto 24px',
+              background: '#F3FAF4',
+              color: '#2E7D32',
+              borderRadius: '16px',
+              padding: '14px',
+              marginBottom: '16px',
+              textAlign: 'center',
+              fontWeight: 600,
             }}
+          >
+            ✅ 全員受付完了
+          </div>
+        ) : (
+          <div
+            style={{
+              background: '#FFF4F4',
+              color: '#D32F2F',
+              borderRadius: '16px',
+              padding: '14px',
+              marginBottom: '16px',
+              textAlign: 'center',
+              fontWeight: 600,
+            }}
+          >
+            ❌ 未受付あり
+          </div>
+        )}
+
+        <label
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            marginBottom: '20px',
+            color: '#5C4567',
+            fontWeight: 500,
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={showOnlyUnchecked}
+            onChange={(e) => setShowOnlyUnchecked(e.target.checked)}
           />
+          未受付のみ表示
+        </label>
 
-          <h1
-            style={{
-              fontSize: '34px',
-              color: '#5C4567',
-              fontWeight: 700,
-              marginBottom: '8px',
-              fontFamily: '"Cormorant Garamond", serif',
-              textAlign: 'center',
-            }}
-          >
-            Reception
-          </h1>
-
+        <div
+          style={{
+            background: 'rgba(255,255,255,.92)',
+            borderRadius: '24px',
+            padding: '18px',
+            boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+          }}
+        >
           <div
             style={{
-              color: '#C9A44C',
-              letterSpacing: '3px',
-              fontSize: '15px',
-              marginBottom: '18px',
+              display: 'grid',
+              gridTemplateColumns: '2fr 1fr 1fr 1fr',
+              gap: '8px',
+              fontWeight: 700,
+              color: '#5C4567',
               textAlign: 'center',
+              padding: '10px 8px',
+              marginBottom: '12px',
+              background: '#F8F2FB',
+              borderRadius: '14px',
             }}
           >
-            {side === 'groom' ? 'Groom Side' : 'Bride Side'}
+            <div>名前</div>
+            <div>受付</div>
+            <div>ご祝儀</div>
+            <div>お車代</div>
           </div>
 
-          {allCheckedIn ? (
-            <div
-              style={{
-                background: '#F3FAF4',
-                color: '#2E7D32',
-                borderRadius: '16px',
-                padding: '14px',
-                marginBottom: '16px',
-                textAlign: 'center',
-                fontWeight: 600,
-              }}
-            >
-              ✅ 全員受付完了
-            </div>
-          ) : (
-            <div
-              style={{
-                background: '#FFF4F4',
-                color: '#D32F2F',
-                borderRadius: '16px',
-                padding: '14px',
-                marginBottom: '16px',
-                textAlign: 'center',
-                fontWeight: 600,
-              }}
-            >
-              ❌ 未受付あり
-            </div>
-          )}
-
-          <label
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              marginBottom: '20px',
-              color: '#5C4567',
-              fontWeight: 500,
-            }}
-          >
-            <input
-              type="checkbox"
-              checked={showOnlyUnchecked}
-              onChange={(e) =>
-                setShowOnlyUnchecked(e.target.checked)
-              }
-            />
-            未受付のみ表示
-          </label>
-
-          {/* 一覧カード */}
           <div
             style={{
-              background: 'rgba(255,255,255,.92)',
-              borderRadius: '24px',
-              padding: '18px',
-              boxShadow: '0 8px 30px rgba(0,0,0,.08)',
+              maxHeight: '60vh',
+              overflowY: 'auto',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px',
             }}
           >
-            {/* ヘッダー行 */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '2fr 1fr 1fr 1fr',
-                gap: '8px',
-                fontWeight: 700,
-                color: '#5C4567',
-                textAlign: 'center',
-                padding: '10px 8px',
-                marginBottom: '12px',
-                background: '#F8F2FB',
-                borderRadius: '14px',
-              }}
-            >
-              <div>名前</div>
-              <div>受付</div>
-              <div>ご祝儀</div>
-              <div>お車代</div>
-            </div>
+            {visibleGuests.map((g) => {
+              const [kanji, kana] = g.name.split('（');
 
-            {/* 一覧 */}
-            <div
-              style={{
-                maxHeight: '60vh',
-                overflowY: 'auto',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '10px',
-              }}
-            >
-              {visibleGuests.map((g) => {
-                const [kanji, kana] = g.name.split('（');
-                const furigana = kana?.replace('）', '');
+              const furigana = kana?.replace('）', '');
 
-                const isUnchecked = !g.checkedin;
+              const isUnchecked = !g.checkedin;
 
-                const transportationNotGiven =
-                  g.hasTransportationGift &&
-                  !g.transportationGiftGiven;
+              const transportationNotGiven =
+                g.hasTransportationGift && !g.transportationGiftGiven;
 
-                return (
+              return (
+                <div
+                  key={g.id}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: '2fr 1fr 1fr 1fr',
+                    gap: '8px',
+                    padding: '14px',
+                    borderRadius: '16px',
+                    background: isUnchecked
+                      ? '#FFF4F4'
+                      : 'rgba(255,255,255,.95)',
+                    border: isUnchecked
+                      ? '1px solid #FFD5D5'
+                      : '1px solid #F3E5FA',
+                    alignItems: 'center',
+                    textAlign: 'center',
+                  }}
+                >
                   <div
-                    key={g.id}
+                    onClick={() => {
+                      // 個人ページ用
+                      setGuest(g);
+
+                      navigate(`/reception/${g.code}`);
+                    }}
                     style={{
-                      display: 'grid',
-                      gridTemplateColumns: '2fr 1fr 1fr 1fr',
-                      gap: '8px',
-                      padding: '14px',
-                      borderRadius: '16px',
-                      background: isUnchecked
-                        ? '#FFF4F4'
-                        : 'rgba(255,255,255,.95)',
-                      border: isUnchecked
-                        ? '1px solid #FFD5D5'
-                        : '1px solid #F3E5FA',
-                      alignItems: 'center',
-                      textAlign: 'center',
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      color: '#5C4567',
+                      lineHeight: 1.4,
                     }}
                   >
-                    {/* 名前 */}
-                    <div
-                      onClick={() => {
-                        // Contextにゲスト情報を保存
-                        setGuest(g);
-
-                        // 個人ページへ遷移
-                        navigate(`/reception/${g.code}`);
-                      }}
-                      style={{
-                        textAlign: 'left',
-                        cursor: 'pointer',
-                        color: '#5C4567',
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontWeight: 600,
-                          fontSize: '14px',
-                        }}
-                      >
-                        {kanji}
-                      </div>
-
-                      <div
-                        style={{
-                          fontSize: '11px',
-                          color: '#8B768F',
-                        }}
-                      >
-                        {furigana}
-                      </div>
-                    </div>
-
-                    {/* 受付 */}
-                    <div>
-                      {g.checkedin ? '✅' : '❌'}
-                    </div>
-
-                    {/* ご祝儀 */}
-                    <div>
-                      {g.giftReceived ? '✅' : '❌'}
-                    </div>
-
-                    {/* お車代 */}
                     <div
                       style={{
-                        color: transportationNotGiven
-                          ? '#D32F2F'
-                          : '#5C4567',
-                        fontWeight: transportationNotGiven
-                          ? 700
-                          : 500,
+                        fontWeight: 600,
+                        fontSize: '14px',
                       }}
                     >
-                      {!g.hasTransportationGift
-                        ? '―'
-                        : g.transportationGiftGiven
-                          ? '✅'
-                          : '❌'}
+                      {kanji}
+                    </div>
+
+                    <div
+                      style={{
+                        fontSize: '11px',
+                        color: '#8B768F',
+                      }}
+                    >
+                      {furigana}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div>{g.checkedin ? '✅' : '❌'}</div>
+
+                  <div>{g.giftReceived ? '✅' : '❌'}</div>
+
+                  <div
+                    style={{
+                      color: transportationNotGiven ? '#D32F2F' : '#5C4567',
+                      fontWeight: transportationNotGiven ? 700 : 500,
+                    }}
+                  >
+                    {!g.hasTransportationGift
+                      ? '―'
+                      : g.transportationGiftGiven
+                        ? '✅'
+                        : '❌'}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

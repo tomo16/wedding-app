@@ -13,7 +13,7 @@ import { useGuest } from '../context/GuestContext';
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
 
-  const { guest, setGuest } = useGuest();
+  const { guest, setGuest, guests, setGuests } = useGuest();
 
   const [loading, setLoading] = useState(!guest);
   const [updating, setUpdating] = useState(false);
@@ -58,29 +58,40 @@ export default function ReceptionPage() {
     fetchGuest();
   }, [code]);
 
-  const updateGuest = async (data: Partial<User>) => {
-    if (!guest || updating) return;
+const updateGuest = async (data: Partial<User>) => {
+  if (!guest || updating) return;
 
-    try {
-      setUpdating(true);
+  try {
+    setUpdating(true);
 
-      const guestRef = doc(db, 'guest', guest.code);
+    const guestRef = doc(db, 'guest', guest.code);
 
-      await updateDoc(guestRef, data);
+    await updateDoc(guestRef, data);
 
-      // Contextを最新状態にする
-      setGuest({
-        ...guest,
-        ...data,
-      });
+    // 現在開いているゲストを更新
+    const updatedGuest = {
+      ...guest,
+      ...data,
+    };
 
-    } catch (error) {
-      console.error('ゲスト更新エラー:', error);
-      alert('ゲスト情報の更新に失敗しました');
-    } finally {
-      setUpdating(false);
-    }
-  };
+    setGuest(updatedGuest);
+
+    // 一覧側のゲスト情報も更新
+    setGuests((prev) =>
+      prev.map((g) =>
+        g.code === guest.code
+          ? { ...g, ...data }
+          : g
+      )
+    );
+
+  } catch (error) {
+    console.error('ゲスト更新エラー:', error);
+    alert('ゲスト情報の更新に失敗しました');
+  } finally {
+    setUpdating(false);
+  }
+};
 
   if (loading) {
     return (
