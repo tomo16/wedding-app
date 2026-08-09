@@ -1,9 +1,8 @@
-import { BrowserRouter as Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import GuestPage from "./pages/GuestPage";
 import ReceptionPage from "./pages/ReceptionPage";
 import SeatingChartPage from "./pages/SeatingChartPage";
-import { GuestProvider } from "./context/GuestContext";
 import MenuPage from "./pages/MenuPage";
 import PhotoGalleryPage from "./pages/PhotoGalleryPage";
 import TimelinePage from "./pages/TimelinePage";
@@ -20,28 +19,32 @@ import GuestQrPage from "./pages/GuestQrPage";
 
 function App() {
   return (
-    <GuestProvider>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/guest/:id" element={<GuestPage />} />
-          <Route path="/reception/:code" element={<ReceptionPage />} />
-          <Route path="/seating" element={<SeatingChartPage />} />
-          <Route path="/menu" element={<MenuPage />} />
-          <Route path="/photo" element={<PhotoGalleryPage />} />
-          <Route path="/timeline" element={<TimelinePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/venueInfo" element={<VenueInfoPage />} />
-          <Route path="/venueMap" element={<VenueMapPage />} />
-          <Route path="/message" element={<MessagePage />} />
-          <Route path="/photoUpload" element={<PhotoUploadPage />} />
-          <Route path="/messageList" element={<MessageListPage />} />
-          <Route path="/drink" element={<DrinkMenuPage />} />
-          <Route path="/groomSummary" element={<ReceptionSummary side={"groom"} />} />
-          <Route path="/brideSummary" element={<ReceptionSummary side={"bride"} />} />
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/guest/qr/:code" element={<GuestQrPage />} />
-        </Routes>
-    </GuestProvider>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/guest/:id" element={<GuestPage />} />
+      <Route path="/reception/:code" element={<ReceptionPage />} />
+      <Route path="/seating" element={<SeatingChartPage />} />
+      <Route path="/menu" element={<MenuPage />} />
+      <Route path="/photo" element={<PhotoGalleryPage />} />
+      <Route path="/timeline" element={<TimelinePage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/venueInfo" element={<VenueInfoPage />} />
+      <Route path="/venueMap" element={<VenueMapPage />} />
+      <Route path="/message" element={<MessagePage />} />
+      <Route path="/photoUpload" element={<PhotoUploadPage />} />
+      <Route path="/messageList" element={<MessageListPage />} />
+      <Route path="/drink" element={<DrinkMenuPage />} />
+      <Route
+        path="/groomSummary"
+        element={<ReceptionSummary side={'groom'} />}
+      />
+      <Route
+        path="/brideSummary"
+        element={<ReceptionSummary side={'bride'} />}
+      />
+      <Route path="/history" element={<HistoryPage />} />
+      <Route path="/guest/qr/:code" element={<GuestQrPage />} />
+    </Routes>
   );
 }
 
