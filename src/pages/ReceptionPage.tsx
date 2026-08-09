@@ -13,7 +13,7 @@ import { useGuest } from '../context/GuestContext';
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
 
-  const { guest, setGuest, guests, setGuests } = useGuest();
+  const { guest, setGuest, setGuests } = useGuest();
 
   const [loading, setLoading] = useState(!guest);
   const [updating, setUpdating] = useState(false);
