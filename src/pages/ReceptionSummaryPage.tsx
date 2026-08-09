@@ -248,7 +248,9 @@ export function ReceptionSummary({ side }: Props) {
                       // 個人ページ用
                       setGuest(g);
 
-                      navigate(`/reception/${g.code}`);
+                      navigate(`/reception/${g.code}`, {
+                        state: { fromSummary: true },
+                      });
                     }}
                     style={{
                       textAlign: 'left',

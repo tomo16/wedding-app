@@ -2,9 +2,13 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   title?: string;
+  showBack?: boolean;
 };
 
-export default function Header({ title }: Props) {
+export default function Header({
+  title,
+  showBack = true,
+}: Props) {
   const navigate = useNavigate();
 
   return (
@@ -25,7 +29,7 @@ export default function Header({ title }: Props) {
       }}
     >
       {/* 戻るボタン */}
-      {!title && (
+      {showBack && !title && (
         <button
           onClick={() => navigate(-1)}
           style={{
@@ -58,7 +62,7 @@ export default function Header({ title }: Props) {
           letterSpacing: "1px",
         }}
       >
-        {"T & H Wedding"}
+        T & H Wedding
       </div>
     </div>
   );

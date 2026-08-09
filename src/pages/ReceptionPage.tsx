@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import {
   updateDoc,
   doc,
@@ -12,7 +12,8 @@ import { useGuest } from '../context/GuestContext';
 
 export default function ReceptionPage() {
   const { code } = useParams<{ code: string }>();
-
+  const location = useLocation();
+  const fromSummary = location.state?.fromSummary === true;
   const { guest, setGuest, setGuests } = useGuest();
 
   const [loading, setLoading] = useState(!guest);
@@ -120,7 +121,7 @@ const updateGuest = async (data: Partial<User>) => {
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
-      <Header title="" />
+      <Header title="" showBack={fromSummary} />
 
       <div
         style={{
@@ -131,7 +132,6 @@ const updateGuest = async (data: Partial<User>) => {
           paddingInline: '18px',
         }}
       >
-
         {/* ゲスト名 */}
         <div
           style={{
@@ -206,27 +206,19 @@ const updateGuest = async (data: Partial<User>) => {
               fontSize: '15px',
             }}
           >
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>
-              ご祝儀
-            </div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>ご祝儀</div>
 
             <div
               style={{
                 textAlign: 'right',
-                color: guest.giftReceived
-                  ? '#2E7D32'
-                  : '#D32F2F',
+                color: guest.giftReceived ? '#2E7D32' : '#D32F2F',
                 fontWeight: 700,
               }}
             >
-              {guest.giftReceived
-                ? '✅ お預かり済'
-                : '❌ 未受領'}
+              {guest.giftReceived ? '✅ お預かり済' : '❌ 未受領'}
             </div>
 
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>
-              お車代
-            </div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>お車代</div>
 
             <div
               style={{
@@ -246,22 +238,16 @@ const updateGuest = async (data: Partial<User>) => {
                   : '💴 未渡し'}
             </div>
 
-            <div style={{ color: '#5C4567', fontWeight: 600 }}>
-              受付
-            </div>
+            <div style={{ color: '#5C4567', fontWeight: 600 }}>受付</div>
 
             <div
               style={{
                 textAlign: 'right',
-                color: guest.checkedin
-                  ? '#2E7D32'
-                  : '#D32F2F',
+                color: guest.checkedin ? '#2E7D32' : '#D32F2F',
                 fontWeight: 700,
               }}
             >
-              {guest.checkedin
-                ? '✅ 受付済'
-                : '❌ 未受付'}
+              {guest.checkedin ? '✅ 受付済' : '❌ 未受付'}
             </div>
           </div>
         </div>
@@ -281,9 +267,7 @@ const updateGuest = async (data: Partial<User>) => {
           {!guest.checkedin && (
             <button
               disabled={updating}
-              onClick={() =>
-                updateGuest({ checkedin: true })
-              }
+              onClick={() => updateGuest({ checkedin: true })}
               style={primaryButtonStyle}
             >
               ✅ 受付完了
@@ -293,70 +277,60 @@ const updateGuest = async (data: Partial<User>) => {
           {guest.checkedin && (
             <button
               disabled={updating}
-              onClick={() =>
-                updateGuest({ checkedin: false })
-              }
+              onClick={() => updateGuest({ checkedin: false })}
               style={dangerButtonStyle}
             >
               受付取消
             </button>
           )}
 
-          {!guest.giftReceived &&
-            guest.giftReceivedAtReception && (
-              <button
-                disabled={updating}
-                onClick={() =>
-                  updateGuest({ giftReceived: true })
-                }
-                style={primaryButtonStyle}
-              >
-                💴 ご祝儀受領
-              </button>
-            )}
+          {!guest.giftReceived && guest.giftReceivedAtReception && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ giftReceived: true })}
+              style={primaryButtonStyle}
+            >
+              💴 ご祝儀受領
+            </button>
+          )}
 
-          {guest.giftReceived &&
-            guest.giftReceivedAtReception && (
-              <button
-                disabled={updating}
-                onClick={() =>
-                  updateGuest({ giftReceived: false })
-                }
-                style={dangerButtonStyle}
-              >
-                ご祝儀受領取消
-              </button>
-            )}
+          {guest.giftReceived && guest.giftReceivedAtReception && (
+            <button
+              disabled={updating}
+              onClick={() => updateGuest({ giftReceived: false })}
+              style={dangerButtonStyle}
+            >
+              ご祝儀受領取消
+            </button>
+          )}
 
-          {guest.hasTransportationGift &&
-            !guest.transportationGiftGiven && (
-              <button
-                disabled={updating}
-                onClick={() =>
-                  updateGuest({
-                    transportationGiftGiven: true,
-                  })
-                }
-                style={primaryButtonStyle}
-              >
-                🚗 お車代を渡した
-              </button>
-            )}
+          {guest.hasTransportationGift && !guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() =>
+                updateGuest({
+                  transportationGiftGiven: true,
+                })
+              }
+              style={primaryButtonStyle}
+            >
+              🚗 お車代を渡した
+            </button>
+          )}
 
-          {guest.hasTransportationGift &&
-            guest.transportationGiftGiven && (
-              <button
-                disabled={updating}
-                onClick={() =>
-                  updateGuest({
-                    transportationGiftGiven: false,
-                  })
-                }
-                style={dangerButtonStyle}
-              >
-                お車代取消
-              </button>
-            )}
+          {guest.hasTransportationGift && guest.transportationGiftGiven && (
+            <button
+              disabled={updating}
+              onClick={() =>
+                updateGuest({
+                  transportationGiftGiven: false,
+                })
+              }
+              style={dangerButtonStyle}
+            >
+              お車代取消
+            </button>
+          )}
         </div>
       </div>
     </div>
