@@ -16,6 +16,7 @@ import DrinkMenuPage from "./pages/DrinkMenuPage";
 import { ReceptionSummary } from "./pages/ReceptionSummaryPage";
 import HistoryPage from "./pages/History";
 import GuestQrPage from "./pages/GuestQrPage";
+import QrScanner from "./pages/QrScannerPage";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
       />
       <Route path="/history" element={<HistoryPage />} />
       <Route path="/guest/qr/:code" element={<GuestQrPage />} />
+      <Route path="/qrScanner" element={<QrScanner />} />
     </Routes>
   );
 }

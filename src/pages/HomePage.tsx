@@ -177,6 +177,10 @@ export default function HomePage() {
           <Link to="/brideSummary" style={linkStyle}>
             👰 新婦ゲスト一覧
           </Link>
+
+          <Link to="/qrScanner" style={linkStyle}>
+            QRコードスキャナー
+          </Link>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import {
   updateDoc,
   doc,
@@ -18,7 +18,7 @@ export default function ReceptionPage() {
 
   const [loading, setLoading] = useState(!guest);
   const [updating, setUpdating] = useState(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     // Contextにゲストが存在していて、
     // URLのcodeと一致しているならFirestore取得不要
@@ -331,6 +331,23 @@ const updateGuest = async (data: Partial<User>) => {
               お車代取消
             </button>
           )}
+
+          <button
+            onClick={() => navigate('/qrScanner')}
+            style={{
+              width: '100%',
+              padding: '16px',
+              borderRadius: '16px',
+              border: '1px solid #E8DAF2',
+              background: '#FCFAFD',
+              color: '#5C4567',
+              fontSize: '16px',
+              fontWeight: 700,
+              cursor: 'pointer',
+            }}
+          >
+            📷 次のQRを読み取る
+          </button>
         </div>
       </div>
     </div>
