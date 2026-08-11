@@ -69,12 +69,12 @@ export default function QrScannerPage() {
           },
           () => {
             // QR未検出時は何もしない
-          }
+          },
         );
       } catch (e) {
         console.error('カメラ起動エラー:', e);
         setError(
-          'カメラを起動できませんでした。カメラの使用を許可してください。'
+          'カメラを起動できませんでした。カメラの使用を許可してください。',
         );
       }
     };
@@ -106,7 +106,7 @@ export default function QrScannerPage() {
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
     >
-      <Header title="" />
+      <Header title="no_back" />
 
       <div
         style={{
@@ -220,6 +220,23 @@ export default function QrScannerPage() {
             {error}
           </div>
         )}
+        {/* 管理画面へ戻る */}
+        <button
+          onClick={() => navigate('/')}
+          style={{
+            width: '100%',
+            padding: '15px',
+            borderRadius: '999px',
+            border: '1px solid #E8DAF2',
+            background: '#FCFAFD',
+            color: '#5C4567',
+            fontSize: '15px',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          管理画面へ戻る
+        </button>
       </div>
     </div>
   );
