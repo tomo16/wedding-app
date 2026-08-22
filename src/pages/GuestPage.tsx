@@ -9,23 +9,33 @@ export default function GuestApp() {
   const { guest, setGuest } = useGuest();
   const DEV_MODE = import.meta.env.DEV;
 
+  // スタッフ用プレビューパスワード
+  const STAFF_PASSWORD ="aoyama"
+    import.meta.env.VITE_STAFF_PREVIEW_PASSWORD;
+
+  const [staffPassword, setStaffPassword] = useState('');
+  const [showStaffLogin, setShowStaffLogin] = useState(false);
+  const [staffLoginError, setStaffLoginError] = useState('');
+
   // ---------------------------------------------------------
-  // 🟣 対策① localStorage からログイン状態を復元
+  // localStorage からログイン状態を復元
   // ---------------------------------------------------------
   useEffect(() => {
     const saved = localStorage.getItem('guest');
+
     if (!guest && saved) {
       setGuest(JSON.parse(saved));
     }
   }, []);
 
   // ---------------------------------------------------------
-  // 🟣 対策② 自動ログアウト（180分）
+  // 自動ログアウト（180分）
   // ---------------------------------------------------------
   useEffect(() => {
     if (!guest) return;
 
     const AUTO_LOGOUT_MIN = 180;
+
     const timer = setTimeout(
       () => {
         localStorage.removeItem('guest');
@@ -37,13 +47,10 @@ export default function GuestApp() {
     return () => clearTimeout(timer);
   }, [guest]);
 
-  // 🔑 ログイン処理
+  // ---------------------------------------------------------
+  // 通常ログイン
+  // ---------------------------------------------------------
   const handleLogin = () => {
-    // TODO ここで当日以外のログインを制御できる
-    // if (!isWeddingDay()) {
-    //   alert('当日のみご利用いただけます');
-    //   return;
-    // }
     const userData = {
       id: 'common',
       name: 'ゲスト',
@@ -55,16 +62,63 @@ export default function GuestApp() {
       giftReceived: false,
       giftReceivedAtReception: false,
       transportationGiftGiven: false,
-      side: 'groom',
+      side: 'groom' as const,
     };
 
     setGuest(userData);
-
-    // ★ localStorage に保存
     localStorage.setItem('guest', JSON.stringify(userData));
   };
+
+  // ---------------------------------------------------------
+  // スタッフ用ログイン
+  // ---------------------------------------------------------
+  const handleStaffLogin = () => {
+    setStaffLoginError('');
+
+    if (!STAFF_PASSWORD) {
+      setStaffLoginError(
+        'スタッフ用パスワードが設定されていません。',
+      );
+      return;
+    }
+
+    if (staffPassword !== STAFF_PASSWORD) {
+      setStaffLoginError('パスワードが正しくありません。');
+      return;
+    }
+
+    // スタッフ確認用のゲスト情報
+    const staffGuest = {
+      id: 'staff-preview',
+      name: 'スタッフ',
+      seatNumber: '-',
+      message: '',
+      checkedin: true,
+      code: 'staff-preview',
+      hasTransportationGift: false,
+      giftReceived: false,
+      giftReceivedAtReception: false,
+      transportationGiftGiven: false,
+      side: 'groom' as const,
+    };
+
+    setGuest(staffGuest);
+    localStorage.setItem(
+      'guest',
+      JSON.stringify(staffGuest),
+    );
+
+    setStaffPassword('');
+    setShowStaffLogin(false);
+  };
+
+  // ---------------------------------------------------------
+  // カウントダウン
+  // ---------------------------------------------------------
   const weddingStart = new Date('2026-09-26T14:00:00');
+
   const [now, setNow] = useState(new Date());
+
   const [devUnlock, setDevUnlock] = useState(false);
 
   useEffect(() => {
@@ -77,65 +131,134 @@ export default function GuestApp() {
 
   const diff = weddingStart.getTime() - now.getTime();
 
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-  const minutes = Math.floor(diff / (1000 * 60)) % 60;
-  const seconds = Math.floor(diff / 1000) % 60;
+  const days = Math.floor(
+    diff / (1000 * 60 * 60 * 24),
+  );
 
-  const canLogin = devUnlock || now >= weddingStart;
-  // 日付チェック関数
-  // const isWeddingDay = () => {
-  //   const today = new Date();
-  //   const weddingDate = new Date('2026-09-26');
+  const hours =
+    Math.floor(diff / (1000 * 60 * 60)) % 24;
 
-  //   return (
-  //     today.getFullYear() === weddingDate.getFullYear() &&
-  //     today.getMonth() === weddingDate.getMonth() &&
-  //     today.getDate() === weddingDate.getDate()
-  //   );
-  // };
-  
-  // 🔒 戻るボタン無効化
+  const minutes =
+    Math.floor(diff / (1000 * 60)) % 60;
+
+  const seconds =
+    Math.floor(diff / 1000) % 60;
+
+  const canLogin =
+    devUnlock || now >= weddingStart;
+
+  // ---------------------------------------------------------
+  // 戻るボタン無効化
+  // ---------------------------------------------------------
   useEffect(() => {
     const handlePopState = () => {
-      window.history.pushState(null, '', window.location.href);
+      window.history.pushState(
+        null,
+        '',
+        window.location.href,
+      );
     };
-    window.history.pushState(null, '', window.location.href);
-    window.addEventListener('popstate', handlePopState);
+
+    window.history.pushState(
+      null,
+      '',
+      window.location.href,
+    );
+
+    window.addEventListener(
+      'popstate',
+      handlePopState,
+    );
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener(
+        'popstate',
+        handlePopState,
+      );
     };
   }, []);
 
+  // ---------------------------------------------------------
   // 各ページ遷移
-  const handleOpenSeating = () => navigate('/seating');
-  const handleOpenMenu = () => navigate('/menu');
-  const handleOpenPhoto = () => navigate('/photo');
-  const handleOpenPhotoUpload = () => navigate('/photoUpload');
-  const handleOpenProfile = () => navigate('/profile');
-  const handleOpenVenueInfo = () => navigate('/venueInfo');
-  const handleOpenVenueMap = () => navigate('/history');
-  const handleOpenMessage = () => navigate('/message');
-  const handleOpenDrink = () => navigate('/drink');
+  // ---------------------------------------------------------
+  const handleOpenSeating = () =>
+    navigate('/seating');
+
+  const handleOpenMenu = () =>
+    navigate('/menu');
+
+  const handleOpenPhoto = () =>
+    navigate('/photo');
+
+  const handleOpenPhotoUpload = () =>
+    navigate('/photoUpload');
+
+  const handleOpenProfile = () =>
+    navigate('/profile');
+
+  const handleOpenVenueInfo = () =>
+    navigate('/venueInfo');
+
+  const handleOpenVenueMap = () =>
+    navigate('/history');
+
+  const handleOpenMessage = () =>
+    navigate('/message');
+
+  const handleOpenDrink = () =>
+    navigate('/drink');
 
   const menuItems = [
-  { icon: '🪑', label: '席次表', action: handleOpenSeating },
-  { icon: '📷', label: '前撮り', action: handleOpenPhoto },
-  { icon: '📸', label: '写真', action: handleOpenPhotoUpload },
-  { icon: '🍽', label: '料理', action: handleOpenMenu },
-  { icon: '🍷', label: '飲み物', action: handleOpenDrink },
-  { icon: '📍', label: 'ご案内', action: handleOpenVenueInfo },
-  { icon: '💌', label: 'メッセージ', action: handleOpenMessage },
-  { icon: '👤', label: 'プロフィール', action: handleOpenProfile },
-  { icon: '📖', label: 'ヒストリー', action: handleOpenVenueMap },
-];
+    {
+      icon: '🪑',
+      label: '席次表',
+      action: handleOpenSeating,
+    },
+    {
+      icon: '📷',
+      label: '前撮り',
+      action: handleOpenPhoto,
+    },
+    {
+      icon: '📸',
+      label: '写真',
+      action: handleOpenPhotoUpload,
+    },
+    {
+      icon: '🍽',
+      label: '料理',
+      action: handleOpenMenu,
+    },
+    {
+      icon: '🍷',
+      label: '飲み物',
+      action: handleOpenDrink,
+    },
+    {
+      icon: '📍',
+      label: 'ご案内',
+      action: handleOpenVenueInfo,
+    },
+    {
+      icon: '💌',
+      label: 'メッセージ',
+      action: handleOpenMessage,
+    },
+    {
+      icon: '👤',
+      label: 'プロフィール',
+      action: handleOpenProfile,
+    },
+    {
+      icon: '📖',
+      label: 'ヒストリー',
+      action: handleOpenVenueMap,
+    },
+  ];
 
   // ---------------------------------------------------------
-  // ここから先は UI（元コードそのまま）
+  // ログイン前画面
   // ---------------------------------------------------------
-
-  // ▼ ログイン前画面（デザインB）
   if (!guest) {
     return (
       <div
@@ -144,7 +267,7 @@ export default function GuestApp() {
           inset: 0,
           overflowY: 'auto',
           background:
-              'linear-gradient(180deg,#FEFCFF 0%,#F8F1FB 45%,#F2E8F8 100%)',
+            'linear-gradient(180deg,#FEFCFF 0%,#F8F1FB 45%,#F2E8F8 100%)',
           padding: '40px 20px 60px',
         }}
       >
@@ -172,7 +295,7 @@ export default function GuestApp() {
               marginBottom: '8px',
               fontWeight: 800,
               letterSpacing: '1px',
-              fontFamily: '"Lora", serif'
+              fontFamily: '"Lora", serif',
             }}
           >
             T & H Wedding
@@ -204,13 +327,15 @@ export default function GuestApp() {
             様々なコンテンツをご用意しております
           </p>
 
-          {/* カード */}
+          {/* コンテンツカード */}
           <div
             style={{
-              background: "rgba(255,255,255,0.92)",
+              background:
+                'rgba(255,255,255,0.92)',
               borderRadius: '20px',
               padding: '24px',
-              boxShadow: '0 12px 32px rgba(114,88,130,0.12)',
+              boxShadow:
+                '0 12px 32px rgba(114,88,130,0.12)',
               border: '1px solid #F0E6EF',
             }}
           >
@@ -219,9 +344,10 @@ export default function GuestApp() {
                 marginTop: 0,
                 color: '#5C4567',
                 marginBottom: '20px',
-                fontFamily: '"Cormorant Garamond", serif',
+                fontFamily:
+                  '"Cormorant Garamond", serif',
                 fontWeight: 600,
-                letterSpacing: "1px"
+                letterSpacing: '1px',
               }}
             >
               Contents
@@ -249,16 +375,18 @@ export default function GuestApp() {
             </div>
           </div>
 
-          {/* カウントダウンカード */}
+          {/* カウントダウン */}
           {diff > 0 && (
             <div
               style={{
                 marginTop: '24px',
                 marginBottom: '32px',
-                background: "rgba(255,255,255,0.92)",
+                background:
+                  'rgba(255,255,255,0.92)',
                 borderRadius: '20px',
                 padding: '24px',
-                boxShadow: '0 12px 32px rgba(114,88,130,0.12)',
+                boxShadow:
+                  '0 12px 32px rgba(114,88,130,0.12)',
                 border: '1px solid #F0E6EF',
               }}
             >
@@ -269,7 +397,8 @@ export default function GuestApp() {
                   letterSpacing: '2px',
                   textTransform: 'uppercase',
                   marginBottom: '8px',
-                  fontFamily: '"Cormorant Garamond", serif',
+                  fontFamily:
+                    '"Cormorant Garamond", serif',
                   fontWeight: 600,
                 }}
               >
@@ -314,7 +443,8 @@ export default function GuestApp() {
                 style={{
                   marginTop: '18px',
                   paddingTop: '16px',
-                  borderTop: '1px solid #F3EAF5',
+                  borderTop:
+                    '1px solid #F3EAF5',
                   color: '#8B768F',
                   fontSize: '13px',
                   lineHeight: 1.8,
@@ -351,35 +481,162 @@ export default function GuestApp() {
               background: canLogin
                 ? 'linear-gradient(90deg,#DFA9D6,#C08ED7)'
                 : '#E8E1EB',
-              cursor: canLogin ? 'pointer' : 'not-allowed',
-              boxShadow: canLogin ? '0 6px 16px rgba(217,156,199,.35)' : 'none',
+              cursor: canLogin
+                ? 'pointer'
+                : 'not-allowed',
+              boxShadow: canLogin
+                ? '0 6px 16px rgba(217,156,199,.35)'
+                : 'none',
             }}
           >
             入場する（受付済の方）
           </button>
 
+          {/* スタッフ用ログイン */}
+          <button
+            onClick={() => {
+              setShowStaffLogin(
+                !showStaffLogin,
+              );
+              setStaffLoginError('');
+            }}
+            style={{
+              marginTop: '28px',
+              border: 'none',
+              background: 'transparent',
+              color: '#A58DB5',
+              fontSize: '13px',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+            }}
+          >
+            スタッフ用ログイン
+          </button>
+
+          {showStaffLogin && (
+            <div
+              style={{
+                marginTop: '14px',
+                background:
+                  'rgba(255,255,255,0.92)',
+                borderRadius: '18px',
+                padding: '18px',
+                maxWidth: '320px',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                boxShadow:
+                  '0 8px 24px rgba(114,88,130,0.12)',
+                border: '1px solid #F0E6EF',
+              }}
+            >
+              <div
+                style={{
+                  color: '#5C4567',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  marginBottom: '12px',
+                }}
+              >
+                スタッフ用パスワード
+              </div>
+
+              <input
+                type="password"
+                value={staffPassword}
+                onChange={(e) => {
+                  setStaffPassword(
+                    e.target.value,
+                  );
+                  setStaffLoginError('');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleStaffLogin();
+                  }
+                }}
+                placeholder="パスワード"
+                style={{
+                  width: '100%',
+                  boxSizing: 'border-box',
+                  padding: '12px 14px',
+                  borderRadius: '12px',
+                  border:
+                    '1px solid #E5D8EB',
+                  outline: 'none',
+                  fontSize: '14px',
+                  color: '#5C4567',
+                  marginBottom: '10px',
+                }}
+              />
+
+              {staffLoginError && (
+                <div
+                  style={{
+                    color: '#D32F2F',
+                    fontSize: '12px',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {staffLoginError}
+                </div>
+              )}
+
+              <button
+                onClick={handleStaffLogin}
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  border: 'none',
+                  borderRadius: '999px',
+                  background:
+                    'linear-gradient(90deg,#DFA9D6,#C08ED7)',
+                  color: '#fff',
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                }}
+              >
+                スタッフとして入場
+              </button>
+            </div>
+          )}
+
           {/* 開発モード */}
           {DEV_MODE && (
             <button
-              onClick={() => setDevUnlock(!devUnlock)}
+              onClick={() =>
+                setDevUnlock(!devUnlock)
+              }
               style={{
-                marginTop: '20px',
+                display: 'block',
+                margin:
+                  '20px auto 0',
                 border: 'none',
                 borderRadius: '999px',
-                background: devUnlock ? '#C8A96A' : '#F4EDF8',
-                color: devUnlock ? '#fff' : '#5C4567',
+                background: devUnlock
+                  ? '#C8A96A'
+                  : '#F4EDF8',
+                color: devUnlock
+                  ? '#fff'
+                  : '#5C4567',
                 padding: '10px 20px',
                 cursor: 'pointer',
               }}
             >
-              🛠 {devUnlock ? '開発モード ON' : '開発モード OFF'}
+              🛠{' '}
+              {devUnlock
+                ? '開発モード ON'
+                : '開発モード OFF'}
             </button>
           )}
         </div>
       </div>
     );
   }
-  // ▼ ログイン後（デザインB）
+
+  // ---------------------------------------------------------
+  // ログイン後
+  // ---------------------------------------------------------
   return (
     <div
       style={{
@@ -408,7 +665,8 @@ export default function GuestApp() {
             marginBottom: '8px',
             fontWeight: 700,
             letterSpacing: '1px',
-            fontFamily: '"Cormorant Garamond", serif',
+            fontFamily:
+              '"Cormorant Garamond", serif',
           }}
         >
           T & H Wedding
@@ -420,7 +678,8 @@ export default function GuestApp() {
             letterSpacing: '4px',
             fontSize: '16px',
             marginBottom: '18px',
-            fontFamily: '"Cormorant Garamond", serif',
+            fontFamily:
+              '"Cormorant Garamond", serif',
           }}
         >
           Welcome to Our Wedding
@@ -443,8 +702,10 @@ export default function GuestApp() {
             height: '260px',
             objectFit: 'cover',
             borderRadius: '50%',
-            border: '6px solid rgba(255,255,255,0.95)',
-            boxShadow: '0 10px 35px rgba(207,182,225,0.35)',
+            border:
+              '6px solid rgba(255,255,255,0.95)',
+            boxShadow:
+              '0 10px 35px rgba(207,182,225,0.35)',
           }}
         />
       </div>
@@ -452,12 +713,14 @@ export default function GuestApp() {
       {/* メニューカード */}
       <div
         style={{
-          background: 'rgba(255,255,255,0.92)',
+          background:
+            'rgba(255,255,255,0.92)',
           borderRadius: '24px',
           padding: '22px',
           maxWidth: '410px',
           margin: '0 auto',
-          boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+          boxShadow:
+            '0 8px 30px rgba(0,0,0,0.08)',
         }}
       >
         <div
@@ -466,7 +729,8 @@ export default function GuestApp() {
             fontWeight: 600,
             color: '#5A476F',
             marginBottom: '22px',
-            fontFamily:'"Cormorant Garamond", serif'
+            fontFamily:
+              '"Cormorant Garamond", serif',
           }}
         >
           Contents
@@ -475,44 +739,52 @@ export default function GuestApp() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3,1fr)',
+            gridTemplateColumns:
+              'repeat(3,1fr)',
             gap: '14px',
           }}
         >
-          {menuItems.map(({ icon, label, action }) => (
-            <button
-              key={label}
-              onClick={action as () => void}
-              style={{
-                border: '1px solid #F3E5FA',
-                background: 'linear-gradient(180deg,#FFFFFF,#FCF5FF)',
-                borderRadius: '18px',
-                padding: '16px 6px',
-                cursor: 'pointer',
-                boxShadow: '0 3px 10px rgba(0,0,0,0.05)',
-                transition: '0.2s',
-              }}
-            >
-              <div
+          {menuItems.map(
+            ({ icon, label, action }) => (
+              <button
+                key={label}
+                onClick={
+                  action as () => void
+                }
                 style={{
-                  fontSize: '28px',
-                  marginBottom: '8px',
+                  border:
+                    '1px solid #F3E5FA',
+                  background:
+                    'linear-gradient(180deg,#FFFFFF,#FCF5FF)',
+                  borderRadius: '18px',
+                  padding: '16px 6px',
+                  cursor: 'pointer',
+                  boxShadow:
+                    '0 3px 10px rgba(0,0,0,0.05)',
+                  transition: '0.2s',
                 }}
               >
-                {icon}
-              </div>
+                <div
+                  style={{
+                    fontSize: '28px',
+                    marginBottom: '8px',
+                  }}
+                >
+                  {icon}
+                </div>
 
-              <div
-                style={{
-                  fontSize: '13px',
-                  color: '#5A476F',
-                  fontWeight: 600,
-                }}
-              >
-                {label}
-              </div>
-            </button>
-          ))}
+                <div
+                  style={{
+                    fontSize: '13px',
+                    color: '#5A476F',
+                    fontWeight: 600,
+                  }}
+                >
+                  {label}
+                </div>
+              </button>
+            ),
+          )}
         </div>
       </div>
 
@@ -534,18 +806,24 @@ export default function GuestApp() {
 
       {/* ログアウト */}
       <button
-        onClick={() => setGuest(null)}
+        onClick={() => {
+          localStorage.removeItem('guest');
+          setGuest(null);
+        }}
         style={{
           marginTop: '20px',
           color: '#A58DB5',
           padding: '7px 16px',
           borderRadius: '30px',
-          boxShadow: '0 3px 10px rgba(0,0,0,0.08)',
+          boxShadow:
+            '0 3px 10px rgba(0,0,0,0.08)',
           cursor: 'pointer',
-          background:'rgba(255,255,255,0.7)',
-          backdropFilter:'blur(8px)',
-          border:'1px solid #F0E6F6',
-          opacity:.7,
+          background:
+            'rgba(255,255,255,0.7)',
+          backdropFilter: 'blur(8px)',
+          border:
+            '1px solid #F0E6F6',
+          opacity: 0.7,
         }}
       >
         logout
