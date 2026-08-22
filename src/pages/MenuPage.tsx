@@ -23,24 +23,24 @@ function MenuPage() {
   const menuList = [
     {
       title: 'Premier',
-      items: ['サーモンのマリネと檸檬のコンポジション'],
+      items: ['サーモンのマリネと\n檸檬のコンポジション'],
     },
     {
       title: 'Deuxième',
-      items: ['カリフラワーのヴルーテトリュフとヘーゼルナッツ添え'],
+      items: ['カリフラワーのヴルーテトリュフと\nヘーゼルナッツ添え'],
     },
     {
       title: 'Poisson',
-      items: ['真鯛のバプール イベリコ豚のチョリソとピペラード'],
+      items: ['真鯛のバプール\nイベリコ豚のチョリソとピペラード'],
     },
     {
       title: 'Granité',
-      items: ['ピンクグレープフルーツのフローズンジュレ'],
+      items: ['ピンクグレープフルーツの\nフローズンジュレ'],
     },
     {
       title: 'Viande',
       items: [
-        '「しあわせ絆牛」フィレ肉と木の実味噌を纏ったフォアグラ 吟醸酒と塩麹のソース',
+        '「しあわせ絆牛」フィレ肉と\n木の実味噌を纏ったフォアグラ\n 吟醸酒と塩麹のソース',
       ],
     },
     {
@@ -184,6 +184,7 @@ function MenuPage() {
                     letterSpacing: '0.03em',
                     textAlign: 'center',
                     fontWeight: 500,
+                    whiteSpace: 'pre-line',
                   }}
                 >
                   {item}
