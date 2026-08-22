@@ -5,27 +5,23 @@ import drinkImg from '../../public/photos/full/drink.jpg';
 const DrinkMenuPage: React.FC = () => {
   const alcoholList = [
     { name: 'ビール(エビス)' },
-    { name: 'ノンアルコールビール(サッポロプレミアムアルコールフリー)' },
-    { name: 'ロゼワイン（プラネタ ロゼ）' },
-    { name: 'ロゼワイン（カルヴェミュルミュールドプロヴァンス ロゼ）' },
-    { name: 'ロゼワイン（ローゼ・ディ・マァジ）' },
+    { name: 'ノンアルコールビール(サッポロプレミアム\nアルコールフリー)' },
+    { name: 'ロゼワイン\n（プラネタ ロゼ/カルヴェミュルミュールドプロヴァンス ロゼ/\nローザ・ディ・マージ）' },
     { name: 'ウイスキー（デュワーズ12年）' },
-    { name: '芋焼酎（黒霧島）', options: ['ソーダ割', 'ロック', '水割り'] },
-    { name: '麦焼酎（白水）', options: ['ソーダ割', 'ロック', '水割り'] },
-    { name: '日本酒（獺祭 純米大吟醸45）', options: ['冷', '常温'] },
-    { name: 'ウォッカ/ジン/カシス' },
-    { name: 'レモンサワー' },
+    { name: '芋焼酎（黒霧島）'},
+    { name: '麦焼酎（白水）'},
+    { name: '日本酒（獺祭 純米大吟醸45）'},
+    { name: 'ウォッカ/ジン/カシス/レモンサワー' },
   ];
   const softDrinkList = [
     { name: 'ピンクグレープフルーツジュース' },
     { name: 'コーラ' },
     { name: 'アップルジュース' },
     { name: 'ジンジャーエール' },
-    { name: 'スルジーヴァ ナチュラル' },
-    { name: 'スルジーヴァ スパークリング' },
+    { name: 'スルジーヴァ (ナチュラル/スパークリング)' },
     { name: 'ほうじ茶' },
     { name: '緑茶' },
-    { name: 'すもも50％果汁入り飲料' },
+    { name: 'フジ林檎ストレートジュース' },
     { name: '温州みかんストレートジュース' },
     { name: '白桃ストレートジュース' },
   ];
@@ -146,6 +142,8 @@ const DrinkMenuPage: React.FC = () => {
             新郎おすすめの日本酒。
             <br />
             水のように飲める。
+            <br />
+            (妻と1時間で720mlを飲み干したことあり。)
           </div>
           <div
             style={{
@@ -176,6 +174,8 @@ const DrinkMenuPage: React.FC = () => {
             新婦おすすめのハイボール。
             <br />
             ごはんにも、甘いものにも合う。
+            <br />
+            (お気に入りのため家に常備してます。)
           </div>
         </div>
         {/* 🍺 アルコール */}
@@ -227,20 +227,11 @@ const DrinkMenuPage: React.FC = () => {
                   fontWeight: 500,
                   textShadow: '0 1px 5px rgba(255,255,255,.9)',
                   lineHeight: 1.8,
+                  whiteSpace: 'pre-line',
                 }}
               >
                 {drink.name}
 
-                {drink.options && (
-                  <div
-                    style={{
-                      fontSize: '13px',
-                      color: '#7E6B86',
-                    }}
-                  >
-                    {drink.options.join(' / ')}
-                  </div>
-                )}
               </li>
             ))}
           </ul>
