@@ -63,7 +63,7 @@ export default function GuestApp() {
     // ★ localStorage に保存
     localStorage.setItem('guest', JSON.stringify(userData));
   };
-  const weddingStart = new Date('2026-09-26T14:00:00');
+  const weddingStart = new Date('2026-07-26T14:00:00');
   const [now, setNow] = useState(new Date());
   const [devUnlock, setDevUnlock] = useState(false);
 
