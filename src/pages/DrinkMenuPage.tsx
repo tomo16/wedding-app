@@ -143,7 +143,7 @@ const DrinkMenuPage: React.FC = () => {
             <br />
             水のように飲める。
             <br />
-            (妻と1時間で720mlを飲み干したことあり。)
+            (妻と1時間で720mlを飲み干しました。)
           </div>
           <div
             style={{
@@ -161,7 +161,7 @@ const DrinkMenuPage: React.FC = () => {
               marginBottom: '10px',
             }}
           >
-            Ao ハイボール
+            Ao
           </div>
 
           <div
@@ -171,11 +171,11 @@ const DrinkMenuPage: React.FC = () => {
               fontSize: '15px',
             }}
           >
-            新婦おすすめのハイボール。
+            新婦おすすめのウイスキー。
             <br />
             ごはんにも、甘いものにも合う。
             <br />
-            (お気に入りのため家に常備してます。)
+            (ハイボールでよく飲んでます。)
           </div>
         </div>
         {/* 🍺 アルコール */}
