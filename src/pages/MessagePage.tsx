@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import {
   addDoc,
@@ -17,6 +17,10 @@ const MessagePage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [side, setSide] = useState<'groom' | 'bride' | ''>('');
 
+  // スクロール位置リセット
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // 名前読み込み
   const handleSubmit = async () => {
     if (!name.trim() || !text.trim() || !side) {

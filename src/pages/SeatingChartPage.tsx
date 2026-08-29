@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGuest } from '../context/GuestContext';
 import Header from '../components/Header';
@@ -7,6 +7,10 @@ function SeatingChartPage() {
   const { guest } = useGuest();
   const navigate = useNavigate();
 
+  // スクロール位置リセット
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (!guest) {
     navigate('/guest/login');
     return null;
