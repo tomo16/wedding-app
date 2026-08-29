@@ -115,7 +115,7 @@ export default function GuestApp() {
   // ---------------------------------------------------------
   // カウントダウン
   // ---------------------------------------------------------
-  const weddingStart = new Date('2026-09-26T14:00:00');
+  const weddingStart = new Date('2026-09-26T13:00:00');
 
   const [now, setNow] = useState(new Date());
 
@@ -459,7 +459,7 @@ export default function GuestApp() {
                   2026年9月26日（土）
                 </strong>
                 <br />
-                14:00よりアプリをご利用いただけます
+                13:00よりアプリをご利用いただけます
               </div>
             </div>
           )}
