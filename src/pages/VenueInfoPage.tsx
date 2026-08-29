@@ -96,14 +96,14 @@ const VenueInfoPage: React.FC = () => {
             textAlign: "center",
           }}
         >
-          当日のご案内と
+          披露宴会場のご案内と
           <br />
           お願い事項です
         </p>
 
         {/* 披露宴会場 */}
         <section style={cardStyle}>
-          <h3 style={sectionTitle}>Reception</h3>
+          <h3 style={sectionTitle}>Reception Venue</h3>
 
           <p style={textStyle}>
             <strong>📍 グラマシースイート（B1F・1F）</strong>
@@ -149,24 +149,23 @@ const VenueInfoPage: React.FC = () => {
             <div style={{ marginBottom: 20 }}>
               <strong>📱 スマートフォン</strong>
               <br />
-              式中はマナーモード
-              (サイレントモード)への
+              マナーモードへの
               ご協力をお願いいたします。
             </div>
 
             <div style={{ marginBottom: 20 }}>
               <strong>🍸 ドリンク</strong>
               <br />
-              Secret Drinksをご注文の際は、
+              Special Drinksをご注文の際は、
               <br />
-              アプリ内のドリンク画面を
+              アプリ内の「飲み物」画面を
               スタッフへお見せください。
             </div>
 
             <div>
               <strong>🚪 再入場</strong>
               <br />
-              一時外出される際は、
+              会場の外へ出られる際は、
               スタッフまでお声がけください。
             </div>
           </div>

@@ -45,7 +45,7 @@ function MenuPage() {
     },
     {
       title: 'Dessert',
-      items: ['スイーツビュッフェ'],
+      items: ['シェアスイートスタンド'],
     },
   ];
 

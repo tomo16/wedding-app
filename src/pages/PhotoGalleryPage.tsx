@@ -140,6 +140,9 @@ const PhotoGalleryPage: React.FC = () => {
                 key={i}
                 src={photo.thumb}
                 loading="lazy"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                onDragStart={(e) => e.preventDefault()}
                 onClick={() => openModal(photo.full)}
                 style={{
                   width: '100%',
@@ -150,6 +153,9 @@ const PhotoGalleryPage: React.FC = () => {
                   border: '3px solid rgba(255,255,255,.95)',
                   boxShadow: '0 6px 18px rgba(170,135,200,.18)',
                   transition: '.2s',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  WebkitTouchCallout: 'none',
                 }}
               />
             ))}
@@ -221,6 +227,9 @@ const PhotoGalleryPage: React.FC = () => {
 
           <img
             src={modalUrl}
+            draggable={false}
+            onContextMenu={(e) => e.preventDefault()}
+            onDragStart={(e) => e.preventDefault()}
             onClick={(e) => e.stopPropagation()}
             style={{
               maxWidth: '90%',
@@ -228,6 +237,9 @@ const PhotoGalleryPage: React.FC = () => {
               borderRadius: '20px',
               border: '6px solid rgba(255,255,255,.95)',
               boxShadow: '0 20px 50px rgba(0,0,0,.35)',
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              WebkitTouchCallout: 'none',
             }}
           />
         </div>
