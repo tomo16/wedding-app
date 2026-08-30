@@ -72,9 +72,9 @@ export default function GuestApp() {
     // window.scrollTo(0, 0);
     setGuest(userData);
     localStorage.setItem('guest', JSON.stringify(userData));
-    // requestAnimationFrame(() => {
-    //   window.scrollTo(0, 0);
-    // });
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   };
 
   // ---------------------------------------------------------
@@ -117,9 +117,9 @@ export default function GuestApp() {
     // window.scrollTo(0, 0);
     setGuest(staffGuest);
     localStorage.setItem('guest', JSON.stringify(staffGuest));
-    // requestAnimationFrame(() => {
-    //   window.scrollTo(0, 0);
-    // });
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   };
 
   // ---------------------------------------------------------
