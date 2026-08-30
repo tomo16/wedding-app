@@ -69,7 +69,7 @@ export default function GuestApp() {
       side: 'groom' as const,
     };
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     setGuest(userData);
     localStorage.setItem('guest', JSON.stringify(userData));
     // requestAnimationFrame(() => {
@@ -114,7 +114,7 @@ export default function GuestApp() {
     setStaffPassword('');
     setShowStaffLogin(false);
 
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
     setGuest(staffGuest);
     localStorage.setItem('guest', JSON.stringify(staffGuest));
     // requestAnimationFrame(() => {

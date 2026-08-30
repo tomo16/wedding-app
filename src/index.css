@@ -20,6 +20,12 @@ body {
   min-height: 100dvh;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
