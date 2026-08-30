@@ -22,9 +22,50 @@ const PhotoGalleryPage: React.FC = () => {
   const [modalUrl, setModalUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-    });
+    window.scrollTo(0, 0);
+
+    const html = document.documentElement;
+    const body = document.body;
+    const root = document.getElementById('root');
+
+    const original = {
+      htmlOverflow: html.style.overflow,
+      htmlHeight: html.style.height,
+      bodyOverflow: body.style.overflow,
+      bodyHeight: body.style.height,
+      bodyPosition: body.style.position,
+      bodyWidth: body.style.width,
+      rootOverflow: root?.style.overflow ?? '',
+      rootHeight: root?.style.height ?? '',
+    };
+
+    html.style.overflow = 'hidden';
+    html.style.height = '100%';
+
+    body.style.overflow = 'hidden';
+    body.style.height = '100%';
+    body.style.position = 'fixed';
+    body.style.width = '100%';
+
+    if (root) {
+      root.style.overflow = 'hidden';
+      root.style.height = '100%';
+    }
+
+    return () => {
+      html.style.overflow = original.htmlOverflow;
+      html.style.height = original.htmlHeight;
+
+      body.style.overflow = original.bodyOverflow;
+      body.style.height = original.bodyHeight;
+      body.style.position = original.bodyPosition;
+      body.style.width = original.bodyWidth;
+
+      if (root) {
+        root.style.overflow = original.rootOverflow;
+        root.style.height = original.rootHeight;
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -55,6 +96,8 @@ const PhotoGalleryPage: React.FC = () => {
     <div
       style={{
         minHeight: '100dvh',
+        overflow: 'hidden',
+        touchAction: 'none',
         background:
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
