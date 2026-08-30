@@ -34,9 +34,9 @@ const DrinkMenuPage: React.FC = () => {
 
   // ストレートジュース
   const juiceList = [
-    { name: '長野県産 フジ林檎ストレートジュース' },
-    { name: '静岡県産 温州みかんストレートジュース' },
-    { name: '山梨県産 白桃ストレートジュース' },
+    { name: '長野県産\nフジ林檎ストレートジュース' },
+    { name: '静岡県産\n温州みかんストレートジュース' },
+    { name: '山梨県産\n白桃ストレートジュース' },
   ];
 
   const [showNotice, setShowNotice] = useState(false);
