@@ -69,11 +69,12 @@ export default function GuestApp() {
       side: 'groom' as const,
     };
 
+    window.scrollTo(0, 0);
     setGuest(userData);
     localStorage.setItem('guest', JSON.stringify(userData));
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
+    // requestAnimationFrame(() => {
+    //   window.scrollTo(0, 0);
+    // });
   };
 
   // ---------------------------------------------------------
@@ -113,11 +114,12 @@ export default function GuestApp() {
     setStaffPassword('');
     setShowStaffLogin(false);
 
+    window.scrollTo(0, 0);
     setGuest(staffGuest);
     localStorage.setItem('guest', JSON.stringify(staffGuest));
-    requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
-    });
+    // requestAnimationFrame(() => {
+    //   window.scrollTo(0, 0);
+    // });
   };
 
   // ---------------------------------------------------------
@@ -242,9 +244,9 @@ export default function GuestApp() {
     return (
       <div
         style={{
-          position: 'fixed',
-          inset: 0,
-          overflowY: 'auto',
+          width: '100%',
+          minHeight: '100dvh',
+          boxSizing: 'border-box',
           background:
             'linear-gradient(180deg,#FEFCFF 0%,#F8F1FB 45%,#F2E8F8 100%)',
           padding: '40px 20px 60px',
