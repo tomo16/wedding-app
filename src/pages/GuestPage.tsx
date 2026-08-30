@@ -28,11 +28,14 @@ export default function GuestApp() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!guest) return;
+  useEffect(() => {
+    if (!guest) return;
 
-  //   window.scrollTo(0, 0);
-  // }, [guest]);
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, [guest]);
 
   // 自動ログアウト（180分）
   useEffect(() => {
@@ -72,9 +75,7 @@ export default function GuestApp() {
     // window.scrollTo(0, 0);
     setGuest(userData);
     localStorage.setItem('guest', JSON.stringify(userData));
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
+
   };
 
   // ---------------------------------------------------------
@@ -117,9 +118,7 @@ export default function GuestApp() {
     // window.scrollTo(0, 0);
     setGuest(staffGuest);
     localStorage.setItem('guest', JSON.stringify(staffGuest));
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
+
   };
 
   // ---------------------------------------------------------
