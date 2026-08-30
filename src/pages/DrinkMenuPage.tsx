@@ -57,8 +57,7 @@ const DrinkMenuPage: React.FC = () => {
   return (
     <div
       style={{
-        height: '100dvh',
-        overflow: 'hidden',
+        minHeight: '100dvh',
         backgroundImage: `
           linear-gradient(
             rgba(255,255,255,0.45),
@@ -77,8 +76,6 @@ const DrinkMenuPage: React.FC = () => {
       {/* スクロール区域 */}
       <div
         style={{
-          height: 'calc(100dvh - 56px)',
-          overflowY: 'auto',
           padding: '90px 24px 80px',
           maxWidth: '420px',
           margin: '0 auto',
