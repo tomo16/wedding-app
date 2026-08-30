@@ -245,6 +245,9 @@ export default function GuestApp() {
       <div
         style={{
           width: '100%',
+          maxWidth: '100%',
+          minWidth: 0,
+          overflowX: 'hidden',
           minHeight: '100dvh',
           boxSizing: 'border-box',
           background:
@@ -593,7 +596,10 @@ export default function GuestApp() {
     <div
       style={{
         width: '100%',
+        maxWidth: '100%',
+        minWidth: 0,
         minHeight: '100dvh',
+        overflowX: 'hidden',
         boxSizing: 'border-box',
         textAlign: 'center',
         background:
