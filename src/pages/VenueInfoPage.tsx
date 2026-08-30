@@ -3,7 +3,9 @@ import Header from "../components/Header";
 
 const VenueInfoPage: React.FC = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
   }, []);
 
   const cardStyle: React.CSSProperties = {

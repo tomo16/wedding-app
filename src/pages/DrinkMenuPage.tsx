@@ -42,7 +42,9 @@ const DrinkMenuPage: React.FC = () => {
   const [showNotice, setShowNotice] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
 
     const shown = sessionStorage.getItem('drinkNoticeShown');
 

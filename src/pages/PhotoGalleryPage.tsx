@@ -22,7 +22,9 @@ const PhotoGalleryPage: React.FC = () => {
   const [modalUrl, setModalUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
   }, []);
 
   useEffect(() => {

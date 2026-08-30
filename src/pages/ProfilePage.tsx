@@ -5,7 +5,9 @@ import brideImg from '../../public/photos/full/hitomisolo.jpg'; // 新婦写真
 
 const ProfilePage: React.FC = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
   }, []);
   return (
     <div

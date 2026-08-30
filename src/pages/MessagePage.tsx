@@ -19,7 +19,9 @@ const MessagePage: React.FC = () => {
 
   // スクロール位置リセット
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
   }, []);
   // 名前読み込み
   const handleSubmit = async () => {
