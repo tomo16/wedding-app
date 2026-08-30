@@ -57,6 +57,7 @@ export default function HomePage() {
     <div
       style={{
         minHeight: '100dvh',
+        width: '100%',
         background:
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
