@@ -28,11 +28,11 @@ export default function GuestApp() {
     }
   }, []);
 
-  useEffect(() => {
-    if (!guest) return;
+  // useEffect(() => {
+  //   if (!guest) return;
 
-    window.scrollTo(0, 0);
-  }, [guest]);
+  //   window.scrollTo(0, 0);
+  // }, [guest]);
 
   // 自動ログアウト（180分）
   useEffect(() => {
