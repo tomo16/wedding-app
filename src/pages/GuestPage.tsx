@@ -642,7 +642,9 @@ export default function GuestApp() {
   return (
     <div
       style={{
+        width: '100%',
         minHeight: '100dvh',
+        boxSizing: 'border-box',
         textAlign: 'center',
         background:
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
@@ -667,8 +669,7 @@ export default function GuestApp() {
             marginBottom: '8px',
             fontWeight: 700,
             letterSpacing: '1px',
-            fontFamily:
-              '"Cormorant Garamond", serif',
+            fontFamily: '"Cormorant Garamond", serif',
           }}
         >
           T & H Wedding
@@ -680,8 +681,7 @@ export default function GuestApp() {
             letterSpacing: '4px',
             fontSize: '16px',
             marginBottom: '18px',
-            fontFamily:
-              '"Cormorant Garamond", serif',
+            fontFamily: '"Cormorant Garamond", serif',
           }}
         >
           Welcome to Our Wedding
@@ -704,10 +704,8 @@ export default function GuestApp() {
             height: '260px',
             objectFit: 'cover',
             borderRadius: '50%',
-            border:
-              '6px solid rgba(255,255,255,0.95)',
-            boxShadow:
-              '0 10px 35px rgba(207,182,225,0.35)',
+            border: '6px solid rgba(255,255,255,0.95)',
+            boxShadow: '0 10px 35px rgba(207,182,225,0.35)',
           }}
         />
       </div>
@@ -715,14 +713,12 @@ export default function GuestApp() {
       {/* メニューカード */}
       <div
         style={{
-          background:
-            'rgba(255,255,255,0.92)',
+          background: 'rgba(255,255,255,0.92)',
           borderRadius: '24px',
           padding: '22px',
           maxWidth: '410px',
           margin: '0 auto',
-          boxShadow:
-            '0 8px 30px rgba(0,0,0,0.08)',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
         }}
       >
         <div
@@ -731,8 +727,7 @@ export default function GuestApp() {
             fontWeight: 600,
             color: '#5A476F',
             marginBottom: '22px',
-            fontFamily:
-              '"Cormorant Garamond", serif',
+            fontFamily: '"Cormorant Garamond", serif',
           }}
         >
           Contents
@@ -741,52 +736,44 @@ export default function GuestApp() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns:
-              'repeat(3,1fr)',
+            gridTemplateColumns: 'repeat(3,1fr)',
             gap: '14px',
           }}
         >
-          {menuItems.map(
-            ({ icon, label, action }) => (
-              <button
-                key={label}
-                onClick={
-                  action as () => void
-                }
+          {menuItems.map(({ icon, label, action }) => (
+            <button
+              key={label}
+              onClick={action as () => void}
+              style={{
+                border: '1px solid #F3E5FA',
+                background: 'linear-gradient(180deg,#FFFFFF,#FCF5FF)',
+                borderRadius: '18px',
+                padding: '16px 6px',
+                cursor: 'pointer',
+                boxShadow: '0 3px 10px rgba(0,0,0,0.05)',
+                transition: '0.2s',
+              }}
+            >
+              <div
                 style={{
-                  border:
-                    '1px solid #F3E5FA',
-                  background:
-                    'linear-gradient(180deg,#FFFFFF,#FCF5FF)',
-                  borderRadius: '18px',
-                  padding: '16px 6px',
-                  cursor: 'pointer',
-                  boxShadow:
-                    '0 3px 10px rgba(0,0,0,0.05)',
-                  transition: '0.2s',
+                  fontSize: '28px',
+                  marginBottom: '8px',
                 }}
               >
-                <div
-                  style={{
-                    fontSize: '28px',
-                    marginBottom: '8px',
-                  }}
-                >
-                  {icon}
-                </div>
+                {icon}
+              </div>
 
-                <div
-                  style={{
-                    fontSize: '13px',
-                    color: '#5A476F',
-                    fontWeight: 600,
-                  }}
-                >
-                  {label}
-                </div>
-              </button>
-            ),
-          )}
+              <div
+                style={{
+                  fontSize: '13px',
+                  color: '#5A476F',
+                  fontWeight: 600,
+                }}
+              >
+                {label}
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -817,14 +804,11 @@ export default function GuestApp() {
           color: '#A58DB5',
           padding: '7px 16px',
           borderRadius: '30px',
-          boxShadow:
-            '0 3px 10px rgba(0,0,0,0.08)',
+          boxShadow: '0 3px 10px rgba(0,0,0,0.08)',
           cursor: 'pointer',
-          background:
-            'rgba(255,255,255,0.7)',
+          background: 'rgba(255,255,255,0.7)',
           backdropFilter: 'blur(8px)',
-          border:
-            '1px solid #F0E6F6',
+          border: '1px solid #F0E6F6',
           opacity: 0.7,
         }}
       >
