@@ -28,9 +28,13 @@ export default function GuestApp() {
     }
   }, []);
 
-  // ---------------------------------------------------------
+  useEffect(() => {
+    if (!guest) return;
+
+    window.scrollTo(0, 0);
+  }, [guest]);
+
   // 自動ログアウト（180分）
-  // ---------------------------------------------------------
   useEffect(() => {
     if (!guest) return;
 
@@ -76,9 +80,7 @@ export default function GuestApp() {
     setStaffLoginError('');
 
     if (!STAFF_PASSWORD) {
-      setStaffLoginError(
-        'スタッフ用パスワードが設定されていません。',
-      );
+      setStaffLoginError('スタッフ用パスワードが設定されていません。');
       return;
     }
 
@@ -102,15 +104,15 @@ export default function GuestApp() {
       side: 'groom' as const,
     };
 
-    setGuest(staffGuest);
-    localStorage.setItem(
-      'guest',
-      JSON.stringify(staffGuest),
-    );
+    // パスワード入力欄からフォーカスを外す
+    (document.activeElement as HTMLElement)?.blur();
 
     setStaffPassword('');
     setShowStaffLogin(false);
-  };
+
+    setGuest(staffGuest);
+    localStorage.setItem('guest', JSON.stringify(staffGuest));
+  };;
 
   // ---------------------------------------------------------
   // カウントダウン
