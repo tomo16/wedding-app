@@ -5,48 +5,63 @@ import drinkImg from '../../public/photos/full/drink.jpg';
 const DrinkMenuPage: React.FC = () => {
   const alcoholList = [
     { name: 'ビール(エビス)' },
-    { name: 'ノンアルコールビール(サッポロプレミアムアルコールフリー)' },
-    { name: 'ロゼワイン（プラネタ ロゼ）' },
-    { name: 'ロゼワイン（カルヴェミュルミュールドプロヴァンス ロゼ）' },
-    { name: 'ロゼワイン（ローゼ・ディ・マァジ）' },
+    { name: 'ノンアルコールビール(サッポロプレミアム\nアルコールフリー)' },
+    {
+      name: 'ロゼワイン\n（プラネタ ロゼ/カルヴェミュルミュールドプロヴァンス ロゼ/\nローザ・ディ・マージ）',
+    },
     { name: 'ウイスキー（デュワーズ12年）' },
-    { name: '芋焼酎（黒霧島）', options: ['ソーダ割', 'ロック', '水割り'] },
-    { name: '麦焼酎（白水）', options: ['ソーダ割', 'ロック', '水割り'] },
-    { name: '日本酒（獺祭 純米大吟醸45）', options: ['冷', '常温'] },
-    { name: 'ウォッカ/ジン/カシス' },
-    { name: 'レモンサワー' },
+    { name: '芋焼酎（黒霧島）' },
+    { name: '麦焼酎（白水）' },
+    { name: '日本酒（獺祭 純米大吟醸45）' },
+    { name: 'ウォッカ/ジン/カシス/レモンサワー' },
   ];
+
+  // ソフトドリンク
   const softDrinkList = [
-    { name: 'ピンクグレープフルーツジュース' },
+    { name: 'ピンクグレープフルーツ' },
+    { name: 'アップル' },
     { name: 'コーラ' },
-    { name: 'アップルジュース' },
     { name: 'ジンジャーエール' },
     { name: 'スルジーヴァ ナチュラル' },
     { name: 'スルジーヴァ スパークリング' },
+  ];
+
+  // CRAFT BREW TEA
+  const teaList = [
     { name: 'ほうじ茶' },
     { name: '緑茶' },
-    { name: 'すもも50％果汁入り飲料' },
-    { name: '温州みかんストレートジュース' },
-    { name: '白桃ストレートジュース' },
+  ];
+
+  // ストレートジュース
+  const juiceList = [
+    { name: '長野県産\nフジ林檎ストレートジュース' },
+    { name: '静岡県産\n温州みかんストレートジュース' },
+    { name: '山梨県産\n白桃ストレートジュース' },
   ];
 
   const [showNotice, setShowNotice] = useState(false);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+    });
+
     const shown = sessionStorage.getItem('drinkNoticeShown');
+
     if (!shown) {
       setShowNotice(true);
       sessionStorage.setItem('drinkNoticeShown', 'true');
     }
   }, []);
+
   return (
     <div
       style={{
         height: '100dvh',
         overflow: 'hidden',
         backgroundImage: `
-        linear-gradient(
-        rgba(255,255,255,0.45),
+          linear-gradient(
+            rgba(255,255,255,0.45),
         rgba(255,255,255,0.55)),
         url(${drinkImg})`,
         backgroundSize: 'cover',
@@ -68,6 +83,7 @@ const DrinkMenuPage: React.FC = () => {
           textAlign: 'center',
         }}
       >
+        {/* タイトル */}
         <div
           style={{
             width: 70,
@@ -107,21 +123,18 @@ const DrinkMenuPage: React.FC = () => {
             marginBottom: '18px',
           }}
         >
-          Secret Drinks
+          Special Drinks
         </h3>
 
         <div
           style={{
             padding: '34px 26px',
             marginBottom: '40px',
-
             background: 'rgba(255,255,255,0.10)',
             backdropFilter: 'blur(3px)',
             WebkitBackdropFilter: 'blur(3px)',
-
             border: '1px solid rgba(255,255,255,.30)',
             borderRadius: '26px',
-
             boxShadow: '0 10px 30px rgba(0,0,0,.08)',
           }}
         >
@@ -146,7 +159,10 @@ const DrinkMenuPage: React.FC = () => {
             新郎おすすめの日本酒。
             <br />
             水のように飲める。
+            <br />
+            (妻と1時間で720mlを飲み干しました。)
           </div>
+
           <div
             style={{
               width: '70%',
@@ -155,6 +171,7 @@ const DrinkMenuPage: React.FC = () => {
               margin: '28px auto',
             }}
           />
+
           <div
             style={{
               fontFamily: '"Cormorant Garamond", serif',
@@ -163,7 +180,7 @@ const DrinkMenuPage: React.FC = () => {
               marginBottom: '10px',
             }}
           >
-            Ao ハイボール
+            Ao
           </div>
 
           <div
@@ -173,11 +190,14 @@ const DrinkMenuPage: React.FC = () => {
               fontSize: '15px',
             }}
           >
-            新婦おすすめのハイボール。
+            新婦おすすめのウイスキー。
             <br />
             ごはんにも、甘いものにも合う。
+            <br />
+            (ハイボールでよく飲んでます。)
           </div>
         </div>
+
         {/* 🍺 アルコール */}
         <div
           style={{
@@ -208,6 +228,7 @@ const DrinkMenuPage: React.FC = () => {
               margin: '0 auto 20px',
             }}
           />
+
           <ul
             style={{
               listStyle: 'none',
@@ -227,20 +248,10 @@ const DrinkMenuPage: React.FC = () => {
                   fontWeight: 500,
                   textShadow: '0 1px 5px rgba(255,255,255,.9)',
                   lineHeight: 1.8,
+                  whiteSpace: 'pre-line',
                 }}
               >
                 {drink.name}
-
-                {drink.options && (
-                  <div
-                    style={{
-                      fontSize: '13px',
-                      color: '#7E6B86',
-                    }}
-                  >
-                    {drink.options.join(' / ')}
-                  </div>
-                )}
               </li>
             ))}
           </ul>
@@ -276,6 +287,7 @@ const DrinkMenuPage: React.FC = () => {
               margin: '0 auto 20px',
             }}
           />
+
           <ul
             style={{
               listStyle: 'none',
@@ -303,6 +315,122 @@ const DrinkMenuPage: React.FC = () => {
           </ul>
         </div>
 
+        {/* 🍵 CRAFT BREW TEA */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,.14)',
+            backdropFilter: 'blur(3px)',
+            WebkitBackdropFilter: 'blur(3px)',
+            borderRadius: '20px',
+            padding: '24px',
+            marginBottom: '36px',
+          }}
+        >
+          <h3
+            style={{
+              fontSize: '30px',
+              color: '#5C4567',
+              fontFamily: '"Cormorant Garamond", serif',
+              marginBottom: '12px',
+            }}
+          >
+            CRAFT BREW TEA
+          </h3>
+
+          <div
+            style={{
+              width: 50,
+              height: 1,
+              background: '#D6B4E8',
+              margin: '0 auto 20px',
+            }}
+          />
+
+          <ul
+            style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              lineHeight: '1.8',
+            }}
+          >
+            {teaList.map((drink) => (
+              <li
+                key={drink.name}
+                style={{
+                  marginBottom: '12px',
+                  fontFamily: '"Noto Serif JP", serif',
+                  fontSize: '16px',
+                  color: '#2F2635',
+                  fontWeight: 500,
+                  textShadow: '0 1px 5px rgba(255,255,255,.9)',
+                  lineHeight: 1.8,
+                }}
+              >
+                {drink.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 🍎 ストレートジュース */}
+        <div
+          style={{
+            background: 'rgba(255,255,255,.14)',
+            backdropFilter: 'blur(3px)',
+            WebkitBackdropFilter: 'blur(3px)',
+            borderRadius: '20px',
+            padding: '24px',
+            marginBottom: '36px',
+          }}
+        >
+          <h3
+            style={{
+              fontSize: '30px',
+              color: '#5C4567',
+              fontFamily: '"Cormorant Garamond", serif',
+              marginBottom: '12px',
+            }}
+          >
+            Juice
+          </h3>
+
+          <div
+            style={{
+              width: 50,
+              height: 1,
+              background: '#D6B4E8',
+              margin: '0 auto 20px',
+            }}
+          />
+
+          <ul
+            style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              lineHeight: '1.8',
+            }}
+          >
+            {juiceList.map((drink) => (
+              <li
+                key={drink.name}
+                style={{
+                  marginBottom: '12px',
+                  fontFamily: '"Noto Serif JP", serif',
+                  fontSize: '16px',
+                  color: '#2F2635',
+                  fontWeight: 500,
+                  textShadow: '0 1px 5px rgba(255,255,255,.9)',
+                  lineHeight: 1.8,
+                }}
+              >
+                {drink.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <p
           style={{
             marginTop: '30px',
@@ -311,11 +439,13 @@ const DrinkMenuPage: React.FC = () => {
             marginBottom: '80px',
           }}
         >
-          ※Secret Drinksについては持ち込みのため,
+          ※Special Drinksについては持ち込みのため,
           <br />
           品切れになる可能性があります。
         </p>
       </div>
+
+      {/* お知らせ */}
       {showNotice && (
         <div
           onClick={() => setShowNotice(false)}
@@ -361,7 +491,7 @@ const DrinkMenuPage: React.FC = () => {
                 marginBottom: '24px',
               }}
             >
-              Secret Drinks は
+              Special Drinks は
               <br />
               このアプリ限定メニューです。
               <br />
