@@ -313,7 +313,9 @@ export default function GuestQrPage() {
               lineHeight: 1.8,
             }}
           >
-            事前にスクリーンショットを保存しておくと安心です。
+            事前にスクリーンショットを
+            <br />
+            保存しておくと安心です。
             <br />
             当日は保存した画像を受付スタッフに
             <br />
