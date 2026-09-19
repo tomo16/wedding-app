@@ -160,7 +160,7 @@ const DrinkMenuPage: React.FC = () => {
             <br />
             水のように飲める。
             <br />
-            (妻と1時間で720mlを飲み干しました。)
+            (妻と2人で720ml、気づいたら空でした。)
           </div>
 
           <div
