@@ -345,13 +345,13 @@ export default function GuestApp() {
             >
               <div>🪑 席次表</div>
               <div>📷 前撮りフォト</div>
-              <div>📸 写真アップロード</div>
+              <div>📸 アップロード</div>
               <div>🍽 お食事メニュー</div>
               <div>🍷 飲み物メニュー</div>
-              <div>📍 ご案内・注意事項</div>
+              <div>📍 ご案内/注意事項</div>
               <div>💌 メッセージ</div>
               <div>👤 プロフィール</div>
-              <div>📖 二人のヒストリー</div>
+              <div>📖 ヒストリー</div>
             </div>
           </div>
 
@@ -461,7 +461,7 @@ export default function GuestApp() {
               boxShadow: canLogin ? '0 6px 16px rgba(217,156,199,.35)' : 'none',
             }}
           >
-            入場する（受付済の方）
+            入場する
           </button>
 
           {/* スタッフ用ログイン */}
