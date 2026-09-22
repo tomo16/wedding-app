@@ -37,11 +37,11 @@ export default function GuestApp() {
     });
   }, [guest]);
 
-  // 自動ログアウト（180分）
+  // 自動ログアウト（360分）
   useEffect(() => {
     if (!guest) return;
 
-    const AUTO_LOGOUT_MIN = 180;
+    const AUTO_LOGOUT_MIN = 360;
 
     const timer = setTimeout(
       () => {
