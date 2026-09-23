@@ -17,6 +17,8 @@ const MessagePage: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [side, setSide] = useState<'groom' | 'bride' | ''>('');
 
+  const MAX_MESSAGE_LENGTH = 300;
+  const [isSubmitting, setIsSubmitting] = useState(false);
   // スクロール位置リセット
   useEffect(() => {
     window.scrollTo({
@@ -25,6 +27,8 @@ const MessagePage: React.FC = () => {
   }, []);
   // 名前読み込み
   const handleSubmit = async () => {
+    if (isSubmitting) return;
+    
     if (!name.trim() || !text.trim() || !side) {
       setErrorMessage(
         'お名前・ご関係（新郎側/新婦側）・メッセージを入力してください！',
@@ -33,6 +37,7 @@ const MessagePage: React.FC = () => {
       return;
     }
 
+    setIsSubmitting(true);
     const newMessage = { name, text, side, time: Timestamp.now() };
 
     try {
@@ -48,6 +53,8 @@ const MessagePage: React.FC = () => {
       }, 3000);
     } catch (err) {
       console.error('メッセージ送信失敗', err);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -185,7 +192,7 @@ const MessagePage: React.FC = () => {
               <br />
               ✓ 公序良俗に反する内容はご遠慮ください。
               <br />
-              ✓ Twitter風の一言投稿も大歓迎です。
+              ✓ 某SNS風の一言投稿も大歓迎です。
               <br />✓ 投稿は何度でも可能です。
             </div>
           </div>
@@ -231,6 +238,7 @@ const MessagePage: React.FC = () => {
             type="text"
             placeholder="お名前"
             value={name}
+            maxLength={30}
             onChange={(e) => setName(e.target.value)}
             style={{
               width: '100%',
@@ -293,6 +301,7 @@ const MessagePage: React.FC = () => {
 
           <textarea
             rows={6}
+            maxLength={MAX_MESSAGE_LENGTH}
             placeholder="メッセージを入力してください..."
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -309,11 +318,22 @@ const MessagePage: React.FC = () => {
               boxSizing: 'border-box',
             }}
           />
+          <div
+            style={{
+              textAlign: 'right',
+              color: text.length >= MAX_MESSAGE_LENGTH ? '#C06' : '#999',
+              fontSize: '12px',
+              marginBottom: '24px',
+            }}
+          >
+            {text.length} / {MAX_MESSAGE_LENGTH}文字
+          </div>
 
           {/* 送信ボタン */}
 
           <button
             onClick={handleSubmit}
+            disabled={isSubmitting}
             style={{
               width: '100%',
               padding: '16px',
@@ -328,7 +348,7 @@ const MessagePage: React.FC = () => {
               transition: '.2s',
             }}
           >
-            メッセージを送る
+            {isSubmitting ? '送信中...' : 'メッセージを送る'}
           </button>
         </div>
 
