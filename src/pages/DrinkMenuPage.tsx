@@ -162,7 +162,7 @@ const DrinkMenuPage: React.FC = () => {
             <br />
             水のように飲める。
             <br />
-            (妻と2人で720ml、気づいたら空でした。)
+            (妻と2人で720ml、気づいたら空。)
           </div>
 
           <div
