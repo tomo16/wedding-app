@@ -138,7 +138,7 @@ const VenueInfoPage: React.FC = () => {
             <div>
               <strong>🚭 喫煙</strong>
               <br />
-              館内は全面禁煙です
+              所定の喫煙所にてお願いいたします。
             </div>
           </div>
         </section>
