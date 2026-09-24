@@ -1,6 +1,6 @@
 ﻿name,code,checkedin,message,seatNumber,hasTransportationGift,transportationGiftGiven,giftReceived,side,giftReceivedAtReception
 秋山広治/恵子（アキヤマ ヒロジ/ケイコ）,gnpno2HNxOIo,TRUE,ようこそ！,I-1,FALSE,FALSE,TRUE,groom,FALSE
-播磨渉/愛里子/奏翔（ハリマ ワタル/エリコ/カナト）,gPa6SAWEQFaX,FALSE,楽しんでください！,I-4,TRUE,FALSE,FALSE,groom,TRUE
+播磨渉/愛里子/奏翔（ハリマ ワタル/エリコ/カナト）,gPa6SAWEQFaX,FALSE,楽しんでください！,I-4,TRUE,TRUE,FALSE,groom,TRUE
 青木芳仁（アオキ ヨシヒト）,le5YUKLSxld9,FALSE,ようこそ！,A-1,FALSE,FALSE,TRUE,groom,FALSE
 糸洲弘（イトス ヒロシ）,0O8OlDsU47YA,FALSE,楽しんでください！,A-2,FALSE,FALSE,FALSE,groom,TRUE
 川上智司（カワカミ サトシ）,EUF5sVSDr8dj,FALSE,ようこそ！,A-3,FALSE,FALSE,FALSE,groom,TRUE
