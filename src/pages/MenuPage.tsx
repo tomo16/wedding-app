@@ -158,9 +158,10 @@ function MenuPage() {
               <div
                 style={{
                   color: '#5C4567',
-                  fontSize: '30px',
+                  fontSize: '35px',
                   fontFamily: '"Cormorant Garamond", serif',
                   marginBottom: '16px',
+                  fontWeight: 700,
                 }}
               >
                 {section.title}
@@ -180,12 +181,12 @@ function MenuPage() {
                   key={item}
                   style={{
                     fontFamily: '"Noto Serif JP", serif',
-                    fontSize: '17px',
+                    fontSize: '22px',
                     color: '#4F4553',
                     lineHeight: 1.9,
                     letterSpacing: '0.03em',
                     textAlign: 'center',
-                    fontWeight: 500,
+                    fontWeight: 800,
                     whiteSpace: 'pre-line',
                   }}
                 >

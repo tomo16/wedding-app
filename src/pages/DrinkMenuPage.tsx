@@ -141,8 +141,8 @@ const DrinkMenuPage: React.FC = () => {
           <div
             style={{
               fontFamily: '"Cormorant Garamond", serif',
-              fontSize: '34px',
-              fontWeight: 700,
+              fontSize: '36px',
+              fontWeight: 800,
               color: '#4B3459',
               marginBottom: '10px',
             }}
@@ -176,8 +176,8 @@ const DrinkMenuPage: React.FC = () => {
           <div
             style={{
               fontFamily: '"Cormorant Garamond", serif',
-              fontSize: '34px',
-              fontWeight: 700,
+              fontSize: '36px',
+              fontWeight: 800,
               color: '#4B3459',
               marginBottom: '10px',
             }}
