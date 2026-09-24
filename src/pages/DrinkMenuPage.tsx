@@ -154,7 +154,8 @@ const DrinkMenuPage: React.FC = () => {
             style={{
               color: '#4F4553',
               lineHeight: 1.8,
-              fontSize: '15px',
+              fontSize: '16px',
+              fontWeight: 500,
             }}
           >
             新郎おすすめの日本酒。
@@ -189,7 +190,8 @@ const DrinkMenuPage: React.FC = () => {
             style={{
               color: '#4F4553',
               lineHeight: 1.8,
-              fontSize: '15px',
+              fontSize: '16px',
+              fontWeight: 500,
             }}
           >
             新婦おすすめのウイスキー。
