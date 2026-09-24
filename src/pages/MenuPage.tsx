@@ -29,11 +29,11 @@ function MenuPage() {
     },
     {
       title: 'Deuxième',
-      items: ['カリフラワーのヴルーテトリュフと\nヘーゼルナッツ添え'],
+      items: ['カリフラワーの\nヴルーテトリュフと\nヘーゼルナッツ添え'],
     },
     {
       title: 'Poisson',
-      items: ['真鯛のバプール\nイベリコ豚のチョリソとピペラード'],
+      items: ['真鯛のバプール\nイベリコ豚のチョリソと\nピペラード'],
     },
     {
       title: 'Granité',
