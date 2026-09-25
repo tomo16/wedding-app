@@ -97,7 +97,7 @@ const PhotoGalleryPage: React.FC = () => {
       style={{
         minHeight: '100dvh',
         overflow: 'hidden',
-        touchAction: 'none',
+        // touchAction: 'none',
         background:
           'linear-gradient(180deg,#FFFDFE 0%,#F8F2FB 35%,#EFE2F7 100%)',
       }}
